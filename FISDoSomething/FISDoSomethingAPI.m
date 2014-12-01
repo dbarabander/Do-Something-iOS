@@ -48,6 +48,10 @@
     if (landscape) stringURL = campaign.coverImageLandscapeURL;
     else stringURL = campaign.coverImageSquareURL;
     
+    if (!stringURL) {
+        stringURL = @"https://dosomething-a.akamaihd.net/profiles/dosomething/themes/dosomething/paraneue_dosomething/logo.png";
+    }
+    
     NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:stringURL]];
     AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:urlRequest];
     requestOperation.responseSerializer = [AFImageResponseSerializer serializer];

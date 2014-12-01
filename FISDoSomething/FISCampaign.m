@@ -73,7 +73,6 @@
         
         // End date
         if ([self isNotNull:responseObject[@"end_date"]]) {
-            NSLog(@"%@", responseObject[@"end_date"]);
             campaign.endDate = [NSDate dateWithTimeIntervalSince1970:[responseObject[@"end_date"] doubleValue]];
         }
         else {

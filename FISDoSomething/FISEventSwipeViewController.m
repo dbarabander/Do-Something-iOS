@@ -8,8 +8,14 @@
 #import "FISEventCard.h"
 #import "FISEventSwipeViewController.h"
 #import "FISEventDetailView.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "FISDataStore.h"
+#import "FISCampaign.h"
 
 @interface FISEventSwipeViewController () <FISMultiCardViewDataSource, FISMultiCardViewDelegate>
+
+@property (nonatomic) NSUInteger downloadIndex;
+
 @end
 
 @implementation FISEventSwipeViewController
@@ -36,7 +42,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    self.downloadIndex = 0;
+    
     UINavigationBar *navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 64)];
     UINavigationItem *navItem = [[UINavigationItem alloc] init];
     UIImage *image = [UIImage imageNamed:@"Do_Something_Logo"];
@@ -75,9 +83,18 @@
 
 - (void)multiCardView:(FISMultiCardView *)multiCardView didSwipeViewInDirection:(FISSwipeDirection)direction
 {
-
+    if (![_swipeableViews count]) {
+        return ;
+    }
     [_swipeableViews removeObjectAtIndex:0];
-
+    if (self.downloadIndex < [[FISDataStore sharedDataStore].campaigns count]) {
+        NSLog(@"%lu", self.downloadIndex);
+        [[FISDataStore sharedDataStore] getImageForCampaign:[FISDataStore sharedDataStore].campaigns[self.downloadIndex++] inLandscape:NO withCompletionHandler:^(UIImage *image) {
+            FISEventCard * eventCardToLoadImage = _swipeableViews[2];
+            eventCardToLoadImage.imageView.image = image;
+            [_multiCardView reloadCardViews];
+        }];
+    }
 }
 
 - (void)multiCardView:(FISMultiCardView *)multiCardView didTapCardView:(UIView *)cardView
@@ -115,59 +132,27 @@
 
 - (void)fetchEvents
 {
-
-    FISEventCard *placeCard2 = [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard" owner:self options:nil] firstObject];
-    placeCard2.imageView.image = [UIImage imageNamed:@"Ben"];
-    placeCard2.name = @"Event 1";
-    [_swipeableViews addObject:placeCard2];
-
-    FISEventCard *placeCard13 = [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard" owner:self options:nil] firstObject];
-    placeCard13.imageView.image = [UIImage imageNamed:@"Ben"];
-    placeCard13.name = @"Event 2";
-    [_swipeableViews addObject:placeCard13];
-
-    FISEventCard *placeCard4 = [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard" owner:self options:nil] firstObject];
-    placeCard4.imageView.image = [UIImage imageNamed:@"Ben"];
-    placeCard4.name = @"Event 3";
-    [_swipeableViews addObject:placeCard4];
-
-    FISEventCard *placeCard6 = [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard" owner:self options:nil] firstObject];
-    placeCard6.backgroundImage = [UIImage imageNamed:@"Ben"];
-    placeCard6.name = @"Event 4";
-    [_swipeableViews addObject:placeCard6];
-
-    FISEventCard *placeCard3 = [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard" owner:self options:nil] firstObject];
-    placeCard3.imageView.image = [UIImage imageNamed:@"Ben"];
-    placeCard3.name = @"Event 5";
-    [_swipeableViews addObject:placeCard3];
-
-    FISEventCard *placeCard7 = [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard" owner:self options:nil] firstObject];
-    placeCard7.imageView.image = [UIImage imageNamed:@"Ben"];
-    placeCard7.name = @"Event 6";
-    [_swipeableViews addObject:placeCard7];
-
-    FISEventCard *placeCard1 = [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard" owner:self options:nil] firstObject];
-    placeCard1.imageView.image = [UIImage imageNamed:@"Ben"];
-    placeCard1.name = @"Event 7";
-    [_swipeableViews addObject:placeCard1];
-
-    FISEventCard *placeCard8 = [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard" owner:self options:nil] firstObject];
-    placeCard8.imageView.image = [UIImage imageNamed:@"Ben"];
-    placeCard8.name = @"Event 8";
-    [_swipeableViews addObject:placeCard8];
-
-    FISEventCard *placeCard10 = [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard" owner:self options:nil] firstObject];
-    placeCard10.imageView.image = [UIImage imageNamed:@"Ben"];
-    placeCard10.name = @"Event 9";
-    [_swipeableViews addObject:placeCard10];
-
-    FISEventCard *placeCard5 = [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard" owner:self options:nil] firstObject];
-    placeCard5.imageView.image = [UIImage imageNamed:@"Ben"];
-    placeCard5.name = @"Event 10";
-    [_swipeableViews addObject:placeCard5];
-
-    [_multiCardView reloadCardViews];
-
+    [SVProgressHUD show];
+    [[FISDataStore sharedDataStore] getAllActiveCampaignsWithCompletionHandler:^{
+        for (FISCampaign *campaign in [FISDataStore sharedDataStore].campaigns) {
+            
+            FISEventCard *eventCard =
+            [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard"
+                                           owner:self
+                                         options:nil] firstObject];
+            eventCard.campaign = campaign;
+            [_swipeableViews addObject:eventCard];
+            
+            if (self.downloadIndex < 3) {
+                self.downloadIndex++;
+                [[FISDataStore sharedDataStore] getImageForCampaign:campaign inLandscape:NO withCompletionHandler:^(UIImage *image) {
+                    eventCard.imageView.image = image;
+                }];
+            }
+        }
+        [SVProgressHUD dismiss];
+        [_multiCardView reloadCardViews];
+    }];
 }
 
 @end
