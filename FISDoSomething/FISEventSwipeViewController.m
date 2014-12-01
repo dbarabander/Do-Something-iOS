@@ -83,6 +83,13 @@
 
 - (void)multiCardView:(FISMultiCardView *)multiCardView didSwipeViewInDirection:(FISSwipeDirection)direction
 {
+    NSString *relationKey = (direction == FISSwipeDirectionRight) ? @"likes" : @"dislikes";
+    if ([relationKey isEqualToString:@"likes"]) {
+        FISCampaign *currentCampaign = [[_swipeableViews firstObject] campaign];
+        NSLog(@"calling from here");
+        [self.delegate didLikeCampaign:currentCampaign];
+    }
+    
     [_swipeableViews removeObjectAtIndex:0];
     static NSUInteger imageBatchCount = 0;
     static NSUInteger swipedCount = 0;
