@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "FISEventSwipeViewController.h"
+#import "FISChosenEventsTableViewController.h"
 
 @interface ViewController ()
 
@@ -41,8 +42,7 @@
     [self.scrollView addSubview:eventSwipeViewController.view];
     [eventSwipeViewController didMoveToParentViewController:self];
     
-    UIViewController *randomVC = [[UIViewController alloc] init];
-    randomVC.view.backgroundColor = [UIColor redColor];
+    FISChosenEventsTableViewController *randomVC = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"chosenEventsTVC"];
     CGRect randomVCFrame = randomVC.view.frame;
     randomVCFrame.origin.x = self.view.frame.size.width;
     randomVC.view.frame = randomVCFrame;
