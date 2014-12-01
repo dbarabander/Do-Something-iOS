@@ -26,7 +26,17 @@
 {
     [FISDoSomethingAPI retrieveAllActiveCampaignsWithCompletionHandler:^(NSArray *campaigns) {
         self.campaigns = campaigns;
-        completionHandler();
+        static NSUInteger networkCallCount = 0;
+        for (FISCampaign *campaign in self.campaigns) {
+            [self getMoreInfoOnCampaign:campaign withCompletionHandler:^{
+                networkCallCount++;
+                if (networkCallCount == [self.campaigns count]) {
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        completionHandler();
+                    }];
+                }
+            }];
+        }
     }];
 }
 

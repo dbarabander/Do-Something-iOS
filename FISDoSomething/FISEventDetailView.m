@@ -9,6 +9,7 @@
 #import "FISEventDetailView.h"
 
 @interface FISEventDetailView()
+@property (weak, nonatomic) IBOutlet UILabel *valuePropositionLabel;
 @end
 
 @implementation FISEventDetailView
@@ -22,4 +23,9 @@
     return self;
 }
 
+- (void)setValueProposition:(NSString *)valueProposition
+{
+    _valueProposition = valueProposition;
+    self.valuePropositionLabel.text = valueProposition;
+}
 @end

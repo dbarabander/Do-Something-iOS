@@ -52,11 +52,6 @@
 //  Basic Campaign Info
 - (void)getAllActiveCampaignsWithCompletionHandler:(void (^)())completionHandler;
 
-
-// Advanced Campaign Info
-- (void)getMoreInfoOnCampaign:(FISCampaign *)campaign
-             withCompletionHandler:(void (^)())completionHandler;
-
 // Download image for campaign
 - (void)getImageForCampaign:(FISCampaign *)campaign
                      inLandscape:(BOOL)landscape

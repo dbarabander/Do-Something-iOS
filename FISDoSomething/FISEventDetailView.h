@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface FISEventDetailView : UIView
-
+@property (nonatomic) NSString *valueProposition;
 @end

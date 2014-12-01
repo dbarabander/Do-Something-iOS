@@ -3,6 +3,7 @@
 
 target 'FISDoSomething' do
 pod 'AFNetworking'
+pod 'SVProgressHUD'
 end
 
 target 'FISDoSomethingTests' do
