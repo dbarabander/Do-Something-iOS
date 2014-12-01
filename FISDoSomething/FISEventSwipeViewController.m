@@ -83,17 +83,42 @@
 
 - (void)multiCardView:(FISMultiCardView *)multiCardView didSwipeViewInDirection:(FISSwipeDirection)direction
 {
-    if (![_swipeableViews count]) {
+    [_swipeableViews removeObjectAtIndex:0];
+    static NSUInteger imageBatchCount = 0;
+    static NSUInteger swipedCount = 0;
+    swipedCount++;
+    NSLog(@"Swiped Count: %lu",(unsigned long)swipedCount);
+    if (![_swipeableViews count] || !(swipedCount % 7 == 0)) {
         return ;
     }
-    [_swipeableViews removeObjectAtIndex:0];
+    _multiCardView.isLoading = YES;
+    [SVProgressHUD show];
     if (self.downloadIndex < [[FISDataStore sharedDataStore].campaigns count]) {
-        NSLog(@"%lu", self.downloadIndex);
-        [[FISDataStore sharedDataStore] getImageForCampaign:[FISDataStore sharedDataStore].campaigns[self.downloadIndex++] inLandscape:NO withCompletionHandler:^(UIImage *image) {
-            FISEventCard * eventCardToLoadImage = _swipeableViews[2];
-            eventCardToLoadImage.imageView.image = image;
-            [_multiCardView reloadCardViews];
-        }];
+        NSLog(@"Download Index: %lu", self.downloadIndex);
+        for (NSUInteger i = 0; i < 7; i++) {
+            
+            [[FISDataStore sharedDataStore] getImageForCampaign:[FISDataStore sharedDataStore].campaigns[self.downloadIndex] inLandscape:NO withCompletionHandler:^(UIImage *image) {
+                NSLog(@"Image batch count: %lu", imageBatchCount);
+                
+                imageBatchCount++;
+                
+                if (imageBatchCount == 7) {
+                    __block int j = 0;
+                    for (NSUInteger i = self.downloadIndex - 7; i < self.downloadIndex; i++) {
+                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                            FISEventCard * eventCardToLoadImage = _swipeableViews[j];
+                            eventCardToLoadImage.imageView.image = [[FISDataStore sharedDataStore].campaigns[i] squareImage];
+                            [_multiCardView reloadCardViews];
+                            j++;
+                        }];
+                    }
+                    [SVProgressHUD dismiss];
+                    _multiCardView.isLoading = NO;
+                    imageBatchCount = 0;
+                }
+            }];
+            self.downloadIndex++;
+        }
     }
 }
 
@@ -103,7 +128,14 @@
     _blurEffectView.frame = CGRectMake(cardView.bounds.origin.x, cardView.bounds.origin.y, [self preferredSizeForPrimaryCardView].width, [self preferredSizeForPrimaryCardView].height);
     [cardView addSubview:_blurEffectView];
 
-    FISEventDetailView *detailView = [[[NSBundle mainBundle] loadNibNamed:@"FISEventDetailView" owner:self options:nil] firstObject];
+    static BOOL didLoad = NO;
+    FISEventDetailView *detailView;
+    if (!didLoad) {
+        detailView = [[[NSBundle mainBundle] loadNibNamed:@"FISEventDetailView" owner:self options:nil] firstObject];
+        didLoad = YES;
+    }
+    detailView.valueProposition = [[[_swipeableViews firstObject] campaign]valueProposition];
+    NSLog(@"%@",detailView.valueProposition);
      detailView.frame = _blurEffectView.frame;
 
 
@@ -132,6 +164,7 @@
 
 - (void)fetchEvents
 {
+    _multiCardView.isLoading = YES;
     [SVProgressHUD show];
     [[FISDataStore sharedDataStore] getAllActiveCampaignsWithCompletionHandler:^{
         for (FISCampaign *campaign in [FISDataStore sharedDataStore].campaigns) {
@@ -142,16 +175,19 @@
                                          options:nil] firstObject];
             eventCard.campaign = campaign;
             [_swipeableViews addObject:eventCard];
-            
-            if (self.downloadIndex < 3) {
-                self.downloadIndex++;
-                [[FISDataStore sharedDataStore] getImageForCampaign:campaign inLandscape:NO withCompletionHandler:^(UIImage *image) {
-                    eventCard.imageView.image = image;
-                }];
-            }
         }
-        [SVProgressHUD dismiss];
-        [_multiCardView reloadCardViews];
+        for (NSUInteger i = 0; i < 7; i++) {
+            [[FISDataStore sharedDataStore] getImageForCampaign:[[FISDataStore sharedDataStore] campaigns][i] inLandscape:NO withCompletionHandler:^(UIImage *image) {
+                FISEventCard *firstCard = _swipeableViews[i];
+                firstCard.imageView.image = image;
+                [_multiCardView reloadCardViews];
+                self.downloadIndex++;
+                if (self.downloadIndex == 6) {
+                    [SVProgressHUD dismiss];
+                    _multiCardView.isLoading = NO;
+                }
+            }];
+        }
     }];
 }
 

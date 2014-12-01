@@ -30,6 +30,7 @@
 
         _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_tapped:)];
         _tapGestureRecognizer.delegate = self;
+        _isLoading = YES;
     }
     return self;
 }
@@ -62,6 +63,10 @@
 
 - (void)_panned:(UIPanGestureRecognizer *)gestureRecognizer
 {
+    if (self.isLoading) {
+        return;
+    }
+    
     CGPoint center = self.center;
     UIView *view = [gestureRecognizer view];
 

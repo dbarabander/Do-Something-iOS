@@ -33,6 +33,7 @@ typedef NS_ENUM(NSUInteger, FISSwipeDirection) {
 @property (nonatomic, weak) id<FISMultiCardViewDataSource> dataSource;
 @property (nonatomic, weak) id<FISMultiCardViewDelegate> delegate;
 @property (nonatomic, readonly) UIView *frontmostCardView;
+@property (nonatomic) BOOL isLoading;
 
 - (void)reloadCardViews;
 
