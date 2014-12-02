@@ -8,11 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class FISCampaign;
 
+@protocol FISEventSwipeViewControllerProtocol <NSObject>
 
+- (void)didLikeCampaign:(FISCampaign *)campaign;
+
+@end
 
 @interface FISEventSwipeViewController : UIViewController
 
-
+@property (strong, nonatomic) id <FISEventSwipeViewControllerProtocol> delegate;
 
 @end

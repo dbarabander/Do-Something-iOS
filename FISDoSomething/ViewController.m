@@ -10,7 +10,7 @@
 #import "FISEventSwipeViewController.h"
 #import "FISChosenEventsTableViewController.h"
 
-@interface ViewController ()
+@interface ViewController () <FISEventSwipeViewControllerProtocol>
 
 @property (strong, nonatomic) UIScrollView *scrollView;
 
@@ -42,6 +42,7 @@
     [self.scrollView addSubview:eventSwipeViewController.view];
     [eventSwipeViewController didMoveToParentViewController:self];
     
+    
     FISChosenEventsTableViewController *randomVC = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"chosenEventsTVC"];
     CGRect randomVCFrame = randomVC.view.frame;
     randomVCFrame.origin.x = self.view.frame.size.width;
@@ -49,6 +50,7 @@
     [self addChildViewController:randomVC];
     [self.scrollView addSubview:randomVC.view];
     [randomVC didMoveToParentViewController:self];
+    eventSwipeViewController.delegate = randomVC.childViewControllers[0];
     
     // Set scroll view size
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width * 2, self.view.frame.size.height);

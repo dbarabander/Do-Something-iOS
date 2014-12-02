@@ -9,11 +9,14 @@
 #import "FISChosenEventsTableViewController.h"
 #import "FISCustomEventTableViewCell.h"
 #import "selectedEventViewController.h"
+#import "FISEventSwipeViewController.h"
+#import "FISCampaign.h"
 
-@interface FISChosenEventsTableViewController ()
+@interface FISChosenEventsTableViewController () <FISEventSwipeViewControllerProtocol>
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (strong, nonatomic) NSMutableArray* eventsToDisplay;
+@property (strong, nonatomic) FISEventSwipeViewController *swipeVC;
 - (IBAction)segmentChanged:(id)sender;
 
 @end
@@ -23,11 +26,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self createTestData];
+    self.swipeVC.delegate = self;
+    
+    //[self createTestData];
+    self.eventsToDisplay = [NSMutableArray new];
     
     [self.segmentedControl setTitle:@"All" forSegmentAtIndex:0];
     [self.segmentedControl setTitle:@"Completed" forSegmentAtIndex:1];
 
+}
+
+- (void)didLikeCampaign:(FISCampaign *)campaign
+{
+    NSLog(@"hello");
+    [self.eventsToDisplay addObject:campaign];
+    [self.tableView reloadData];
 }
 
 -(void)createTestData
@@ -69,9 +82,9 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"standardCell" forIndexPath:indexPath];
 
-    eventTest* eventAtCell = self.eventsToDisplay[indexPath.row];
+    FISCampaign *eventAtCell = self.eventsToDisplay[indexPath.row];
     
-    UIImage* fullCellImage = [self resizeImage:eventAtCell.image width:cell.contentView.frame.size.width height:cell.contentView.frame.size.height];
+    UIImage* fullCellImage = [self resizeImage:eventAtCell.squareImage width:cell.contentView.frame.size.width height:cell.contentView.frame.size.height];
 
 
     NSLog(@"imageViewX:%f, contentViewX:%f", cell.imageView.frame.origin.x, cell.contentView.frame.origin.x);
@@ -87,8 +100,7 @@
     [self addTitle:eventAtCell.title OnCell:cell];
      
      [cell.contentView layoutSubviews];
-     
-     
+    
      return cell;
 }
 
@@ -185,12 +197,13 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-
-    selectedEventViewController* selectedEventVC = segue.destinationViewController;
-    
-    NSIndexPath* selectedIp = [self.tableView indexPathForSelectedRow];
-    eventTest* selectedEvent = self.eventsToDisplay[selectedIp.row];
-    selectedEventVC.selectedEvent = selectedEvent;
+    if ([segue.identifier isEqualToString:@"detailSegue"]) {
+        UINavigationController *navController = [segue destinationViewController];
+        selectedEventViewController *selectedEventVC = (selectedEventViewController *)([navController viewControllers][0]);
+        NSIndexPath* selectedIp = [self.tableView indexPathForSelectedRow];
+        FISCampaign* selectedEvent = self.eventsToDisplay[selectedIp.row];
+        selectedEventVC.selectedEvent = selectedEvent;
+    }
 }
 
 /*

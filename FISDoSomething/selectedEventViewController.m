@@ -7,6 +7,7 @@
 //
 
 #import "selectedEventViewController.h"
+#import "FISCampaign.h"
 
 @interface selectedEventViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *eventImage;
@@ -24,9 +25,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.eventImage.image = self.selectedEvent.image;
-    self.eventDescription.text = self.selectedEvent.detail;
-    self.titleBar.title = self.selectedEvent.title;
+    self.eventImage.image = self.selectedEvent.squareImage;
+    self.eventDescription.text = self.selectedEvent.valueProposition;
+    self.navigationItem.title = self.selectedEvent.title;
 }
 
 - (void)didReceiveMemoryWarning {
