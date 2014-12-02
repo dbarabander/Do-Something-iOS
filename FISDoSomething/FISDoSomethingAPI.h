@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
+#import "Campaign.h"
 @class FISCampaign;
 @interface FISDoSomethingAPI : NSObject
 
@@ -17,11 +17,11 @@
 
 
 // Advanced Campaign Info
-+ (void)retrieveMoreInfoOnCampaign:(FISCampaign *)campaign
++ (void)retrieveMoreInfoOnCampaign:(Campaign *)campaign
              withCompletionHandler:(void (^)())completionHandler;
 
 // Download image for campaign
-+ (void)retrieveImageForCampaign:(FISCampaign *)campaign
++ (void)retrieveImageForCampaign:(Campaign *)campaign
                      inLandscape:(BOOL)landscape
            withCompletionHandler:(void (^)(UIImage *image))completionHandler;
 @end

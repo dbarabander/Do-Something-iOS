@@ -114,7 +114,8 @@
                     for (NSUInteger i = self.downloadIndex - 7; i < self.downloadIndex; i++) {
                         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                             FISEventCard * eventCardToLoadImage = _swipeableViews[j];
-                            eventCardToLoadImage.imageView.image = [[FISDataStore sharedDataStore].campaigns[i] squareImage];
+                            eventCardToLoadImage.imageView.image = [UIImage imageWithData:[[FISDataStore sharedDataStore].campaigns[i] squareImage]];
+
                             [_multiCardView reloadCardViews];
                             j++;
                         }];

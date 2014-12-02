@@ -10,7 +10,7 @@
 #import "FISCustomEventTableViewCell.h"
 #import "selectedEventViewController.h"
 #import "FISEventSwipeViewController.h"
-#import "FISCampaign.h"
+#import "Campaign.h"
 
 @interface FISChosenEventsTableViewController () <FISEventSwipeViewControllerProtocol>
 
@@ -36,7 +36,7 @@
 
 }
 
-- (void)didLikeCampaign:(FISCampaign *)campaign
+- (void)didLikeCampaign:(Campaign *)campaign
 {
     NSLog(@"hello");
     [self.eventsToDisplay addObject:campaign];
@@ -82,9 +82,9 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"standardCell" forIndexPath:indexPath];
 
-    FISCampaign *eventAtCell = self.eventsToDisplay[indexPath.row];
+    Campaign *eventAtCell = self.eventsToDisplay[indexPath.row];
     
-    UIImage* fullCellImage = [self resizeImage:eventAtCell.squareImage width:cell.contentView.frame.size.width height:cell.contentView.frame.size.height];
+   // UIImage* fullCellImage = [self resizeImage:eventAtCell.squareImage width:cell.contentView.frame.size.width height:cell.contentView.frame.size.height];
 
 
     NSLog(@"imageViewX:%f, contentViewX:%f", cell.imageView.frame.origin.x, cell.contentView.frame.origin.x);
@@ -94,7 +94,8 @@
     [self constrainImageViewToContentViewFor:cell];
     
 //    cell.imageView.frame.origin.x = cell.contentView.frame.origin.x;
-    cell.imageView.image = fullCellImage;
+
+    cell.imageView.image = [UIImage imageWithData:eventAtCell.squareImage];
 
     [self addOverlayOnCell:cell];
     [self addTitle:eventAtCell.title OnCell:cell];
@@ -168,24 +169,24 @@
     [cell.imageView addSubview:titleLabel];
 }
 
--(UIImage *)resizeImage:(UIImage *)image width:(int)width height:(int)height
-{
-    CGImageRef imageRef = [image CGImage];
-    CGImageAlphaInfo alphaInfo = CGImageGetAlphaInfo(imageRef);
-    
-    alphaInfo = kCGImageAlphaNoneSkipLast;
-    
-    CGContextRef bitmap = CGBitmapContextCreate(NULL, width, height, CGImageGetBitsPerComponent(imageRef),
-                                                4 * width, CGImageGetColorSpace(imageRef), alphaInfo);
-    CGContextDrawImage(bitmap, CGRectMake(0, 0, width, height), imageRef);
-    CGImageRef ref = CGBitmapContextCreateImage(bitmap);
-    UIImage *result = [UIImage imageWithCGImage:ref];
-    
-    CGContextRelease(bitmap);
-    CGImageRelease(ref);
-    
-    return result;
-}
+//-(UIImage *)resizeImage:(UIImage *)image width:(int)width height:(int)height
+//{
+//    CGImageRef imageRef = [image CGImage];
+//    CGImageAlphaInfo alphaInfo = CGImageGetAlphaInfo(imageRef);
+//    
+//    alphaInfo = kCGImageAlphaNoneSkipLast;
+//    
+//    CGContextRef bitmap = CGBitmapContextCreate(NULL, width, height, CGImageGetBitsPerComponent(imageRef),
+//                                                4 * width, CGImageGetColorSpace(imageRef), alphaInfo);
+//    CGContextDrawImage(bitmap, CGRectMake(0, 0, width, height), imageRef);
+//    CGImageRef ref = CGBitmapContextCreateImage(bitmap);
+//    UIImage *result = [UIImage imageWithCGImage:ref];
+//    
+//    CGContextRelease(bitmap);
+//    CGImageRelease(ref);
+//    
+//    return result;
+//}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -201,7 +202,7 @@
         UINavigationController *navController = [segue destinationViewController];
         selectedEventViewController *selectedEventVC = (selectedEventViewController *)([navController viewControllers][0]);
         NSIndexPath* selectedIp = [self.tableView indexPathForSelectedRow];
-        FISCampaign* selectedEvent = self.eventsToDisplay[selectedIp.row];
+        Campaign* selectedEvent = self.eventsToDisplay[selectedIp.row];
         selectedEventVC.selectedEvent = selectedEvent;
     }
 }

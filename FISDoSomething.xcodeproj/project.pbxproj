@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0903DD1E1A2E1A110031D090 /* Campaign+HelperMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903DD1D1A2E1A110031D090 /* Campaign+HelperMethods.m */; };
+		0903DD231A2E378A0031D090 /* Model.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 0903DD221A2E378A0031D090 /* Model.xcdatamodel */; };
+		0903DD2C1A2E385D0031D090 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0903DD2A1A2E385D0031D090 /* Model.xcdatamodeld */; };
+		0903DD321A2E51790031D090 /* FISCampaign.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903DD311A2E51790031D090 /* FISCampaign.m */; };
+		0903DD351A2E6CD00031D090 /* Campaign.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903DD341A2E6CD00031D090 /* Campaign.m */; };
 		6F7D31C31A2CBB73001C9B54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7D31C21A2CBB73001C9B54 /* main.m */; };
 		6F7D31C61A2CBB73001C9B54 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7D31C51A2CBB73001C9B54 /* AppDelegate.m */; };
 		6F7D31CC1A2CBB73001C9B54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F7D31CA1A2CBB73001C9B54 /* Main.storyboard */; };
 		6F7D31CE1A2CBB73001C9B54 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F7D31CD1A2CBB73001C9B54 /* Images.xcassets */; };
 		6F7D31D11A2CBB73001C9B54 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F7D31CF1A2CBB73001C9B54 /* LaunchScreen.xib */; };
 		6F7D31DD1A2CBB73001C9B54 /* FISDoSomethingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7D31DC1A2CBB73001C9B54 /* FISDoSomethingTests.m */; };
-		6F7D31FA1A2CBBE4001C9B54 /* FISCampaign.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7D31E71A2CBBE4001C9B54 /* FISCampaign.m */; };
 		6F7D31FB1A2CBBE4001C9B54 /* FISDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7D31E91A2CBBE4001C9B54 /* FISDataStore.m */; };
 		6F7D31FC1A2CBBE4001C9B54 /* FISDoSomethingAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7D31EB1A2CBBE4001C9B54 /* FISDoSomethingAPI.m */; };
 		6F7D31FD1A2CBBE4001C9B54 /* FISEventCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7D31ED1A2CBBE4001C9B54 /* FISEventCard.m */; };
@@ -43,6 +47,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0903DD1C1A2E1A110031D090 /* Campaign+HelperMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Campaign+HelperMethods.h"; sourceTree = "<group>"; };
+		0903DD1D1A2E1A110031D090 /* Campaign+HelperMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Campaign+HelperMethods.m"; sourceTree = "<group>"; };
+		0903DD221A2E378A0031D090 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		0903DD2B1A2E385D0031D090 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		0903DD301A2E51790031D090 /* FISCampaign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISCampaign.h; sourceTree = "<group>"; };
+		0903DD311A2E51790031D090 /* FISCampaign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISCampaign.m; sourceTree = "<group>"; };
+		0903DD331A2E6CD00031D090 /* Campaign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Campaign.h; sourceTree = "<group>"; };
+		0903DD341A2E6CD00031D090 /* Campaign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Campaign.m; sourceTree = "<group>"; };
 		3FA932492A14C78E288BCAAB /* Pods-FISDoSomething.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FISDoSomething.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FISDoSomething/Pods-FISDoSomething.debug.xcconfig"; sourceTree = "<group>"; };
 		6F7D31BD1A2CBB73001C9B54 /* FISDoSomething.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FISDoSomething.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F7D31C11A2CBB73001C9B54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,8 +67,6 @@
 		6F7D31D61A2CBB73001C9B54 /* FISDoSomethingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FISDoSomethingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F7D31DB1A2CBB73001C9B54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F7D31DC1A2CBB73001C9B54 /* FISDoSomethingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FISDoSomethingTests.m; sourceTree = "<group>"; };
-		6F7D31E61A2CBBE4001C9B54 /* FISCampaign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISCampaign.h; sourceTree = "<group>"; };
-		6F7D31E71A2CBBE4001C9B54 /* FISCampaign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISCampaign.m; sourceTree = "<group>"; };
 		6F7D31E81A2CBBE4001C9B54 /* FISDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISDataStore.h; sourceTree = "<group>"; };
 		6F7D31E91A2CBBE4001C9B54 /* FISDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISDataStore.m; sourceTree = "<group>"; };
 		6F7D31EA1A2CBBE4001C9B54 /* FISDoSomethingAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISDoSomethingAPI.h; sourceTree = "<group>"; };
@@ -151,6 +161,10 @@
 		6F7D31BF1A2CBB73001C9B54 /* FISDoSomething */ = {
 			isa = PBXGroup;
 			children = (
+				0903DD221A2E378A0031D090 /* Model.xcdatamodel */,
+				0903DD2A1A2E385D0031D090 /* Model.xcdatamodeld */,
+				0903DD331A2E6CD00031D090 /* Campaign.h */,
+				0903DD341A2E6CD00031D090 /* Campaign.m */,
 				6F7D31C41A2CBB73001C9B54 /* AppDelegate.h */,
 				6F7D31C51A2CBB73001C9B54 /* AppDelegate.m */,
 				6F7D31CA1A2CBB73001C9B54 /* Main.storyboard */,
@@ -190,8 +204,10 @@
 		6F7D32051A2CBBEA001C9B54 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6F7D31E61A2CBBE4001C9B54 /* FISCampaign.h */,
-				6F7D31E71A2CBBE4001C9B54 /* FISCampaign.m */,
+				0903DD301A2E51790031D090 /* FISCampaign.h */,
+				0903DD311A2E51790031D090 /* FISCampaign.m */,
+				0903DD1C1A2E1A110031D090 /* Campaign+HelperMethods.h */,
+				0903DD1D1A2E1A110031D090 /* Campaign+HelperMethods.m */,
 				6F7D31E81A2CBBE4001C9B54 /* FISDataStore.h */,
 				6F7D31E91A2CBBE4001C9B54 /* FISDataStore.m */,
 				6F7D31EA1A2CBBE4001C9B54 /* FISDoSomethingAPI.h */,
@@ -385,6 +401,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0903DD231A2E378A0031D090 /* Model.xcdatamodel in Sources */,
 				6F7D31FF1A2CBBE4001C9B54 /* FISEventDetailView.m in Sources */,
 				6F7D31C61A2CBB73001C9B54 /* AppDelegate.m in Sources */,
 				6F7D32021A2CBBE4001C9B54 /* FISMultiCardView.m in Sources */,
@@ -395,10 +412,13 @@
 				6F7D31FB1A2CBBE4001C9B54 /* FISDataStore.m in Sources */,
 				BD7AF3BD1A2D050B00FAC422 /* FISChosenEventsTableViewController.m in Sources */,
 				6F7D32031A2CBBE4001C9B54 /* NSString+cleanUp.m in Sources */,
-				6F7D31FA1A2CBBE4001C9B54 /* FISCampaign.m in Sources */,
 				6F7D31FC1A2CBBE4001C9B54 /* FISDoSomethingAPI.m in Sources */,
 				6F7D31FD1A2CBBE4001C9B54 /* FISEventCard.m in Sources */,
 				BD7AF3BE1A2D050B00FAC422 /* FISCustomEventTableViewCell.m in Sources */,
+				0903DD321A2E51790031D090 /* FISCampaign.m in Sources */,
+				0903DD1E1A2E1A110031D090 /* Campaign+HelperMethods.m in Sources */,
+				0903DD351A2E6CD00031D090 /* Campaign.m in Sources */,
+				0903DD2C1A2E385D0031D090 /* Model.xcdatamodeld in Sources */,
 				BD7AF3B71A2D048D00FAC422 /* eventTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -604,6 +624,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0903DD2A1A2E385D0031D090 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0903DD2B1A2E385D0031D090 /* Model.xcdatamodel */,
+			);
+			currentVersion = 0903DD2B1A2E385D0031D090 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6F7D31B51A2CBB73001C9B54 /* Project object */;
 }
