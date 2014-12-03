@@ -66,15 +66,12 @@
     
 }
 
-// Download image for campaign
-- (void)getImageForCampaign:(Campaign *)campaign
-                inLandscape:(BOOL)landscape
-      withCompletionHandler:(void (^)(UIImage *image))completionHandler
+// Download images for campaign
+- (void)getImagesForCampaign:(Campaign *)campaign
+       withCompletionHandler:(void (^)())completionHandler
 {
-    [FISDoSomethingAPI retrieveImageForCampaign:campaign
-                                    inLandscape:landscape
-                          withCompletionHandler:^(UIImage *image) {
-                              completionHandler(image);
+    [FISDoSomethingAPI retrieveImagesForCampaign:campaign withCompletionHandler:^{
+        completionHandler();
     }];
 }
 

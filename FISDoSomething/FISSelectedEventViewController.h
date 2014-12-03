@@ -10,7 +10,7 @@
 
 @class Campaign;
 
-@interface selectedEventViewController : UIViewController <UIImagePickerControllerDelegate>
+@interface FISSelectedEventViewController : UIViewController <UIImagePickerControllerDelegate>
 
 @property (strong, nonatomic) Campaign* selectedEvent;
 

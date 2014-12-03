@@ -27,10 +27,11 @@
 		6F7D32041A2CBBE4001C9B54 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7D31F91A2CBBE4001C9B54 /* ViewController.m */; };
 		6FBE5A921A2F970D00FE5B7F /* Campaign.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBE5A911A2F970D00FE5B7F /* Campaign.m */; };
 		6FBE5A951A2F970D00FE5B7F /* CampaignPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBE5A941A2F970D00FE5B7F /* CampaignPreferences.m */; };
+		6F7D32041A2CBBE4001C9B54 /* FISViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7D31F91A2CBBE4001C9B54 /* FISViewController.m */; };
 		94AC3FE323C0321BCC7CF5D5 /* libPods-FISDoSomething.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7322E1BD57E285C50436690 /* libPods-FISDoSomething.a */; };
 		BD7AF3BD1A2D050B00FAC422 /* FISChosenEventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD7AF3B91A2D050B00FAC422 /* FISChosenEventsTableViewController.m */; };
 		BD7AF3BE1A2D050B00FAC422 /* FISCustomEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BD7AF3BB1A2D050B00FAC422 /* FISCustomEventTableViewCell.m */; };
-		BD7AF3C21A2D051800FAC422 /* selectedEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD7AF3C11A2D051800FAC422 /* selectedEventViewController.m */; };
+		BD7AF3C21A2D051800FAC422 /* FISSelectedEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD7AF3C11A2D051800FAC422 /* FISSelectedEventViewController.m */; };
 		BDE708DB1A2E5D3100014CB0 /* Proxima-Nova-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BDE708DA1A2E5D3100014CB0 /* Proxima-Nova-Bold.ttf */; };
 		BDEA81131A2E662000014E9D /* PopOverAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = BDEA81121A2E662000014E9D /* PopOverAnimation.m */; };
 /* End PBXBuildFile section */
@@ -83,12 +84,14 @@
 		6FBE5A911A2F970D00FE5B7F /* Campaign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Campaign.m; sourceTree = "<group>"; };
 		6FBE5A931A2F970D00FE5B7F /* CampaignPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampaignPreferences.h; sourceTree = "<group>"; };
 		6FBE5A941A2F970D00FE5B7F /* CampaignPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampaignPreferences.m; sourceTree = "<group>"; };
+		6F7D31F81A2CBBE4001C9B54 /* FISViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISViewController.h; sourceTree = "<group>"; };
+		6F7D31F91A2CBBE4001C9B54 /* FISViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISViewController.m; sourceTree = "<group>"; };
 		BD7AF3B81A2D050B00FAC422 /* FISChosenEventsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISChosenEventsTableViewController.h; sourceTree = "<group>"; };
 		BD7AF3B91A2D050B00FAC422 /* FISChosenEventsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISChosenEventsTableViewController.m; sourceTree = "<group>"; };
 		BD7AF3BA1A2D050B00FAC422 /* FISCustomEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISCustomEventTableViewCell.h; sourceTree = "<group>"; };
 		BD7AF3BB1A2D050B00FAC422 /* FISCustomEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISCustomEventTableViewCell.m; sourceTree = "<group>"; };
-		BD7AF3C01A2D051800FAC422 /* selectedEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = selectedEventViewController.h; sourceTree = "<group>"; };
-		BD7AF3C11A2D051800FAC422 /* selectedEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = selectedEventViewController.m; sourceTree = "<group>"; };
+		BD7AF3C01A2D051800FAC422 /* FISSelectedEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISSelectedEventViewController.h; sourceTree = "<group>"; };
+		BD7AF3C11A2D051800FAC422 /* FISSelectedEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISSelectedEventViewController.m; sourceTree = "<group>"; };
 		BDE708DA1A2E5D3100014CB0 /* Proxima-Nova-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima-Nova-Bold.ttf"; sourceTree = "<group>"; };
 		BDEA81111A2E662000014E9D /* PopOverAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopOverAnimation.h; sourceTree = "<group>"; };
 		BDEA81121A2E662000014E9D /* PopOverAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopOverAnimation.m; sourceTree = "<group>"; };
@@ -241,10 +244,10 @@
 				BD7AF3B91A2D050B00FAC422 /* FISChosenEventsTableViewController.m */,
 				6F7D31F21A2CBBE4001C9B54 /* FISEventSwipeViewController.h */,
 				6F7D31F31A2CBBE4001C9B54 /* FISEventSwipeViewController.m */,
-				BD7AF3C01A2D051800FAC422 /* selectedEventViewController.h */,
-				BD7AF3C11A2D051800FAC422 /* selectedEventViewController.m */,
-				6F7D31F81A2CBBE4001C9B54 /* ViewController.h */,
-				6F7D31F91A2CBBE4001C9B54 /* ViewController.m */,
+				BD7AF3C01A2D051800FAC422 /* FISSelectedEventViewController.h */,
+				BD7AF3C11A2D051800FAC422 /* FISSelectedEventViewController.m */,
+				6F7D31F81A2CBBE4001C9B54 /* FISViewController.h */,
+				6F7D31F91A2CBBE4001C9B54 /* FISViewController.m */,
 			);
 			name = Controller;
 			path = FISDoSomething;
@@ -420,9 +423,9 @@
 				6F7D32021A2CBBE4001C9B54 /* FISMultiCardView.m in Sources */,
 				6FBE5A951A2F970D00FE5B7F /* CampaignPreferences.m in Sources */,
 				6F7D31C31A2CBB73001C9B54 /* main.m in Sources */,
-				BD7AF3C21A2D051800FAC422 /* selectedEventViewController.m in Sources */,
+				BD7AF3C21A2D051800FAC422 /* FISSelectedEventViewController.m in Sources */,
 				6F7D32011A2CBBE4001C9B54 /* FISEventSwipeViewController.m in Sources */,
-				6F7D32041A2CBBE4001C9B54 /* ViewController.m in Sources */,
+				6F7D32041A2CBBE4001C9B54 /* FISViewController.m in Sources */,
 				6F7D31FB1A2CBBE4001C9B54 /* FISDataStore.m in Sources */,
 				BD7AF3BD1A2D050B00FAC422 /* FISChosenEventsTableViewController.m in Sources */,
 				6F7D32031A2CBBE4001C9B54 /* NSString+cleanUp.m in Sources */,

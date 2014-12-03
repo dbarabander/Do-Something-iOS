@@ -19,8 +19,7 @@
 + (void)retrieveMoreInfoOnCampaign:(Campaign *)campaign
              withCompletionHandler:(void (^)())completionHandler;
 
-// Download image for campaign
-+ (void)retrieveImageForCampaign:(Campaign *)campaign
-                     inLandscape:(BOOL)landscape
-           withCompletionHandler:(void (^)(UIImage *image))completionHandler;
+// Download images for campaign
++ (void)retrieveImagesForCampaign:(Campaign *)campaign
+            withCompletionHandler:(void (^)())completionHandler;
 @end

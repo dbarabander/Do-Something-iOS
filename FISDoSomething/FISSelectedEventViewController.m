@@ -6,33 +6,65 @@
 //  Copyright (c) 2014 Flatiron iOS 003. All rights reserved.
 //
 
-#import "selectedEventViewController.h"
+#import "FISSelectedEventViewController.h"
 #import "Campaign.h"
+#import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
 
-@interface selectedEventViewController ()
+@interface FISSelectedEventViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIImageView *eventImage;
-@property (weak, nonatomic) IBOutlet UITextView *eventDescription;
 
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
+@property (weak, nonatomic) IBOutlet UIButton *cameraButton;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)backButtonTapped:(id)sender;
 - (IBAction)cameraButtonTapped:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
-
 @end
 
-@implementation selectedEventViewController
+@implementation FISSelectedEventViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.tableFooterView = [UIView new];
+    
 
-    self.eventImage.image = [UIImage imageWithData:self.selectedEvent.squareImage];
-    self.eventDescription.text = self.selectedEvent.valueProposition;
     self.navigationBar.topItem.title = self.selectedEvent.title;
     
     [self adjustNavigationBar];
+    [self adjustViewConstraints];
+}
+
+- (void)removeAllViewConstraints
+{
+    NSArray *allViews = @[self.navigationBar, self.cameraButton, self.tableView, self.view];
+    for (UIView *view in allViews) {
+        [view removeConstraints:view.constraints];
+    }
+}
+
+- (void)adjustViewConstraints
+{
+    [self removeAllViewConstraints];
+    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(_navigationBar, _cameraButton, _tableView);
+    NSDictionary *metrics = @{@"navigationBarHeight" : @44,
+                              @"cameraButtonHeight" : @88};
+    
+    NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_navigationBar(==navigationBarHeight)][_tableView][_cameraButton(==cameraButtonHeight)]|" options:0 metrics:metrics views:viewsDictionary];
+    [self.view addConstraints:verticalConstraints];
+    
+    NSArray *horizontalNavigationBarConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[_navigationBar]|" options:0 metrics:metrics views:viewsDictionary];
+    [self.view addConstraints:horizontalNavigationBarConstraints];
+    
+    NSArray *horizontalTableViewConstraints =[NSLayoutConstraint constraintsWithVisualFormat:@"|[_tableView]|" options:0 metrics:metrics views:viewsDictionary];
+    [self.view addConstraints:horizontalTableViewConstraints];
+    
+    NSArray *horizontalCameraButtonConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[_cameraButton]|" options:0 metrics:metrics views:viewsDictionary];
+    [self.view addConstraints:horizontalCameraButtonConstraints];
+    [self.tableView addParallaxWithImage:[UIImage imageWithData:self.selectedEvent.landscapeImage] andHeight:200.0];
 }
 
 - (void)adjustNavigationBar
@@ -62,10 +94,31 @@
     return NO;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    // Return the number of sections.
+    return 1;
 }
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // Return the number of rows in the section.
+    return 100;
+}
+
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"stepCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    // Configure the cell...
+    
+    return cell;
+}
+
+
 
 /*
 #pragma mark - Navigation

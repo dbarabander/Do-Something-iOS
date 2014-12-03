@@ -55,10 +55,9 @@
 - (void)getMoreInfoOnCampaign:(Campaign *)campaign
         withCompletionHandler:(void (^)())completionHandler;
 
-// Download image for campaign
-- (void)getImageForCampaign:(Campaign *)campaign
-                     inLandscape:(BOOL)landscape
-           withCompletionHandler:(void (^)(UIImage *image))completionHandler;
+// Download images for campaign
+- (void)getImagesForCampaign:(Campaign *)campaign
+            withCompletionHandler:(void (^)())completionHandler;
 
 @property (strong, nonatomic, readonly) NSManagedObjectContext *context;
 

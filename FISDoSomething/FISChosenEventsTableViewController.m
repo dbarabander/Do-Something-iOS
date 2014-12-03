@@ -8,7 +8,7 @@
 
 #import "FISChosenEventsTableViewController.h"
 #import "FISCustomEventTableViewCell.h"
-#import "selectedEventViewController.h"
+#import "FISSelectedEventViewController.h"
 #import "FISEventSwipeViewController.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import "PopOverAnimation.h"
@@ -122,7 +122,7 @@
 {
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    selectedEventViewController *selectedEventVC = [self.storyboard instantiateViewControllerWithIdentifier:@"campaignDetailVC"];
+    FISSelectedEventViewController *selectedEventVC = [self.storyboard instantiateViewControllerWithIdentifier:@"campaignDetailVC"];
     Campaign* selectedEvent = self.eventsToDisplay[indexPath.row];
     selectedEventVC.selectedEvent = selectedEvent;
     selectedEventVC.modalPresentationStyle = UIModalPresentationCustom;

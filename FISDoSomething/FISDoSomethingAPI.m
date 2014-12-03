@@ -42,27 +42,41 @@
     }];
 }
 
-// Download image for campaign
-+ (void)retrieveImageForCampaign:(Campaign *)campaign
-                     inLandscape:(BOOL)landscape
-           withCompletionHandler:(void (^)(UIImage *image))completionHandler
+// Download images for campaign
++ (void)retrieveImagesForCampaign:(Campaign *)campaign
+           withCompletionHandler:(void (^)())completionHandler
 {
-    NSString *stringURL;
-    if (landscape) stringURL = campaign.coverImageLandscapeURL;
-    else stringURL = campaign.coverImageSquareURL;
+    NSString *landscapeURL = campaign.coverImageLandscapeURL;
+    NSString *squareURL = campaign.coverImageSquareURL;
     
-    if (!stringURL) {
-        stringURL = @"https://dosomething-a.akamaihd.net/profiles/dosomething/themes/dosomething/paraneue_dosomething/logo.png";
+    if (!landscapeURL) {
+        landscapeURL = @"https://dosomething-a.akamaihd.net/profiles/dosomething/themes/dosomething/paraneue_dosomething/logo.png";
+    }
+    if (!squareURL) {
+        squareURL = @"https://dosomething-a.akamaihd.net/profiles/dosomething/themes/dosomething/paraneue_dosomething/logo.png";
     }
     
-    NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:stringURL]];
+    // Landscape image request
+    NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:landscapeURL]];
     AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:urlRequest];
     requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
     [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSData *imageData = UIImagePNGRepresentation(responseObject);
-        if (landscape) campaign.landscapeImage = imageData;
-        else campaign.squareImage = imageData;
-        completionHandler(responseObject);
+        campaign.landscapeImage = imageData;
+        
+        // Square image request
+        NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:landscapeURL]];
+        AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:urlRequest];
+        requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
+        [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSData *imageData = UIImagePNGRepresentation(responseObject);
+            campaign.squareImage = imageData;
+            completionHandler();
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Image error: %@", error);
+        }];
+        [requestOperation start];
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Image error: %@", error);
     }];

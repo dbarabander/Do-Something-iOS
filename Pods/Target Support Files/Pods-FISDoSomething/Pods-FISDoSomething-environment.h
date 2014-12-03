@@ -48,6 +48,12 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 5
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 0
 
+// APParallaxHeader
+#define COCOAPODS_POD_AVAILABLE_APParallaxHeader
+#define COCOAPODS_VERSION_MAJOR_APParallaxHeader 0
+#define COCOAPODS_VERSION_MINOR_APParallaxHeader 1
+#define COCOAPODS_VERSION_PATCH_APParallaxHeader 6
+
 // DZNEmptyDataSet
 #define COCOAPODS_POD_AVAILABLE_DZNEmptyDataSet
 #define COCOAPODS_VERSION_MAJOR_DZNEmptyDataSet 1

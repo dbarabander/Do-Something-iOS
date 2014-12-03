@@ -104,7 +104,7 @@
         NSLog(@"Download Index: %lu", self.downloadIndex);
         for (NSUInteger i = 0; i < 7; i++) {
             
-            [[FISDataStore sharedDataStore] getImageForCampaign:[FISDataStore sharedDataStore].campaigns[self.downloadIndex] inLandscape:NO withCompletionHandler:^(UIImage *image) {
+            [[FISDataStore sharedDataStore] getImagesForCampaign:[FISDataStore sharedDataStore].campaigns[self.downloadIndex] withCompletionHandler:^{
                 NSLog(@"Image batch count: %lu", imageBatchCount);
                 
                 imageBatchCount++;
@@ -179,8 +179,10 @@
             [_swipeableViews addObject:eventCard];
         }
         for (NSUInteger i = 0; i < 7; i++) {
-            [[FISDataStore sharedDataStore] getImageForCampaign:[[FISDataStore sharedDataStore] campaigns][i] inLandscape:NO withCompletionHandler:^(UIImage *image) {
+            [[FISDataStore sharedDataStore] getImagesForCampaign:[[FISDataStore sharedDataStore] campaigns][i] withCompletionHandler:^{
                 FISEventCard *firstCard = _swipeableViews[i];
+                Campaign *specificCampaign = [FISDataStore sharedDataStore].campaigns[i];
+                UIImage *image = [UIImage imageWithData:specificCampaign.squareImage];
                 firstCard.imageView.image = image;
                 [_multiCardView reloadCardViews];
                 self.downloadIndex++;

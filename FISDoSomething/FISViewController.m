@@ -6,17 +6,17 @@
 //  Copyright (c) 2014 Flatiron iOS 003. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "FISViewController.h"
 #import "FISEventSwipeViewController.h"
 #import "FISChosenEventsTableViewController.h"
 
-@interface ViewController () <FISEventSwipeViewControllerProtocol>
+@interface FISViewController () <FISEventSwipeViewControllerProtocol>
 
 @property (strong, nonatomic) UIScrollView *scrollView;
 
 @end
 
-@implementation ViewController
+@implementation FISViewController
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
