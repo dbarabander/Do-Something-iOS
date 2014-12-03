@@ -12,7 +12,7 @@
 #import "FISEventSwipeViewController.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import "PopOverAnimation.h"
-#import "FISCampaign.h"
+#import "Campaign.h"
 
 @interface FISChosenEventsTableViewController () <FISEventSwipeViewControllerProtocol, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, UIViewControllerTransitioningDelegate>
 
@@ -76,7 +76,7 @@
     
 }
 
-- (void)didLikeCampaign:(FISCampaign *)campaign
+- (void)didLikeCampaign:(Campaign *)campaign
 {
     [self.eventsToDisplay addObject:campaign];
     [self.tableView reloadData];
@@ -102,11 +102,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FISCustomEventTableViewCell *eventCell = [tableView dequeueReusableCellWithIdentifier:@"campaignCell"];
-//    if (eventCell == nil) {
-//        eventCell = [[FISCustomEventTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"campaignCell"];
-//    }
-//    
-    FISCampaign *eventAtCell = self.eventsToDisplay[indexPath.row];
+    Campaign *eventAtCell = self.eventsToDisplay[indexPath.row];
     eventCell.campaign = eventAtCell;
     return eventCell;
 }
@@ -152,13 +148,7 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if ([segue.identifier isEqualToString:@"detailSegue"]) {
-//        UINavigationController *navController = [segue destinationViewController];
-//        selectedEventViewController *selectedEventVC = (selectedEventViewController *)([navController viewControllers][0]);
-//        NSIndexPath* selectedIp = [self.tableView indexPathForSelectedRow];
-//        FISCampaign* selectedEvent = self.eventsToDisplay[selectedIp.row];
-//        selectedEventVC.selectedEvent = selectedEvent;
-//    }
+
 }
 
 /*

@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class FISCampaign;
+@class Campaign;
 
 @interface selectedEventViewController : UIViewController <UIImagePickerControllerDelegate>
 
-@property (strong, nonatomic) FISCampaign* selectedEvent;
+@property (strong, nonatomic) Campaign* selectedEvent;
 
 @end

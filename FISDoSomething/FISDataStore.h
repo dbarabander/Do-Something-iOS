@@ -41,21 +41,25 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class FISCampaign;
+@class Campaign;
 
 @interface FISDataStore : NSObject
 
-@property (strong, nonatomic) NSArray *campaigns;
+@property (strong, nonatomic) NSMutableArray *campaigns;
 
 + (instancetype)sharedDataStore;
+- (void)saveContext;
 
 //  Basic Campaign Info
 - (void)getAllActiveCampaignsWithCompletionHandler:(void (^)())completionHandler;
+- (void)getMoreInfoOnCampaign:(Campaign *)campaign
+        withCompletionHandler:(void (^)())completionHandler;
 
 // Download image for campaign
-- (void)getImageForCampaign:(FISCampaign *)campaign
+- (void)getImageForCampaign:(Campaign *)campaign
                      inLandscape:(BOOL)landscape
            withCompletionHandler:(void (^)(UIImage *image))completionHandler;
 
+@property (strong, nonatomic, readonly) NSManagedObjectContext *context;
 
 @end

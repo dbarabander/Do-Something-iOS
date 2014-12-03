@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14A389" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Campaign" representedClassName="Campaign" syncable="YES">
+        <attribute name="callToAction" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="coverImageLandscapeURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="coverImageSquareURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="factProblem" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="factSolution" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="factSources" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="isStaffPick" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="itemsNeeded" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="landscapeImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="locationFinderInfo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="locationFinderURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="photoStep" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postStep" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="preStep" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="promotingTips" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="scholarship" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="squareImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="statsSignups" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="timeAndPlace" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="valueProposition" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vips" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Campaign" positionX="-63" positionY="-18" width="128" height="405"/>
+    </elements>
+</model>

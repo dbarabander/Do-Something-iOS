@@ -7,7 +7,7 @@
 //
 
 #import "FISDoSomethingAPI.h"
-#import "FISCampaign.h"
+#import "Campaign+HelperMethods.h"
 #import <AFNetworking/AFNetworking.h>
 
 
@@ -19,20 +19,23 @@
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:@"https://www.dosomething.org/api/v1/campaigns.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        completionHandler([FISCampaign generateCampaignsFromResponseObject:responseObject]);
+        [Campaign generateCampaignsFromResponseObject:responseObject withCompletionHandler:^(NSArray *campaigns) {
+            completionHandler(campaigns);
+        }];
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
 }
 
 // Retreive specific information on any campaign
-+ (void)retrieveMoreInfoOnCampaign:(FISCampaign *)campaign
++ (void)retrieveMoreInfoOnCampaign:(Campaign *)campaign
              withCompletionHandler:(void (^)())completionHandler
 {
     NSString *url = [NSString stringWithFormat:@"https://www.dosomething.org/api/v1/content/%@.json",campaign.nid];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [FISCampaign generateMoreDetailsForCampaign:campaign withResponseObject:responseObject];
+        [Campaign generateMoreDetailsForCampaign:campaign withResponseObject:responseObject];
         completionHandler();
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
        NSLog(@"Error: %@", error);
@@ -40,7 +43,7 @@
 }
 
 // Download image for campaign
-+ (void)retrieveImageForCampaign:(FISCampaign *)campaign
++ (void)retrieveImageForCampaign:(Campaign *)campaign
                      inLandscape:(BOOL)landscape
            withCompletionHandler:(void (^)(UIImage *image))completionHandler
 {
@@ -56,8 +59,9 @@
     AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:urlRequest];
     requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
     [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if (landscape) campaign.landscapeImage = responseObject;
-        else campaign.squareImage = responseObject;
+        NSData *imageData = UIImagePNGRepresentation(responseObject);
+        if (landscape) campaign.landscapeImage = imageData;
+        else campaign.squareImage = imageData;
         completionHandler(responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Image error: %@", error);

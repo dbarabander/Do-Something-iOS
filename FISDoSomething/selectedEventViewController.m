@@ -7,7 +7,7 @@
 //
 
 #import "selectedEventViewController.h"
-#import "FISCampaign.h"
+#import "Campaign.h"
 
 @interface selectedEventViewController ()
 
@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.eventImage.image = self.selectedEvent.squareImage;
+    self.eventImage.image = [UIImage imageWithData:self.selectedEvent.squareImage];
     self.eventDescription.text = self.selectedEvent.valueProposition;
     self.navigationBar.topItem.title = self.selectedEvent.title;
     

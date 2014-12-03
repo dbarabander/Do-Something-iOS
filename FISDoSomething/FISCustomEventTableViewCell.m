@@ -7,6 +7,7 @@
 //
 
 #import "FISCustomEventTableViewCell.h"
+#import "Campaign.h"
 
 @interface FISCustomEventTableViewCell()
 
@@ -38,11 +39,16 @@
     _gradient.colors = @[(id)[UIColor clearColor].CGColor, (id)[UIColor colorWithWhite:0.0 alpha:0.5].CGColor];
 }
 
-- (void)setCampaign:(FISCampaign *)campaign
+- (void)setCampaign:(Campaign *)campaign
 {
     _campaign = campaign;
     _titleLabel.text = campaign.title;
-    _campaignImageView.image = campaign.squareImage;
+    [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
+        UIImage *imageToDisplay = [UIImage imageWithData:campaign.squareImage];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            _campaignImageView.image = imageToDisplay;
+        }];
+    }];
     _valuePropositionLabel.text = campaign.callToAction;
     _gradientView = [[UIView alloc] init];
 }
