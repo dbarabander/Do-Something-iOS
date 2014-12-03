@@ -2,7 +2,7 @@
 //  Campaign.h
 //  FISDoSomething
 //
-//  Created by Blake Shetter on 12/2/14.
+//  Created by DANIEL BARABANDER on 12/3/14.
 //  Copyright (c) 2014 Flatiron iOS 003. All rights reserved.
 //
 
@@ -31,10 +31,11 @@
 @property (nonatomic, retain) NSString * promotingTips;
 @property (nonatomic, retain) NSString * scholarship;
 @property (nonatomic, retain) NSData * squareImage;
+@property (nonatomic, retain) NSNumber * statsSignups;
 @property (nonatomic, retain) NSString * timeAndPlace;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * valueProposition;
 @property (nonatomic, retain) NSString * vips;
-@property (nonatomic, retain) NSNumber * statsSignups;
+@property (nonatomic, retain) NSManagedObject *campaignPreferences;
 
 @end

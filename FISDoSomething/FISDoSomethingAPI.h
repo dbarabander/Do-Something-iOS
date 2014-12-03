@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "Campaign.h"
-@class FISCampaign;
 @interface FISDoSomethingAPI : NSObject
 
 //  Basic Campaign Info

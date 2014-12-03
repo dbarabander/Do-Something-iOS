@@ -123,7 +123,7 @@
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     selectedEventViewController *selectedEventVC = [self.storyboard instantiateViewControllerWithIdentifier:@"campaignDetailVC"];
-    FISCampaign* selectedEvent = self.eventsToDisplay[indexPath.row];
+    Campaign* selectedEvent = self.eventsToDisplay[indexPath.row];
     selectedEventVC.selectedEvent = selectedEvent;
     selectedEventVC.modalPresentationStyle = UIModalPresentationCustom;
     selectedEventVC.transitioningDelegate = self;

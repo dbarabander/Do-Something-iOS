@@ -19,7 +19,7 @@
    "nid", and "isStaffPick" properties. 
  - When you want more information on a specific campaign, you pass that
    campaign into the second method, this method fills up most of the next
-   17 properties associated with the FISCampaign model. You can look at these
+   17 properties associated with the Campaign model. You can look at these
    properties in the class definition. The properties are split by section to
    make it easier to understand. Remember that with the second method,
    you are directly modifying the campaign object you passed into the method,

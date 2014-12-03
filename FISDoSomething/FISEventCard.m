@@ -3,7 +3,7 @@
 //
 
 #import "FISEventCard.h"
-#import "FISCampaign.h"
+#import "Campaign.h"
 
 @interface FISEventCard ()
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
@@ -23,7 +23,7 @@
 
 #pragma mark Properties
 
-- (void)setCampaign:(FISCampaign *)campaign
+- (void)setCampaign:(Campaign *)campaign
 {
     _campaign = campaign;
     self.nameLabel.text = campaign.title;

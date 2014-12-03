@@ -10,9 +10,9 @@
 #import "FISEventDetailView.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "FISDataStore.h"
-#import "FISCampaign.h"
+#import "Campaign.h"
 
-@interface FISEventSwipeViewController () <FISMultiCardViewDataSource, FISMultiCardViewDelegate>
+@interface FISEventSwipeViewController () <FISMultiCardViewDataSource, FISMultiCardViewDelegate, eventDetailViewDelegate>
 
 @property (nonatomic) NSUInteger downloadIndex;
 
@@ -85,7 +85,7 @@
 {
     NSString *relationKey = (direction == FISSwipeDirectionRight) ? @"likes" : @"dislikes";
     if ([relationKey isEqualToString:@"likes"]) {
-        FISCampaign *currentCampaign = [[_swipeableViews firstObject] campaign];
+        Campaign *currentCampaign = [[_swipeableViews firstObject] campaign];
         NSLog(@"calling from here");
         [self.delegate didLikeCampaign:currentCampaign];
     }
@@ -136,33 +136,27 @@
     _blurEffectView.frame = CGRectMake(cardView.bounds.origin.x, cardView.bounds.origin.y, [self preferredSizeForPrimaryCardView].width, [self preferredSizeForPrimaryCardView].height);
     [cardView addSubview:_blurEffectView];
 
-    static BOOL didLoad = NO;
-    FISEventDetailView *detailView;
-    if (!didLoad) {
-        detailView = [[[NSBundle mainBundle] loadNibNamed:@"FISEventDetailView" owner:self options:nil] firstObject];
-        didLoad = YES;
-    }
-    detailView.valueProposition = [[[_swipeableViews firstObject] campaign]valueProposition];
-    NSLog(@"%@",detailView.valueProposition);
-     detailView.frame = _blurEffectView.frame;
+    FISEventDetailView *detailView = [[[NSBundle mainBundle] loadNibNamed:@"FISEventDetailView" owner:self options:nil] firstObject];
+    detailView.delegate = self;
 
+    Campaign *campaign = [[_swipeableViews firstObject] campaign];
+    detailView.valueProposition = campaign.valueProposition;
+    detailView.frame = _blurEffectView.frame;
 
-    [UIView animateWithDuration:0.7f animations:^{
+    [UIView animateWithDuration:0.3f animations:^{
         _blurEffectView.alpha = 0.90f;
         [_blurEffectView addSubview: detailView];
     }];
-
-    UITapGestureRecognizer *singleFingerTap =
-    [[UITapGestureRecognizer alloc] initWithTarget:self
-                                            action:@selector(tapDetailView:)];
-    [detailView addGestureRecognizer:singleFingerTap];
 }
 
-- (void)tapDetailView:(UITapGestureRecognizer *)recognizer
+#pragma mark eventDetailViewDelegate
+
+- (void)didTapEventDetailView:(FISEventDetailView *)detailView
 {
-    [UIView animateWithDuration:0.7f animations:^{
+    [UIView animateWithDuration:0.3f animations:^{
         _blurEffectView.alpha = 0.0f;
     } completion:^(BOOL finished) {
+        [detailView removeFromSuperview];
         [_blurEffectView removeFromSuperview];
     }];
 }
@@ -175,7 +169,7 @@
     _multiCardView.isLoading = YES;
     [SVProgressHUD show];
     [[FISDataStore sharedDataStore] getAllActiveCampaignsWithCompletionHandler:^{
-        for (FISCampaign *campaign in [FISDataStore sharedDataStore].campaigns) {
+        for (Campaign *campaign in [FISDataStore sharedDataStore].campaigns) {
             
             FISEventCard *eventCard =
             [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard"

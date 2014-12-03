@@ -4,7 +4,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class FISCampaign;
+@class Campaign;
 
 @interface FISEventCard : UIView
 
@@ -12,6 +12,6 @@
 @property (nonatomic, weak) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) NSString *name;
 @property (nonatomic) UIImage *backgroundImage;
-@property (strong, nonatomic) FISCampaign *campaign;
+@property (strong, nonatomic) Campaign *campaign;
 
 @end

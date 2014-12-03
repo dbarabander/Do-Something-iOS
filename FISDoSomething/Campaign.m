@@ -2,7 +2,7 @@
 //  Campaign.m
 //  FISDoSomething
 //
-//  Created by Blake Shetter on 12/2/14.
+//  Created by DANIEL BARABANDER on 12/3/14.
 //  Copyright (c) 2014 Flatiron iOS 003. All rights reserved.
 //
 
@@ -30,10 +30,11 @@
 @dynamic promotingTips;
 @dynamic scholarship;
 @dynamic squareImage;
+@dynamic statsSignups;
 @dynamic timeAndPlace;
 @dynamic title;
 @dynamic valueProposition;
 @dynamic vips;
-@dynamic statsSignups;
+@dynamic campaignPreferences;
 
 @end

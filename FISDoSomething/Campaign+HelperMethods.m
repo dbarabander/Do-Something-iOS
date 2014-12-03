@@ -81,7 +81,7 @@
             campaign.valueProposition = [responseObject[@"value_proposition"] stringByCleaningUpString];
         }
         else {
-            campaign.valueProposition = [NSString new];
+            campaign.valueProposition = @"Swipe right to see more!";
         }
         
         // Fact Sources

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14A389" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14B25" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Campaign" representedClassName="Campaign" syncable="YES">
         <attribute name="callToAction" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="coverImageLandscapeURL" optional="YES" attributeType="String" syncable="YES"/>
@@ -25,8 +25,16 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="valueProposition" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="vips" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="campaignPreferences" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CampaignPreferences" inverseName="campaign" inverseEntity="CampaignPreferences" syncable="YES"/>
+    </entity>
+    <entity name="CampaignPreferences" representedClassName="CampaignPreferences" syncable="YES">
+        <attribute name="completed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="liked" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="swipedTimeStamp" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="campaign" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Campaign" inverseName="campaignPreferences" inverseEntity="Campaign" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Campaign" positionX="-63" positionY="-18" width="128" height="405"/>
+        <element name="Campaign" positionX="-63" positionY="-18" width="128" height="418"/>
+        <element name="CampaignPreferences" positionX="178" positionY="72" width="128" height="103"/>
     </elements>
 </model>

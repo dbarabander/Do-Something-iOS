@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class FISCampaign;
+@class Campaign;
 
 @protocol FISEventSwipeViewControllerProtocol <NSObject>
 
-- (void)didLikeCampaign:(FISCampaign *)campaign;
+- (void)didLikeCampaign:(Campaign *)campaign;
 
 @end
 

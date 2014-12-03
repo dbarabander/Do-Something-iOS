@@ -10,6 +10,7 @@
 
 @interface FISEventDetailView()
 @property (weak, nonatomic) IBOutlet UILabel *valuePropositionLabel;
+@property (strong, nonatomic) UITapGestureRecognizer *detailViewTapped;
 @end
 
 @implementation FISEventDetailView
@@ -19,6 +20,9 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         self.clipsToBounds = YES;
+        _detailViewTapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetailView:)];
+        [self addGestureRecognizer:_detailViewTapped];
+
     }
     return self;
 }
@@ -28,4 +32,11 @@
     _valueProposition = valueProposition;
     self.valuePropositionLabel.text = valueProposition;
 }
+
+
+- (void)tapDetailView:(UIGestureRecognizer *)gestureRecognizer
+{
+    [self.delegate didTapEventDetailView:self];
+}
+
 @end

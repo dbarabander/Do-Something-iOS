@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+@class FISEventDetailView;
+
+@protocol eventDetailViewDelegate <NSObject>
+
+- (void)didTapEventDetailView:(FISEventDetailView *)detailView;
+
+@end
 
 @interface FISEventDetailView : UIView
 @property (nonatomic) NSString *valueProposition;
+@property (nonatomic) id<eventDetailViewDelegate>delegate;
 @end
