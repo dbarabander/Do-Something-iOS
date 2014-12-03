@@ -8,7 +8,7 @@
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="FISViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -71,7 +71,7 @@
         <!--Selected Event View Controller-->
         <scene sceneID="DXc-Ju-zMZ">
             <objects>
-                <viewController storyboardIdentifier="campaignDetailVC" id="ifw-di-hZm" customClass="selectedEventViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="campaignDetailVC" id="ifw-di-hZm" customClass="FISSelectedEventViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nrZ-aI-keS"/>
                         <viewControllerLayoutGuide type="bottom" id="x9c-W6-Xdg"/>
