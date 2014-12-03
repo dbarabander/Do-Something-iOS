@@ -26,19 +26,16 @@
         <scene sceneID="6YJ-HN-rKP">
             <objects>
                 <tableViewController id="Gwi-bG-E99" customClass="FISChosenEventsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="355" sectionHeaderHeight="22" sectionFooterHeight="22" id="caK-Oe-zt6">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="48" sectionHeaderHeight="22" sectionFooterHeight="22" id="caK-Oe-zt6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="standardCell" rowHeight="355" id="ZBB-Yg-i9l">
+                            <tableViewCell contentMode="scaleToFill" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="200" selectionStyle="default" indentationWidth="10" reuseIdentifier="campaignCell" rowHeight="200" id="ZBB-Yg-i9l" customClass="FISCustomEventTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZBB-Yg-i9l" id="qpg-Jv-opf">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="13M-w9-HGP" kind="presentation" identifier="detailSegue" id="lYo-zC-XDk"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -52,79 +49,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ug5-ZT-Qfw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2892.5" y="390.5"/>
-        </scene>
-        <!--Selected Event View Controller-->
-        <scene sceneID="SDa-aH-VEg">
-            <objects>
-                <viewController id="6Tf-te-CIq" customClass="selectedEventViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="3FT-lz-eMF"/>
-                        <viewControllerLayoutGuide type="bottom" id="knL-ak-mBV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="UK8-dA-cqr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="shg-Fg-EPG"/>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="376" placeholderIntrinsicHeight="176" translatesAutoresizingMaskIntoConstraints="NO" id="bAI-WZ-baI">
-                                <rect key="frame" x="0.0" y="348" width="375" height="275"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="275" id="E2K-7z-wsw"/>
-                                </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="128" translatesAutoresizingMaskIntoConstraints="NO" id="4H0-Ip-TSK">
-                                <rect key="frame" x="0.0" y="64" width="375" height="276"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="276" id="Jaa-5h-F0K"/>
-                                </constraints>
-                            </imageView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="trD-gY-smg">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="Title" id="V6r-eW-VbT">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="UgB-QC-VD4"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="knL-ak-mBV" firstAttribute="top" secondItem="bAI-WZ-baI" secondAttribute="bottom" id="78D-33-dba"/>
-                            <constraint firstItem="bAI-WZ-baI" firstAttribute="leading" secondItem="UK8-dA-cqr" secondAttribute="leadingMargin" constant="-16" id="I7C-vF-cCw"/>
-                            <constraint firstItem="4H0-Ip-TSK" firstAttribute="top" secondItem="3FT-lz-eMF" secondAttribute="bottom" id="K8I-Ci-Uf6"/>
-                            <constraint firstItem="bAI-WZ-baI" firstAttribute="top" secondItem="4H0-Ip-TSK" secondAttribute="bottom" constant="8" id="MLv-hh-628"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="4H0-Ip-TSK" secondAttribute="trailing" constant="-16" id="bk3-yj-My4"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="bAI-WZ-baI" secondAttribute="trailing" constant="-16" id="bw1-AJ-Ixh"/>
-                            <constraint firstItem="4H0-Ip-TSK" firstAttribute="leading" secondItem="UK8-dA-cqr" secondAttribute="leadingMargin" constant="-16" id="pIV-TK-rgW"/>
-                        </constraints>
-                    </view>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="q5K-93-dPf">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="Lvm-D4-Smw">
-                            <connections>
-                                <action selector="backButton:" destination="6Tf-te-CIq" id="xbC-g8-MWV"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="2BJ-h1-SnM">
-                            <connections>
-                                <action selector="cameraButton:" destination="6Tf-te-CIq" id="4MO-y5-Uaq"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <connections>
-                        <outlet property="eventDescription" destination="bAI-WZ-baI" id="e9n-8W-Gi6"/>
-                        <outlet property="eventImage" destination="4H0-Ip-TSK" id="8Wd-Ix-TDD"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="km2-wr-Sih" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4141.5" y="390.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LdG-tZ-vpA">
@@ -144,23 +68,78 @@
             </objects>
             <point key="canvasLocation" x="2080" y="390"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="paj-Eb-iA9">
+        <!--Selected Event View Controller-->
+        <scene sceneID="DXc-Ju-zMZ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="13M-w9-HGP" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2Pa-9l-OTH">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
+                <viewController storyboardIdentifier="campaignDetailVC" id="ifw-di-hZm" customClass="selectedEventViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nrZ-aI-keS"/>
+                        <viewControllerLayoutGuide type="bottom" id="x9c-W6-Xdg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="731-Dy-NYq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="306" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRV-f0-UNf">
+                                <rect key="frame" x="0.0" y="342" width="375" height="325"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <navigationBar contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NhA-M8-DlK">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Campaign Title" id="R8p-hA-NDZ">
+                                        <barButtonItem key="leftBarButtonItem" title="Dismiss" id="quA-VJ-QVb">
+                                            <connections>
+                                                <action selector="backButtonTapped:" destination="ifw-di-hZm" id="evS-yd-3NU"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="gwz-vL-mTg">
+                                            <connections>
+                                                <action selector="cameraButtonTapped:" destination="ifw-di-hZm" id="Sgo-eo-6oe"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="296" translatesAutoresizingMaskIntoConstraints="NO" id="0BP-uR-Emz">
+                                <rect key="frame" x="0.0" y="44" width="375" height="296"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="296" id="kY1-8I-RKv"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kRV-f0-UNf" firstAttribute="leading" secondItem="731-Dy-NYq" secondAttribute="leadingMargin" constant="-16" id="1GH-ho-V3A"/>
+                            <constraint firstItem="x9c-W6-Xdg" firstAttribute="top" secondItem="kRV-f0-UNf" secondAttribute="bottom" id="8xc-9x-BLX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NhA-M8-DlK" secondAttribute="trailing" constant="-16" id="LZI-9d-ehy"/>
+                            <constraint firstItem="kRV-f0-UNf" firstAttribute="top" secondItem="0BP-uR-Emz" secondAttribute="bottom" constant="2" id="Qd6-N5-Yb2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kRV-f0-UNf" secondAttribute="trailing" constant="-16" id="UTm-o7-QGR"/>
+                            <constraint firstItem="0BP-uR-Emz" firstAttribute="leading" secondItem="731-Dy-NYq" secondAttribute="leadingMargin" constant="-16" id="ckj-tc-U9o"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0BP-uR-Emz" secondAttribute="trailing" constant="-16" id="ntn-lm-akR"/>
+                            <constraint firstItem="NhA-M8-DlK" firstAttribute="leading" secondItem="731-Dy-NYq" secondAttribute="leadingMargin" constant="-16" id="rJr-I0-y2h"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="962-4P-Geq">
+                        <barButtonItem key="leftBarButtonItem" title="Dismiss" id="Dnc-V6-phZ"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="ods-ly-bax"/>
+                    </navigationItem>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <segue destination="6Tf-te-CIq" kind="relationship" relationship="rootViewController" id="C6R-pv-9vS"/>
+                        <outlet property="backButton" destination="quA-VJ-QVb" id="u9P-Ye-clB"/>
+                        <outlet property="cameraButton" destination="gwz-vL-mTg" id="nDu-zd-ogP"/>
+                        <outlet property="eventDescription" destination="kRV-f0-UNf" id="gku-LT-g4n"/>
+                        <outlet property="eventImage" destination="0BP-uR-Emz" id="tG8-fZ-hvk"/>
+                        <outlet property="navigationBar" destination="NhA-M8-DlK" id="1Tm-fa-PiO"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="z3X-4g-qIN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tFf-mk-3Ed" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3554.5" y="390.5"/>
+            <point key="canvasLocation" x="3666.5" y="390.5"/>
         </scene>
     </scenes>
 </document>

@@ -25,11 +25,11 @@
 		6F7D32031A2CBBE4001C9B54 /* NSString+cleanUp.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7D31F71A2CBBE4001C9B54 /* NSString+cleanUp.m */; };
 		6F7D32041A2CBBE4001C9B54 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7D31F91A2CBBE4001C9B54 /* ViewController.m */; };
 		94AC3FE323C0321BCC7CF5D5 /* libPods-FISDoSomething.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7322E1BD57E285C50436690 /* libPods-FISDoSomething.a */; };
-		BD7AF3B71A2D048D00FAC422 /* eventTest.m in Sources */ = {isa = PBXBuildFile; fileRef = BD7AF3B61A2D048D00FAC422 /* eventTest.m */; };
 		BD7AF3BD1A2D050B00FAC422 /* FISChosenEventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD7AF3B91A2D050B00FAC422 /* FISChosenEventsTableViewController.m */; };
 		BD7AF3BE1A2D050B00FAC422 /* FISCustomEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BD7AF3BB1A2D050B00FAC422 /* FISCustomEventTableViewCell.m */; };
-		BD7AF3BF1A2D050B00FAC422 /* FISCustomEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD7AF3BC1A2D050B00FAC422 /* FISCustomEventTableViewCell.xib */; };
 		BD7AF3C21A2D051800FAC422 /* selectedEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD7AF3C11A2D051800FAC422 /* selectedEventViewController.m */; };
+		BDE708DB1A2E5D3100014CB0 /* Proxima-Nova-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BDE708DA1A2E5D3100014CB0 /* Proxima-Nova-Bold.ttf */; };
+		BDEA81131A2E662000014E9D /* PopOverAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = BDEA81121A2E662000014E9D /* PopOverAnimation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,15 +75,15 @@
 		6F7D31F71A2CBBE4001C9B54 /* NSString+cleanUp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+cleanUp.m"; path = "FISDoSomething/NSString+cleanUp.m"; sourceTree = "<group>"; };
 		6F7D31F81A2CBBE4001C9B54 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		6F7D31F91A2CBBE4001C9B54 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		BD7AF3B51A2D048D00FAC422 /* eventTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eventTest.h; sourceTree = "<group>"; };
-		BD7AF3B61A2D048D00FAC422 /* eventTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = eventTest.m; sourceTree = "<group>"; };
 		BD7AF3B81A2D050B00FAC422 /* FISChosenEventsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISChosenEventsTableViewController.h; sourceTree = "<group>"; };
 		BD7AF3B91A2D050B00FAC422 /* FISChosenEventsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISChosenEventsTableViewController.m; sourceTree = "<group>"; };
 		BD7AF3BA1A2D050B00FAC422 /* FISCustomEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISCustomEventTableViewCell.h; sourceTree = "<group>"; };
 		BD7AF3BB1A2D050B00FAC422 /* FISCustomEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISCustomEventTableViewCell.m; sourceTree = "<group>"; };
-		BD7AF3BC1A2D050B00FAC422 /* FISCustomEventTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FISCustomEventTableViewCell.xib; sourceTree = "<group>"; };
 		BD7AF3C01A2D051800FAC422 /* selectedEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = selectedEventViewController.h; sourceTree = "<group>"; };
 		BD7AF3C11A2D051800FAC422 /* selectedEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = selectedEventViewController.m; sourceTree = "<group>"; };
+		BDE708DA1A2E5D3100014CB0 /* Proxima-Nova-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima-Nova-Bold.ttf"; sourceTree = "<group>"; };
+		BDEA81111A2E662000014E9D /* PopOverAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopOverAnimation.h; sourceTree = "<group>"; };
+		BDEA81121A2E662000014E9D /* PopOverAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopOverAnimation.m; sourceTree = "<group>"; };
 		C7322E1BD57E285C50436690 /* libPods-FISDoSomething.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FISDoSomething.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7D1E20C2B7649FB78533423 /* Pods-FISDoSomething.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FISDoSomething.release.xcconfig"; path = "Pods/Target Support Files/Pods-FISDoSomething/Pods-FISDoSomething.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,6 +127,8 @@
 		6F7D31B41A2CBB73001C9B54 = {
 			isa = PBXGroup;
 			children = (
+				BDEA81101A2E65EE00014E9D /* Animations */,
+				BDE708D91A2E5C9000014CB0 /* Fonts */,
 				6F7D32081A2CBC41001C9B54 /* Helpers */,
 				6F7D32071A2CBBFB001C9B54 /* Controller */,
 				6F7D32061A2CBBF3001C9B54 /* View */,
@@ -206,9 +208,6 @@
 			children = (
 				BD7AF3BA1A2D050B00FAC422 /* FISCustomEventTableViewCell.h */,
 				BD7AF3BB1A2D050B00FAC422 /* FISCustomEventTableViewCell.m */,
-				BD7AF3BC1A2D050B00FAC422 /* FISCustomEventTableViewCell.xib */,
-				BD7AF3B51A2D048D00FAC422 /* eventTest.h */,
-				BD7AF3B61A2D048D00FAC422 /* eventTest.m */,
 				6F7D31F41A2CBBE4001C9B54 /* FISMultiCardView.h */,
 				6F7D31F51A2CBBE4001C9B54 /* FISMultiCardView.m */,
 				6F7D31EC1A2CBBE4001C9B54 /* FISEventCard.h */,
@@ -245,6 +244,23 @@
 				6F7D31F71A2CBBE4001C9B54 /* NSString+cleanUp.m */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		BDE708D91A2E5C9000014CB0 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				BDE708DA1A2E5D3100014CB0 /* Proxima-Nova-Bold.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		BDEA81101A2E65EE00014E9D /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				BDEA81111A2E662000014E9D /* PopOverAnimation.h */,
+				BDEA81121A2E662000014E9D /* PopOverAnimation.m */,
+			);
+			name = Animations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,9 +347,9 @@
 			files = (
 				6F7D31CC1A2CBB73001C9B54 /* Main.storyboard in Resources */,
 				6F7D31D11A2CBB73001C9B54 /* LaunchScreen.xib in Resources */,
-				BD7AF3BF1A2D050B00FAC422 /* FISCustomEventTableViewCell.xib in Resources */,
 				6F7D31CE1A2CBB73001C9B54 /* Images.xcassets in Resources */,
 				6F7D32001A2CBBE4001C9B54 /* FISEventDetailView.xib in Resources */,
+				BDE708DB1A2E5D3100014CB0 /* Proxima-Nova-Bold.ttf in Resources */,
 				6F7D31FE1A2CBBE4001C9B54 /* FISEventCard.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,6 +401,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDEA81131A2E662000014E9D /* PopOverAnimation.m in Sources */,
 				6F7D31FF1A2CBBE4001C9B54 /* FISEventDetailView.m in Sources */,
 				6F7D31C61A2CBB73001C9B54 /* AppDelegate.m in Sources */,
 				6F7D32021A2CBBE4001C9B54 /* FISMultiCardView.m in Sources */,
@@ -399,7 +416,6 @@
 				6F7D31FC1A2CBBE4001C9B54 /* FISDoSomethingAPI.m in Sources */,
 				6F7D31FD1A2CBBE4001C9B54 /* FISEventCard.m in Sources */,
 				BD7AF3BE1A2D050B00FAC422 /* FISCustomEventTableViewCell.m in Sources */,
-				BD7AF3B71A2D048D00FAC422 /* eventTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

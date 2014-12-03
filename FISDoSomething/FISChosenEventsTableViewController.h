@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "eventTest.h"
 
 @interface FISChosenEventsTableViewController : UITableViewController
 

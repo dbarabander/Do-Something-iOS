@@ -4,6 +4,7 @@
 target 'FISDoSomething' do
 pod 'AFNetworking'
 pod 'SVProgressHUD'
+pod 'DZNEmptyDataSet'
 end
 
 target 'FISDoSomethingTests' do

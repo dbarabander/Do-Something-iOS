@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FISCampaign.h"
 
 @interface FISCustomEventTableViewCell : UITableViewCell
+
+@property (strong, nonatomic) FISCampaign *campaign;
+
+
 
 @end
