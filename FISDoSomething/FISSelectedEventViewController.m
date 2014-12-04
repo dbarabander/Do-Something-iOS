@@ -10,8 +10,13 @@
 #import "Campaign.h"
 #import <GPUImage/GPUImage.h>
 #import "FISCompressedImages.h"
+#import "FISAppFont.h"
 
-@interface FISSelectedEventViewController ()
+@interface FISSelectedEventViewController () <UIScrollViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UIView *stepOneView;
+@property (weak, nonatomic) IBOutlet UIView *stepTwoView;
+@property (weak, nonatomic) IBOutlet UIView *stepThreeView;
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -20,6 +25,14 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (weak, nonatomic) IBOutlet UIButton *cameraButton;
 - (IBAction)backButtonTapped:(id)sender;
+
+// Step 1
+@property (weak, nonatomic) IBOutlet UILabel *stepOneTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *problemLabel;
+@property (weak, nonatomic) IBOutlet UITextView *problemTextView;
+@property (weak, nonatomic) IBOutlet UILabel *solutionLabel;
+@property (weak, nonatomic) IBOutlet UITextView *solutionTextView;
+
 
 @end
 
@@ -37,10 +50,71 @@
     self.scrollView.scrollEnabled = YES;
     self.scrollView.bounces = NO;
     self.scrollView.pagingEnabled = YES;
+    self.scrollView.delegate = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    self.stepOneView.backgroundColor = [UIColor clearColor];
+    self.stepTwoView.backgroundColor = [UIColor clearColor];
+    self.stepThreeView.backgroundColor = [UIColor clearColor];
+    
+    // Setup stepone labels
+    self.stepOneTitleLabel.font = appFont(23);
+    self.stepOneTitleLabel.adjustsFontSizeToFitWidth = YES;
+    self.stepOneTitleLabel.backgroundColor = [UIColor blackColor];
+    self.stepOneTitleLabel.alpha = 1.0;
+    
+    self.problemLabel.textColor = [UIColor blackColor];
+    self.problemLabel.font = appFont(23);
+    self.problemLabel.adjustsFontSizeToFitWidth = YES;
+    
+    [self.problemTextView setText:self.selectedEvent.factProblem];
+    self.problemTextView.textColor = [UIColor whiteColor];
+    self.problemTextView.font = appFont(23);
+    NSLog(@"TESTING :%@", self.problemTextView.text);
+    self.problemTextView.hidden = NO;
+
+    self.solutionLabel.textColor = [UIColor blackColor];
+    self.solutionLabel.font = appFont(23);
+    self.solutionLabel.adjustsFontSizeToFitWidth = YES;
+    
+    [self.solutionTextView setText:self.selectedEvent.factSolution];
+    self.solutionTextView.textColor = [UIColor whiteColor];
+    self.solutionTextView.font = appFont(23);
+    self.solutionTextView.hidden = NO;
+    
+    self.stepOneTitleLabel.alpha = 0.0;
+    self.solutionLabel.alpha = 0.0;
+    self.solutionTextView.alpha = 0.0;
+    self.problemLabel.alpha = 0.0;
+    self.problemTextView.alpha = 0.0;
+    
+    
     
     [self adjustNavigationBar];
     [self adjustViewConstraints];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    // animate step one
+    [UIView animateKeyframesWithDuration:1.0 delay:0.0 options:UIViewKeyframeAnimationOptionAllowUserInteraction animations:^{
+        [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.2 animations:^{
+            self.stepOneTitleLabel.alpha = 1.0;
+        }];
+        [UIView addKeyframeWithRelativeStartTime:0.2 relativeDuration:0.2 animations:^{
+            self.problemLabel.alpha = 1.0;
+        }];
+        [UIView addKeyframeWithRelativeStartTime:0.4 relativeDuration:0.2 animations:^{
+            self.problemTextView.alpha = 1.0;
+        }];
+        [UIView addKeyframeWithRelativeStartTime:0.6 relativeDuration:0.2 animations:^{
+            self.solutionLabel.alpha = 1.0;
+        }];
+        [UIView addKeyframeWithRelativeStartTime:0.8 relativeDuration:0.2 animations:^{
+            self.solutionTextView.alpha = 1.0;
+        }];
+    } completion:^(BOOL finished) {}];
 }
 
 - (void)setBackgroundImage
@@ -60,18 +134,9 @@
     }
 }
 
-- (UIImage *)blurImage:(UIImage *)image
-{
-//    GPUImageiOSBlurFilter *blurFilter = [GPUImageiOSBlurFilter new];
-//    blurFilter.blurRadiusInPixels = 6.0;
-//    UIImage *blurredImage = [blurFilter imageByFilteringImage:image];
-//    return blurredImage;
-    return image;
-}
-
 - (void)removeAllViewConstraints
 {
-    NSArray *allViews = @[self.navigationBar, self.scrollView, self.view, self.imageView];
+    NSArray *allViews = @[self.navigationBar, self.scrollView, self.view, self.imageView, self.stepOneView, self.stepTwoView, self.stepThreeView, self.problemLabel, self.problemTextView, self.solutionLabel, self.solutionTextView, self.stepOneTitleLabel];
     for (UIView *view in allViews) {
         [view removeConstraints:view.constraints];
     }
@@ -80,27 +145,79 @@
 - (void)adjustViewConstraints
 {
     [self removeAllViewConstraints];
-    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(_navigationBar, _scrollView, _imageView);
+    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(_navigationBar, _scrollView, _imageView, _stepOneView, _stepTwoView, _stepThreeView, _problemLabel, _problemTextView, _solutionLabel, _solutionTextView, _stepOneTitleLabel);
     NSDictionary *metrics = @{@"navigationBarHeight" : @44,
                               @"cameraButtonHeight" : @88,
                               @"imageWidth" : @(self.view.frame.size.width*0.94 * 3),
-                              @"imageHeight" : @(self.view.frame.size.height * 0.94 - 44)};
+                              @"imageHeight" : @(self.view.frame.size.height * 0.94 - 44),
+                              @"stepOneTitleLabelHeight" : @44,
+                              @"problemLabelHeight" : @44,
+                              @"solutionLabelHeight" : @44};
     
+    // All VerticalConstraints
     NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_navigationBar(==navigationBarHeight)][_scrollView]|" options:0 metrics:metrics views:viewsDictionary];
     [self.view addConstraints:verticalConstraints];
     
+    // Nav bar horizontal
     NSArray *horizontalNavigationBarConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[_navigationBar]|" options:0 metrics:metrics views:viewsDictionary];
     [self.view addConstraints:horizontalNavigationBarConstraints];
     
+    // Scroll view horizontal
     NSArray *horizontalScrollViewConstraints =[NSLayoutConstraint constraintsWithVisualFormat:@"|[_scrollView]|" options:0 metrics:metrics views:viewsDictionary];
     [self.view addConstraints:horizontalScrollViewConstraints];
     
+    // image horizontal
     NSArray *horizontalImageConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[_imageView(==imageWidth)]|" options:0 metrics:metrics views:viewsDictionary];
     [self.scrollView addConstraints:horizontalImageConstraints];
     
+    // Image vertical
     NSArray *verticalImageConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_imageView(==imageHeight)]|" options:0 metrics:metrics views:viewsDictionary];
     [self.scrollView addConstraints:verticalImageConstraints];
     
+    // step view vertical
+    NSArray *stepOneViewVertical = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_stepOneView(==imageHeight)]|" options:0 metrics:metrics views:viewsDictionary];
+    NSArray *stepTwoViewVertical = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_stepTwoView(==imageHeight)]|" options:0 metrics:metrics views:viewsDictionary];
+    NSArray *stepThreeViewVertical = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_stepThreeView(==imageHeight)]|" options:0 metrics:metrics views:viewsDictionary];
+    [self.scrollView addConstraints:stepOneViewVertical];
+    [self.scrollView addConstraints:stepTwoViewVertical];
+    [self.scrollView addConstraints:stepThreeViewVertical];
+    
+    // Horizontal step views
+    NSArray *stepViewsHorizontal = [NSLayoutConstraint constraintsWithVisualFormat:@"|[_stepOneView][_stepTwoView(==_stepOneView)][_stepThreeView(==_stepTwoView)]|" options:0 metrics:metrics views:viewsDictionary];
+    [self.scrollView addConstraints:stepViewsHorizontal];
+    
+    // Step one labels
+    NSArray *stepOneVerticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_stepOneTitleLabel(==stepOneTitleLabelHeight)][_problemLabel(==problemLabelHeight)][_problemTextView][_solutionLabel(==solutionLabelHeight)][_solutionTextView(==_problemTextView)]|" options:0 metrics:metrics views:viewsDictionary];
+    [self.stepOneView addConstraints:stepOneVerticalConstraints];
+    NSArray *stepOneTitleHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[_stepOneTitleLabel]|" options:0 metrics:metrics views:viewsDictionary];
+    [self.stepOneView addConstraints:stepOneTitleHorizontalConstraints];
+    NSArray *problemLabelHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[_solutionLabel]|" options:0 metrics:metrics views:viewsDictionary];
+    [self.stepOneView addConstraints:problemLabelHorizontalConstraints];
+    NSArray *problemTextViewHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[_problemTextView]|" options:0 metrics:metrics views:viewsDictionary];
+    [self.stepOneView addConstraints:problemTextViewHorizontalConstraints];
+    NSArray *solutionLabelHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[_solutionLabel]|" options:0 metrics:metrics views:viewsDictionary];
+    [self.stepOneView addConstraints:solutionLabelHorizontalConstraints];
+    NSArray *solutionTextViewHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[_solutionTextView]|" options:0 metrics:metrics views:viewsDictionary];
+    [self.stepOneView addConstraints:solutionTextViewHorizontalConstraints];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    CGFloat contentOffest = scrollView.contentOffset.x;
+    if (contentOffest >= 0 && contentOffest < 300) {
+        NSLog(@"step one");
+    }
+    else if (contentOffest > 300 && contentOffest < 600) {
+        [UIView animateWithDuration:0.5 animations:^{
+            NSLog(@"animation step two");
+        }];
+        
+    }
+    else {
+        [UIView animateWithDuration:0.5 animations:^{
+            NSLog(@"animation step three");
+        }];
+    }
 }
 
 - (void)adjustNavigationBar

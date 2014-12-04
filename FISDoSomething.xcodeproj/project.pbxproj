@@ -92,6 +92,7 @@
 		6FBE5A941A2F970D00FE5B7F /* CampaignPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampaignPreferences.m; sourceTree = "<group>"; };
 		BD5A0D2C1A30DD31009DB2D4 /* FISCompressedImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISCompressedImages.h; sourceTree = "<group>"; };
 		BD5A0D2D1A30DD31009DB2D4 /* FISCompressedImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISCompressedImages.m; sourceTree = "<group>"; };
+		BD5A0D2F1A3105D0009DB2D4 /* FISAppFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISAppFont.h; sourceTree = "<group>"; };
 		BD7AF3B81A2D050B00FAC422 /* FISChosenEventsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISChosenEventsTableViewController.h; sourceTree = "<group>"; };
 		BD7AF3B91A2D050B00FAC422 /* FISChosenEventsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISChosenEventsTableViewController.m; sourceTree = "<group>"; };
 		BD7AF3BA1A2D050B00FAC422 /* FISCustomEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISCustomEventTableViewCell.h; sourceTree = "<group>"; };
@@ -278,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				BDE708DA1A2E5D3100014CB0 /* Proxima-Nova-Bold.ttf */,
+				BD5A0D2F1A3105D0009DB2D4 /* FISAppFont.h */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";

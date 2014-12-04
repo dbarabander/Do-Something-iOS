@@ -98,6 +98,71 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="161" translatesAutoresizingMaskIntoConstraints="NO" id="NyA-6Z-Dhe">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                                     </imageView>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" placeholderIntrinsicWidth="115" placeholderIntrinsicHeight="292" translatesAutoresizingMaskIntoConstraints="NO" id="bfw-b6-BtJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="186" height="312"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="STEP 1: KNOW IT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OLX-XO-meZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="186" height="36"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="The Problem" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ekj-YV-mD3">
+                                                <rect key="frame" x="8" y="44" width="98" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" placeholderIntrinsicWidth="170" placeholderIntrinsicHeight="60" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="suR-z7-Jjs">
+                                                <rect key="frame" x="8" y="73" width="170" height="60"/>
+                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="The Solution" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFP-P9-hOs">
+                                                <rect key="frame" x="8" y="141" width="97" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" placeholderIntrinsicWidth="93" placeholderIntrinsicHeight="156" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wod-fn-vHU">
+                                                <rect key="frame" x="8" y="170" width="170" height="102"/>
+                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.57669005100000004" green="0.037489598919999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" placeholderIntrinsicWidth="188" placeholderIntrinsicHeight="312" translatesAutoresizingMaskIntoConstraints="NO" id="fzA-Sv-F1X">
+                                        <rect key="frame" x="187" y="311" width="188" height="312"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="STEP 3: DO IT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzo-YU-Mfp">
+                                                <rect key="frame" x="0.0" y="0.0" width="188" height="36"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.55609435350000003" green="1" blue="0.64265238170000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" placeholderIntrinsicWidth="188" placeholderIntrinsicHeight="312" translatesAutoresizingMaskIntoConstraints="NO" id="9qJ-2W-mBx">
+                                        <rect key="frame" x="187" y="0.0" width="188" height="312"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="STEP 2: PLAN IT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWI-Sm-3jY">
+                                                <rect key="frame" x="-6" y="0.0" width="194" height="36"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.26089525650000001" green="0.33629917669999998" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -117,7 +182,15 @@
                         <outlet property="backButton" destination="quA-VJ-QVb" id="u9P-Ye-clB"/>
                         <outlet property="imageView" destination="NyA-6Z-Dhe" id="IFB-F2-Pan"/>
                         <outlet property="navigationBar" destination="NhA-M8-DlK" id="1Tm-fa-PiO"/>
+                        <outlet property="problemLabel" destination="Ekj-YV-mD3" id="avu-Ew-hO3"/>
+                        <outlet property="problemTextView" destination="suR-z7-Jjs" id="bbm-hH-1Rt"/>
                         <outlet property="scrollView" destination="M8u-sj-dRB" id="kl1-2t-1OD"/>
+                        <outlet property="solutionLabel" destination="KFP-P9-hOs" id="5KR-ry-J7G"/>
+                        <outlet property="solutionTextView" destination="Wod-fn-vHU" id="PO7-Ul-Sci"/>
+                        <outlet property="stepOneTitleLabel" destination="OLX-XO-meZ" id="zCf-V6-F7S"/>
+                        <outlet property="stepOneView" destination="bfw-b6-BtJ" id="2BE-k1-GRx"/>
+                        <outlet property="stepThreeView" destination="fzA-Sv-F1X" id="SBs-dp-8E4"/>
+                        <outlet property="stepTwoView" destination="9qJ-2W-mBx" id="SI0-6F-OJx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tFf-mk-3Ed" userLabel="First Responder" sceneMemberID="firstResponder"/>
