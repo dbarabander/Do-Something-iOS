@@ -12,9 +12,12 @@
 #import "FISDataStore.h"
 #import "Campaign.h"
 #import "CampaignPreferences+HelperMethods.h"
+#import <GPUImage/GPUImage.h>
+
 @interface FISEventSwipeViewController () <FISMultiCardViewDataSource, FISMultiCardViewDelegate, eventDetailViewDelegate>
 
 @property (nonatomic) NSUInteger downloadIndex;
+@property (nonatomic) FISEventDetailView *detailView;
 
 @end
 
@@ -22,7 +25,7 @@
 {
     NSMutableArray *_swipeableViews;
     FISMultiCardView *_multiCardView;
-    UIVisualEffectView *_blurEffectView;
+     UIVisualEffectView *_blurEffectView;
 }
 
 - (instancetype)init
@@ -58,6 +61,9 @@
     _multiCardView.dataSource = self;
     [self.view addSubview:_multiCardView];
     [_multiCardView reloadCardViews];
+
+    self.detailView = [[[NSBundle mainBundle] loadNibNamed:@"FISEventDetailView" owner:self options:nil] firstObject];
+    self.detailView.delegate = self;
 }
 
 #pragma mark FISEventSwipeViewControllerDataSource
@@ -139,16 +145,15 @@
     _blurEffectView.frame = CGRectMake(cardView.bounds.origin.x, cardView.bounds.origin.y, [self preferredSizeForPrimaryCardView].width, [self preferredSizeForPrimaryCardView].height);
     [cardView addSubview:_blurEffectView];
 
-    FISEventDetailView *detailView = [[[NSBundle mainBundle] loadNibNamed:@"FISEventDetailView" owner:self options:nil] firstObject];
-    detailView.delegate = self;
 
     Campaign *campaign = [[_swipeableViews firstObject] campaign];
-    detailView.valueProposition = campaign.valueProposition;
-    detailView.frame = _blurEffectView.frame;
+    [_blurEffectView addSubview: self.detailView];
+    self.detailView.frame = _blurEffectView.frame;
 
-    [UIView animateWithDuration:0.3f animations:^{
+    [UIView animateWithDuration:0.15f animations:^{
         _blurEffectView.alpha = 0.90f;
-        [_blurEffectView addSubview: detailView];
+        self.detailView.valueProposition = campaign.valueProposition;
+
     }];
 }
 
@@ -156,14 +161,12 @@
 
 - (void)didTapEventDetailView:(FISEventDetailView *)detailView
 {
-    [UIView animateWithDuration:0.3f animations:^{
+    [UIView animateWithDuration:0.15f animations:^{
         _blurEffectView.alpha = 0.0f;
-    } completion:^(BOOL finished) {
-        [detailView removeFromSuperview];
+    }completion:^(BOOL finished) {
         [_blurEffectView removeFromSuperview];
     }];
 }
-
 
 #pragma mark Private
 

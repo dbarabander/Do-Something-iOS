@@ -10,6 +10,7 @@
 		0903DD1E1A2E1A110031D090 /* Campaign+HelperMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903DD1D1A2E1A110031D090 /* Campaign+HelperMethods.m */; };
 		0903DD2C1A2E385D0031D090 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0903DD2A1A2E385D0031D090 /* Model.xcdatamodeld */; };
 		09E916D21A30AE7100031000 /* CampaignPreferences+HelperMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E916D11A30AE7100031000 /* CampaignPreferences+HelperMethods.m */; };
+		6F4133661A30C324000E58A7 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4133651A30C324000E58A7 /* UIImage+ImageEffects.m */; };
 		6F7D31C31A2CBB73001C9B54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7D31C21A2CBB73001C9B54 /* main.m */; };
 		6F7D31C61A2CBB73001C9B54 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7D31C51A2CBB73001C9B54 /* AppDelegate.m */; };
 		6F7D31CC1A2CBB73001C9B54 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F7D31CA1A2CBB73001C9B54 /* Main.storyboard */; };
@@ -54,6 +55,8 @@
 		09E916D01A30AE7100031000 /* CampaignPreferences+HelperMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CampaignPreferences+HelperMethods.h"; sourceTree = "<group>"; };
 		09E916D11A30AE7100031000 /* CampaignPreferences+HelperMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CampaignPreferences+HelperMethods.m"; sourceTree = "<group>"; };
 		3FA932492A14C78E288BCAAB /* Pods-FISDoSomething.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FISDoSomething.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FISDoSomething/Pods-FISDoSomething.debug.xcconfig"; sourceTree = "<group>"; };
+		6F4133651A30C324000E58A7 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		6F4133671A30C32C000E58A7 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
 		6F7D31BD1A2CBB73001C9B54 /* FISDoSomething.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FISDoSomething.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F7D31C11A2CBB73001C9B54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F7D31C21A2CBB73001C9B54 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -261,6 +264,8 @@
 		6F7D32081A2CBC41001C9B54 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				6F4133671A30C32C000E58A7 /* UIImage+ImageEffects.h */,
+				6F4133651A30C324000E58A7 /* UIImage+ImageEffects.m */,
 				6F7D31F61A2CBBE4001C9B54 /* NSString+cleanUp.h */,
 				6F7D31F71A2CBBE4001C9B54 /* NSString+cleanUp.m */,
 				BD5A0D2C1A30DD31009DB2D4 /* FISCompressedImages.h */,
@@ -426,6 +431,7 @@
 			files = (
 				BDEA81131A2E662000014E9D /* PopOverAnimation.m in Sources */,
 				6F7D31FF1A2CBBE4001C9B54 /* FISEventDetailView.m in Sources */,
+				6F4133661A30C324000E58A7 /* UIImage+ImageEffects.m in Sources */,
 				6F7D31C61A2CBB73001C9B54 /* AppDelegate.m in Sources */,
 				6F7D32021A2CBBE4001C9B54 /* FISMultiCardView.m in Sources */,
 				09E916D21A30AE7100031000 /* CampaignPreferences+HelperMethods.m in Sources */,
