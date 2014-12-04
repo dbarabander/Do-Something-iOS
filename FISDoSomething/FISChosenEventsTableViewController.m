@@ -13,6 +13,7 @@
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import "PopOverAnimation.h"
 #import "Campaign.h"
+#import "FISDataStore.h"
 
 @interface FISChosenEventsTableViewController () <FISEventSwipeViewControllerProtocol, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource, UIViewControllerTransitioningDelegate>
 
@@ -27,8 +28,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.eventsToDisplay = [NSMutableArray new];
+    FISDataStore *dataStore=[FISDataStore sharedDataStore];
+    self.eventsToDisplay = [[NSMutableArray alloc] initWithArray:[dataStore getAllSavedCampaigns]];
     self.tableView.emptyDataSetDelegate = self;
     self.tableView.emptyDataSetSource = self;
     self.tableView.tableFooterView = [UIView new];

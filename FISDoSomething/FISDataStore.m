@@ -8,7 +8,7 @@
 
 #import "FISDataStore.h"
 #import "FISDoSomethingAPI.h"
-
+#import "CampaignPreferences.h"
 @implementation FISDataStore
 
 
@@ -25,6 +25,7 @@
     if(self){
         
         _campaigns=[[NSMutableArray alloc] init];
+        _allCampaigns=[[NSMutableArray alloc] init];
 
         
     }
@@ -37,9 +38,13 @@
     NSArray *fetchCampaigns = [self.context executeFetchRequest:fetchRequest error:nil];
     if([fetchCampaigns count]>=1){
         [self.campaigns addObjectsFromArray:fetchCampaigns];
+        [self.allCampaigns addObjectsFromArray:fetchCampaigns];
         NSSortDescriptor* sortByID = [NSSortDescriptor sortDescriptorWithKey:@"nid" ascending:NO];
         [self.campaigns sortUsingDescriptors:[NSArray arrayWithObject:sortByID]];
 
+        NSPredicate *predicateName = [NSPredicate predicateWithFormat:@"campaignPreferences == nil"];
+        [self.campaigns filterUsingPredicate:predicateName];
+        
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             completionHandler();
         }];
@@ -53,6 +58,32 @@
             
         }];
     }
+}
+-(void)deleteUnlikedPrefrenches{
+    NSDate *deleteTimestamp=[[NSDate date] dateByAddingTimeInterval:60*60*24*30]; // this checks for 30 days ago
+    NSPredicate *predicateName = [NSPredicate predicateWithFormat:@"campaignPreferences!=nil AND campaignPreferences.liked==0 AND campaignPreferences.swipedTimeStamp>%i",deleteTimestamp];
+    NSMutableArray *allCampaignsNew=[[NSMutableArray alloc] initWithArray:self.allCampaigns];
+    [allCampaignsNew filterUsingPredicate:predicateName];
+    
+    if([allCampaignsNew count]>0){
+        for (Campaign *oldCampaign in allCampaignsNew) {
+            NSLog(@"Deleted");
+            [self.context deleteObject:(CampaignPreferences *)oldCampaign.campaignPreferences];
+            oldCampaign.campaignPreferences=nil;
+        }
+        [self saveContext];
+    }
+    allCampaignsNew=nil;
+    
+}
+
+-(NSArray *)getAllSavedCampaigns{
+    [self deleteUnlikedPrefrenches];
+    NSPredicate *predicateName = [NSPredicate predicateWithFormat:@"campaignPreferences!=nil AND campaignPreferences.liked==1"];
+    NSMutableArray *savedCampaigns=[[NSMutableArray alloc] initWithArray:self.allCampaigns];
+    [savedCampaigns filterUsingPredicate:predicateName];
+    
+    return savedCampaigns;
 }
 
 

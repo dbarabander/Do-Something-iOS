@@ -11,7 +11,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "FISDataStore.h"
 #import "Campaign.h"
-
+#import "CampaignPreferences+HelperMethods.h"
 @interface FISEventSwipeViewController () <FISMultiCardViewDataSource, FISMultiCardViewDelegate, eventDetailViewDelegate>
 
 @property (nonatomic) NSUInteger downloadIndex;
@@ -84,10 +84,13 @@
 - (void)multiCardView:(FISMultiCardView *)multiCardView didSwipeViewInDirection:(FISSwipeDirection)direction
 {
     NSString *relationKey = (direction == FISSwipeDirectionRight) ? @"likes" : @"dislikes";
+    Campaign *currentCampaign = [[_swipeableViews firstObject] campaign];
     if ([relationKey isEqualToString:@"likes"]) {
-        Campaign *currentCampaign = [[_swipeableViews firstObject] campaign];
-        NSLog(@"calling from here");
         [self.delegate didLikeCampaign:currentCampaign];
+        [CampaignPreferences insertCampaignPreferenceswithCampaign:currentCampaign liked:1];
+    }
+    else{
+        [CampaignPreferences insertCampaignPreferenceswithCampaign:currentCampaign liked:0];
     }
     
     [_swipeableViews removeObjectAtIndex:0];
