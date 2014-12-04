@@ -12,6 +12,6 @@
 
 @interface FISSelectedEventViewController : UIViewController <UIImagePickerControllerDelegate>
 
-@property (strong, nonatomic) Campaign* selectedEvent;
+@property (strong, nonatomic) Campaign *selectedEvent;
 
 @end

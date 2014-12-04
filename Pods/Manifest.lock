@@ -20,20 +20,20 @@ PODS:
   - AFNetworking/UIKit (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - APParallaxHeader (0.1.6)
   - DZNEmptyDataSet (1.4.1)
+  - GPUImage (0.1.6)
   - SVProgressHUD (1.0)
 
 DEPENDENCIES:
   - AFNetworking
-  - APParallaxHeader
   - DZNEmptyDataSet
+  - GPUImage
   - SVProgressHUD
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
-  APParallaxHeader: 6e7cc27c052be34e1a5655dc2fab6c40eecbbe55
   DZNEmptyDataSet: 381e880cb3bb2d33885cb0325218443df265bc98
+  GPUImage: cecb0830bb9428f50192042e3c7b53810f51388e
   SVProgressHUD: 5034c6e22b8c2ca3e09402e48d41ed0340aa1c50
 
 COCOAPODS: 0.35.0.rc2

@@ -14,5 +14,4 @@
 @property (strong, nonatomic) Campaign *campaign;
 
 
-
 @end

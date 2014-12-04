@@ -8,17 +8,17 @@
 
 #import "FISSelectedEventViewController.h"
 #import "Campaign.h"
-#import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
+#import <GPUImage/GPUImage.h>
 
-@interface FISSelectedEventViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface FISSelectedEventViewController ()
 
 
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (weak, nonatomic) IBOutlet UIButton *cameraButton;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)backButtonTapped:(id)sender;
-- (IBAction)cameraButtonTapped:(id)sender;
 
 @end
 
@@ -27,20 +27,37 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.tableFooterView = [UIView new];
-    
-
+    self.view.backgroundColor = [UIColor clearColor];
     self.navigationBar.topItem.title = self.selectedEvent.title;
+    [self applyBlurFilterToBackgroundImage];
+    self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.imageView.clipsToBounds = YES;
+    self.scrollView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.2];
+    self.scrollView.scrollEnabled = YES;
+    self.scrollView.bounces = NO;
+    self.scrollView.pagingEnabled = YES;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     [self adjustNavigationBar];
     [self adjustViewConstraints];
 }
 
+- (void)applyBlurFilterToBackgroundImage
+{
+    [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
+        UIImage *imageWithData = [UIImage imageWithData:self.selectedEvent.landscapeImage];
+        GPUImageiOSBlurFilter *blurFilter = [GPUImageiOSBlurFilter new];
+        blurFilter.blurRadiusInPixels = 4;
+        UIImage *blurredImage = [blurFilter imageByFilteringImage:imageWithData];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            self.imageView.image = blurredImage;
+        }];
+    }];
+}
+
 - (void)removeAllViewConstraints
 {
-    NSArray *allViews = @[self.navigationBar, self.cameraButton, self.tableView, self.view];
+    NSArray *allViews = @[self.navigationBar, self.scrollView, self.view, self.imageView];
     for (UIView *view in allViews) {
         [view removeConstraints:view.constraints];
     }
@@ -49,22 +66,27 @@
 - (void)adjustViewConstraints
 {
     [self removeAllViewConstraints];
-    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(_navigationBar, _cameraButton, _tableView);
+    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(_navigationBar, _scrollView, _imageView);
     NSDictionary *metrics = @{@"navigationBarHeight" : @44,
-                              @"cameraButtonHeight" : @88};
+                              @"cameraButtonHeight" : @88,
+                              @"imageWidth" : @(self.view.frame.size.width*0.94 * 3),
+                              @"imageHeight" : @(self.view.frame.size.height * 0.94 - 44)};
     
-    NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_navigationBar(==navigationBarHeight)][_tableView][_cameraButton(==cameraButtonHeight)]|" options:0 metrics:metrics views:viewsDictionary];
+    NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_navigationBar(==navigationBarHeight)][_scrollView]|" options:0 metrics:metrics views:viewsDictionary];
     [self.view addConstraints:verticalConstraints];
     
     NSArray *horizontalNavigationBarConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[_navigationBar]|" options:0 metrics:metrics views:viewsDictionary];
     [self.view addConstraints:horizontalNavigationBarConstraints];
     
-    NSArray *horizontalTableViewConstraints =[NSLayoutConstraint constraintsWithVisualFormat:@"|[_tableView]|" options:0 metrics:metrics views:viewsDictionary];
-    [self.view addConstraints:horizontalTableViewConstraints];
+    NSArray *horizontalScrollViewConstraints =[NSLayoutConstraint constraintsWithVisualFormat:@"|[_scrollView]|" options:0 metrics:metrics views:viewsDictionary];
+    [self.view addConstraints:horizontalScrollViewConstraints];
     
-    NSArray *horizontalCameraButtonConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[_cameraButton]|" options:0 metrics:metrics views:viewsDictionary];
-    [self.view addConstraints:horizontalCameraButtonConstraints];
-    [self.tableView addParallaxWithImage:[UIImage imageWithData:self.selectedEvent.landscapeImage] andHeight:200.0];
+    NSArray *horizontalImageConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[_imageView(==imageWidth)]|" options:0 metrics:metrics views:viewsDictionary];
+    [self.scrollView addConstraints:horizontalImageConstraints];
+    
+    NSArray *verticalImageConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_imageView(==imageHeight)]|" options:0 metrics:metrics views:viewsDictionary];
+    [self.scrollView addConstraints:verticalImageConstraints];
+    
 }
 
 - (void)adjustNavigationBar

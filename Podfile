@@ -5,7 +5,7 @@ target 'FISDoSomething' do
 pod 'AFNetworking'
 pod 'SVProgressHUD'
 pod 'DZNEmptyDataSet'
-pod 'APParallaxHeader'
+pod 'GPUImage'
 end
 
 target 'FISDoSomethingTests' do
