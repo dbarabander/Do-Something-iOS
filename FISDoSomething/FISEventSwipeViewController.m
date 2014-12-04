@@ -104,15 +104,18 @@
     static NSUInteger swipedCount = 0;
     swipedCount++;
     NSLog(@"Swiped Count: %lu",(unsigned long)swipedCount);
-    if (![_swipeableViews count] || !(swipedCount % 7 == 0)) {
+    if (!(swipedCount % 7 == 0)) {
         return ;
     }
     _multiCardView.isLoading = YES;
     [SVProgressHUD show];
     if (self.downloadIndex < [[FISDataStore sharedDataStore].campaigns count]) {
-        NSLog(@"Download Index: %lu", self.downloadIndex);
         for (NSUInteger i = 0; i < 7; i++) {
-            
+            Campaign *campaign = [FISDataStore sharedDataStore].campaigns[i];
+            FISEventCard *eventCard = [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard" owner:self options:nil] firstObject];
+            eventCard.campaign = campaign;
+            [_swipeableViews addObject:eventCard];
+
             [[FISDataStore sharedDataStore] getImagesForCampaign:[FISDataStore sharedDataStore].campaigns[self.downloadIndex] withCompletionHandler:^{
                 NSLog(@"Image batch count: %lu", imageBatchCount);
                 
@@ -175,16 +178,12 @@
     _multiCardView.isLoading = YES;
     [SVProgressHUD show];
     [[FISDataStore sharedDataStore] getAllActiveCampaignsWithCompletionHandler:^{
-        for (Campaign *campaign in [FISDataStore sharedDataStore].campaigns) {
-            
-            FISEventCard *eventCard =
-            [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard"
-                                           owner:self
-                                         options:nil] firstObject];
+        for (NSUInteger i = 0; i < 7; i++) {
+            Campaign *campaign = [FISDataStore sharedDataStore].campaigns[i];
+            FISEventCard *eventCard = [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard" owner:self options:nil] firstObject];
             eventCard.campaign = campaign;
             [_swipeableViews addObject:eventCard];
-        }
-        for (NSUInteger i = 0; i < 7; i++) {
+
             [[FISDataStore sharedDataStore] getImagesForCampaign:[[FISDataStore sharedDataStore] campaigns][i] withCompletionHandler:^{
                 FISEventCard *firstCard = _swipeableViews[i];
                 Campaign *specificCampaign = [FISDataStore sharedDataStore].campaigns[i];

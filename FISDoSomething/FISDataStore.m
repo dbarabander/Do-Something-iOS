@@ -60,21 +60,21 @@
     }
 }
 -(void)deleteUnlikedPrefrenches{
-    NSDate *deleteTimestamp=[[NSDate date] dateByAddingTimeInterval:60*60*24*30]; // this checks for 30 days ago
-    NSPredicate *predicateName = [NSPredicate predicateWithFormat:@"campaignPreferences!=nil AND campaignPreferences.liked==0 AND campaignPreferences.swipedTimeStamp>%i",deleteTimestamp];
-    NSMutableArray *allCampaignsNew=[[NSMutableArray alloc] initWithArray:self.allCampaigns];
-    [allCampaignsNew filterUsingPredicate:predicateName];
-    
-    if([allCampaignsNew count]>0){
-        for (Campaign *oldCampaign in allCampaignsNew) {
-            NSLog(@"Deleted");
-            [self.context deleteObject:(CampaignPreferences *)oldCampaign.campaignPreferences];
-            oldCampaign.campaignPreferences=nil;
-        }
-        [self saveContext];
-    }
-    allCampaignsNew=nil;
-    
+//    NSDate *deleteTimestamp=[[NSDate date] dateByAddingTimeInterval:60*60*24*30]; // this checks for 30 days ago
+//    NSPredicate *predicateName = [NSPredicate predicateWithFormat:@"campaignPreferences!=nil AND campaignPreferences.liked==0 AND campaignPreferences.swipedTimeStamp>%i",deleteTimestamp];
+//    NSMutableArray *allCampaignsNew=[[NSMutableArray alloc] initWithArray:self.allCampaigns];
+//    [allCampaignsNew filterUsingPredicate:predicateName];
+//    
+//    if([allCampaignsNew count]>0){
+//        for (Campaign *oldCampaign in allCampaignsNew) {
+//            NSLog(@"Deleted");
+//            [self.context deleteObject:(CampaignPreferences *)oldCampaign.campaignPreferences];
+//            oldCampaign.campaignPreferences=nil;
+//        }
+//        [self saveContext];
+//    }
+//    allCampaignsNew=nil;
+
 }
 
 -(NSArray *)getAllSavedCampaigns{
