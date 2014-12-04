@@ -8,6 +8,7 @@
 
 #import "FISCustomEventTableViewCell.h"
 #import "Campaign.h"
+#import "FISCompressedImages.h"
 
 @interface FISCustomEventTableViewCell()
 
@@ -18,7 +19,6 @@
 @property (strong, nonatomic) UIView *gradientView;
 @property (strong, nonatomic) UILabel *staffPickLabel;
 @property (strong, nonatomic) CAGradientLayer *gradient;
-@property (strong, nonatomic) NSMutableDictionary *campaignImages;
 
 @end
 
@@ -38,24 +38,22 @@
     _staffPickLabel = [[UILabel alloc] init];
     _gradient = [CAGradientLayer layer];
     _gradient.colors = @[(id)[UIColor clearColor].CGColor, (id)[UIColor colorWithWhite:0.0 alpha:0.5].CGColor];
-    _campaignImages = [NSMutableDictionary new];
 }
 
 - (void)setCampaign:(Campaign *)campaign
 {
     _campaign = campaign;
     _titleLabel.text = campaign.title;
-    UIImage *image = [self.campaignImages objectForKey:campaign.nid];
+    
+    // Set image
+    UIImage *image = [[FISCompressedImages sharedCompressedImages] imageForCampaign:campaign];
     if (image) {
         _campaignImageView.image = image;
     }
     else {
-        [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
-            UIImage *imageToDisplay = [UIImage imageWithData:campaign.landscapeImage];
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [self.campaignImages setObject:imageToDisplay forKey:campaign.nid];
-                _campaignImageView.image = imageToDisplay;
-            }];
+        [[FISCompressedImages sharedCompressedImages] cacheImageForCampaign:campaign
+                                                      withCompletionHandler:^() {
+            _campaignImageView.image = [[FISCompressedImages sharedCompressedImages] imageForCampaign:campaign];
         }];
     }
     _valuePropositionLabel.text = campaign.callToAction;

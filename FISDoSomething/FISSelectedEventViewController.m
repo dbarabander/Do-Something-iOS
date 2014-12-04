@@ -9,6 +9,7 @@
 #import "FISSelectedEventViewController.h"
 #import "Campaign.h"
 #import <GPUImage/GPUImage.h>
+#import "FISCompressedImages.h"
 
 @interface FISSelectedEventViewController ()
 
@@ -29,7 +30,7 @@
     
     self.view.backgroundColor = [UIColor clearColor];
     self.navigationBar.topItem.title = self.selectedEvent.title;
-    [self applyBlurFilterToBackgroundImage];
+    [self setBackgroundImage];
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.imageView.clipsToBounds = YES;
     self.scrollView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.2];
@@ -42,17 +43,30 @@
     [self adjustViewConstraints];
 }
 
-- (void)applyBlurFilterToBackgroundImage
+- (void)setBackgroundImage
 {
-    [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
-        UIImage *imageWithData = [UIImage imageWithData:self.selectedEvent.landscapeImage];
-        GPUImageiOSBlurFilter *blurFilter = [GPUImageiOSBlurFilter new];
-        blurFilter.blurRadiusInPixels = 4;
-        UIImage *blurredImage = [blurFilter imageByFilteringImage:imageWithData];
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            self.imageView.image = blurredImage;
-        }];
-    }];
+    UIImage *image = [[FISCompressedImages sharedCompressedImages]
+                      blurredImageForCampaign:self.selectedEvent];
+    if (image) {
+        self.imageView.image = image;
+    }
+    else {
+        [[FISCompressedImages sharedCompressedImages]
+         cacheImageForCampaign:self.selectedEvent
+         withCompletionHandler:^() {
+             self.imageView.image = [[FISCompressedImages sharedCompressedImages]
+                                     blurredImageForCampaign:self.selectedEvent];
+         }];
+    }
+}
+
+- (UIImage *)blurImage:(UIImage *)image
+{
+//    GPUImageiOSBlurFilter *blurFilter = [GPUImageiOSBlurFilter new];
+//    blurFilter.blurRadiusInPixels = 6.0;
+//    UIImage *blurredImage = [blurFilter imageByFilteringImage:image];
+//    return blurredImage;
+    return image;
 }
 
 - (void)removeAllViewConstraints
