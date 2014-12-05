@@ -61,16 +61,14 @@
     AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:urlRequest];
     requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
     [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSData *imageData = UIImagePNGRepresentation(responseObject);
-        campaign.landscapeImage = imageData;
+        campaign.landscapeImage = [Campaign shrinkLandscapeImage:responseObject];
         
         // Square image request
         NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:squareURL]];
         AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:urlRequest];
         requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
         [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSData *imageData = UIImagePNGRepresentation(responseObject);
-            campaign.squareImage = imageData;
+            campaign.squareImage = [Campaign shrinkSquareImage:responseObject];
             completionHandler();
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Image error: %@", error);

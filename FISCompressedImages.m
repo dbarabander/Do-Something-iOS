@@ -35,8 +35,7 @@
 {
     [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
         UIImage *normalImage = [UIImage imageWithData:campaign.landscapeImage];
-        NSData *imageToCompress = UIImageJPEGRepresentation(normalImage, 0.3);
-        normalImage = [UIImage imageWithData:imageToCompress];
+        normalImage = [UIImage imageWithData:campaign.landscapeImage];
         UIImage *image = [self blurImage:normalImage];
         [self.campaignImages setObject:@{@"normal" : normalImage,
                                              @"blurred" : image}

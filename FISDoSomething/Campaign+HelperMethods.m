@@ -225,6 +225,34 @@
 }
 }
 
++ (NSData *)shrinkLandscapeImage:(UIImage *)landscapeImage
+{
+    CGFloat ratio = landscapeImage.size.width/landscapeImage.size.height;
+    CGFloat newHeight = landscapeImage.size.height * 0.5;
+    CGSize newSize = CGSizeMake(newHeight*ratio, newHeight);
+    UIGraphicsBeginImageContext(newSize);
+    [landscapeImage drawInRect:(CGRect){.origin = CGPointZero, .size = newSize}];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    NSData *imageData = UIImageJPEGRepresentation(newImage, 0.8);
+    UIGraphicsEndImageContext();
+    return imageData;
+    //return UIImagePNGRepresentation(newImage);
+}
+
++ (NSData *)shrinkSquareImage:(UIImage *)squareImage
+{
+    CGFloat newHeight = squareImage.size.height * 0.5;
+    CGSize newSize = CGSizeMake(newHeight, newHeight);
+    UIGraphicsBeginImageContext(newSize);
+    [squareImage drawInRect:(CGRect){.origin = CGPointZero, .size = newSize}];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    NSData *imageData = UIImageJPEGRepresentation(newImage, 0.8);
+    UIGraphicsEndImageContext();
+    return imageData;
+    //return UIImagePNGRepresentation(newImage);
+}
+
+
 + (BOOL)isNotNull:(id)object
 {
     if(![object isKindOfClass:[NSNull class]]) {

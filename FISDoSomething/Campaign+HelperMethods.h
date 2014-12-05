@@ -7,6 +7,7 @@
 //
 
 #import "Campaign.h"
+#import <UIKit/UIKit.h>
 @class FISDataStore;
 @interface Campaign (HelperMethods)
 
@@ -16,5 +17,7 @@
 
 // Advanced Campaign info
 +(void)generateMoreDetailsForCampaign:(Campaign*)campaign withResponseObject:(id)responseObject;
++ (NSData *)shrinkLandscapeImage:(UIImage *)landscapeImage;
++ (NSData *)shrinkSquareImage:(UIImage *)squareImage;
 
 @end
