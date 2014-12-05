@@ -19,5 +19,5 @@
 @interface FISEventSwipeViewController : UIViewController
 
 @property (strong, nonatomic) id <FISEventSwipeViewControllerProtocol> delegate;
-
+@property (strong, nonatomic) UIScrollView *scrollView;
 @end

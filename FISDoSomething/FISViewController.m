@@ -9,18 +9,25 @@
 #import "FISViewController.h"
 #import "FISEventSwipeViewController.h"
 #import "FISChosenEventsTableViewController.h"
+#import "FISLoginRegisterTableViewController.h"
 
 @interface FISViewController () <FISEventSwipeViewControllerProtocol>
 
 @property (strong, nonatomic) UIScrollView *scrollView;
+@property BOOL *isLoggedIn;
 
 @end
 
 @implementation FISViewController
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.navigationController.navigationItem.rightBarButtonItem.title = @"BLAH BLAH BLAH";
+}
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+
     // Initalize scroll view
     self.scrollView = [[UIScrollView alloc]
                        initWithFrame:CGRectMake(0,
@@ -32,42 +39,86 @@
     self.scrollView.bounces = NO;
     [self.view addSubview:self.scrollView];
     self.view.backgroundColor = [UIColor blackColor];
-    
-    // Initalize left most view controller
-    FISEventSwipeViewController *eventSwipeViewController = [[FISEventSwipeViewController alloc] init];
-    CGRect eventSwipeVCFrame = eventSwipeViewController.view.frame;
-    eventSwipeVCFrame.origin.x = 0;
-    eventSwipeViewController.view.frame = eventSwipeVCFrame;
-    [self addChildViewController:eventSwipeViewController];
-    [self.scrollView addSubview:eventSwipeViewController.view];
-    [eventSwipeViewController didMoveToParentViewController:self];
-    
-    
-    FISChosenEventsTableViewController *randomVC = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"chosenEventsTVC"];
-    CGRect randomVCFrame = randomVC.view.frame;
+
+    [self checkIsLoggedIn];
+
+
+}
+
+- (void)checkIsLoggedIn
+{
+    if (self.isLoggedIn) {
+        // Initalize left most view controller
+        FISEventSwipeViewController *eventSwipeViewController = [[FISEventSwipeViewController alloc] init];
+        [self setUpViewController:eventSwipeViewController];
+        [self setUpScrollview];
+
+    } else {
+        UINavigationController *loginRegisterNavVC = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"loginRegisterNavController"];
+        [self setUpViewController:loginRegisterNavVC];
+    }
+}
+
+- (void)setUpViewController:(UIViewController *)viewController
+{
+    CGRect viewControllerFrame = viewController.view.frame;
+    viewControllerFrame.origin.x = 0;
+    viewController.view.frame = viewControllerFrame;
+    [self addChildViewController:viewController];
+    [self.scrollView addSubview:viewController.view];
+    [viewController didMoveToParentViewController:self];
+
+    FISChosenEventsTableViewController *chosenEventVC = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"chosenEventsTVC"];
+    CGRect randomVCFrame = chosenEventVC.view.frame;
     randomVCFrame.origin.x = self.view.frame.size.width;
-    randomVC.view.frame = randomVCFrame;
-    [self addChildViewController:randomVC];
-    [self.scrollView addSubview:randomVC.view];
-    [randomVC didMoveToParentViewController:self];
-    eventSwipeViewController.delegate = randomVC.childViewControllers[0];
-    
+    chosenEventVC.view.frame = randomVCFrame;
+    [self addChildViewController:chosenEventVC];
+    [self.scrollView addSubview:chosenEventVC.view];
+    [chosenEventVC didMoveToParentViewController:self];
+
+    if ([viewController isKindOfClass:[FISEventSwipeViewController class]]) {
+        ((FISEventSwipeViewController *)viewController).delegate = chosenEventVC.childViewControllers[0];
+    }
+}
+
+- (void)setUpScrollview
+{
     // Set scroll view size
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width * 2, self.view.frame.size.height);
     self.scrollView.pagingEnabled = YES;
-    
+
     // Start at left most
     CGPoint leftScrollView = CGPointMake(0, 0);
     [self.scrollView setContentOffset:leftScrollView];
-    
+
     // Hide scroll view indicators
     [self.scrollView setShowsHorizontalScrollIndicator:NO];
     [self.scrollView setShowsVerticalScrollIndicator:NO];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    [super prepareForSegue:segue sender:sender];
+//
+//    if ([segue.identifier isEqualToString:@"settingsSegue"]) {
+//        UINavigationController *navController = [segue destinationViewController];
+//        QCTSettingsTableViewController *settingsViewController = (QCTSettingsTableViewController *)([navController viewControllers][0]);
+//        settingsViewController.currentUser = _viewingUser;
+//    } else {
+//        UIViewController *destinationViewController = [segue destinationViewController];
+//        if ([destinationViewController isKindOfClass:[UINavigationController class]]) {
+//            UIViewController *rootViewController = [[(UINavigationController *)destinationViewController viewControllers] firstObject];
+//            if ([rootViewController isKindOfClass:[QCTCreatePollTableViewController class]]) {
+//                QCTCreatePollTableViewController *createPollViewController = (QCTCreatePollTableViewController *)rootViewController;
+//                createPollViewController.pollCreationDelegate = self;
+//                createPollViewController.viewingUser = _viewingUser;
+//            }
+//        }
+//    }
+//}
+
+//
+//}
+
 
 @end
