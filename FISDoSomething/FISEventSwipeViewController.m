@@ -111,7 +111,7 @@
     [SVProgressHUD show];
     if (self.downloadIndex < [[FISDataStore sharedDataStore].campaigns count]) {
         for (NSUInteger i = 0; i < 7; i++) {
-            Campaign *campaign = [FISDataStore sharedDataStore].campaigns[i];
+            Campaign *campaign = [FISDataStore sharedDataStore].campaigns[self.downloadIndex];
             FISEventCard *eventCard = [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard" owner:self options:nil] firstObject];
             eventCard.campaign = campaign;
             [_swipeableViews addObject:eventCard];

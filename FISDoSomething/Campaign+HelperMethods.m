@@ -236,7 +236,7 @@
     NSData *imageData = UIImageJPEGRepresentation(newImage, 0.8);
     UIGraphicsEndImageContext();
     return imageData;
-    //return UIImagePNGRepresentation(newImage);
+
 }
 
 + (NSData *)shrinkSquareImage:(UIImage *)squareImage
@@ -249,7 +249,6 @@
     NSData *imageData = UIImageJPEGRepresentation(newImage, 0.8);
     UIGraphicsEndImageContext();
     return imageData;
-    //return UIImagePNGRepresentation(newImage);
 }
 
 
