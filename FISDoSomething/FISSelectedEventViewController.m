@@ -27,7 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
-@property (weak, nonatomic) IBOutlet UIButton *cameraButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
 - (IBAction)cameraButtonTapped:(id)sender;
 - (IBAction)backButtonTapped:(id)sender;
 
@@ -239,6 +239,7 @@
     self.navigationBar.tintColor =[UIColor colorWithRed:77.0/255.0 green:43.0/255.0 blue:99.0/255.0 alpha:1.0];
     
     self.backButton.tintColor = [UIColor whiteColor];
+    self.cameraButton.tintColor = [UIColor whiteColor];
     [self.backButton setTitleTextAttributes:@{
         NSFontAttributeName : [UIFont fontWithName:@"ProximaNovaA-Bold" size:21.0],
         NSForegroundColorAttributeName : [UIColor whiteColor]

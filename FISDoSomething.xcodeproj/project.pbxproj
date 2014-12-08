@@ -369,10 +369,11 @@
 				TargetAttributes = {
 					6F7D31BC1A2CBB73001C9B54 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = VGWMY5RTZB;
+						DevelopmentTeam = 3CWLG66PQY;
 					};
 					6F7D31D51A2CBB73001C9B54 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 3CWLG66PQY;
 						TestTargetID = 6F7D31BC1A2CBB73001C9B54;
 					};
 				};

@@ -164,7 +164,7 @@
 
 - (BOOL) isValidPassword
 {
-    if (self.passwordTextField.text.length > 6){
+    if (self.passwordTextField.text.length >= 6){
         return YES;
     }
 //    }else{
@@ -186,7 +186,7 @@
 
 - (void)passwordTextDidChange:(id)sender
 {
-    if ([self.passwordTextField.text length] > 6 && !self.isSignUp) {
+    if ([self.passwordTextField.text length] >= 6 && !self.isSignUp) {
         self.navigationItem.rightBarButtonItem.enabled = YES;
     }
     else {
