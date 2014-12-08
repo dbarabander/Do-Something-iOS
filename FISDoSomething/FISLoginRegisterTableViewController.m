@@ -10,6 +10,7 @@
 #import "FISEventSwipeViewController.h"
 #import "FISChosenEventsTableViewController.h"
 #import "AppDelegate.h"
+#import "RMPhoneFormat.h"
 
 @interface FISLoginRegisterTableViewController()<UITextFieldDelegate, UITableViewDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
@@ -98,7 +99,7 @@
 - (BOOL)isFormFilledOut
 {
     if (self.isSignUp) {
-        return [self isValidEmail] && [self isValidPassword] && [self isValidPasswordConfirmation] && self.birthdayTextField.text.length && [self isValidName];
+        return ([self isValidEmail] || [self isValidPhone]) && [self isValidPassword] && [self isValidPasswordConfirmation] && self.birthdayTextField.text.length && [self isValidName];
     } else {
         return [self isValidEmail] && [self isValidPassword];
     }
@@ -108,13 +109,16 @@
 {
     if (self.emailTextField.text.length > 0 && [self NSStringIsValidEmail:self.emailTextField.text])  {
         return YES;
-    } else{
-        UIAlertView *invalidEmail = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Invalid Email" delegate:self cancelButtonTitle:@"Clear" otherButtonTitles:@"OK", nil];
-//        [invalidEmail show];
-        return NO;
     }
+    return NO;
 }
 
+- (BOOL) isValidPhone
+{
+    RMPhoneFormat *fmt = [[RMPhoneFormat alloc] initWithDefaultCountry:@"us"];
+    NSString *numberString = self.emailTextField.text;
+    return [fmt isPhoneNumberValid:numberString];
+}
 - (NSString *)formatDateToString:(NSDate *)date
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -131,7 +135,6 @@
         [self cell:self.confirmPasswordCell setHidden:NO];
         [self cell:self.birthdayCell setHidden:NO];
         [self cell:self.nameCell setHidden:NO];
-
         [self reloadDataAnimated:YES];
 
     } else {
@@ -183,7 +186,7 @@
 
 - (void)passwordTextDidChange:(id)sender
 {
-    if ([self.passwordTextField.text length] > 6) {
+    if ([self.passwordTextField.text length] > 6 && !self.isSignUp) {
         self.navigationItem.rightBarButtonItem.enabled = YES;
     }
     else {
@@ -215,8 +218,6 @@
     return [emailTest evaluateWithObject:checkString];
 }
 
-
-
 #pragma mark Navigation
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
@@ -228,7 +229,6 @@
 }
     return YES;
 }
-
 
 - (void)loginOrSignupSuccessful
 {

@@ -19,6 +19,7 @@
 @property (nonatomic) NSUInteger downloadIndex;
 @property (nonatomic) FISEventDetailView *detailView;
 
+
 @end
 
 @implementation FISEventSwipeViewController
@@ -26,6 +27,7 @@
     NSMutableArray *_swipeableViews;
     FISMultiCardView *_multiCardView;
      UIVisualEffectView *_blurEffectView;
+
 }
 
 - (instancetype)init
@@ -35,6 +37,7 @@
         _multiCardView = [[FISMultiCardView alloc] init];
         UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
         _blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+        //        _cardImageView = [[UIImageView alloc] init];
         [self fetchEvents];
     }
     return self;
@@ -45,9 +48,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.downloadIndex = 0;
-    
+
     UINavigationBar *navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 64)];
     UINavigationItem *navItem = [[UINavigationItem alloc] init];
     UIImage *image = [UIImage imageNamed:@"Do_Something_Logo"];
@@ -98,7 +101,7 @@
     else{
         [CampaignPreferences insertCampaignPreferenceswithCampaign:currentCampaign liked:0];
     }
-    
+
     [_swipeableViews removeObjectAtIndex:0];
     static NSUInteger imageBatchCount = 0;
     static NSUInteger swipedCount = 0;
@@ -118,9 +121,9 @@
 
             [[FISDataStore sharedDataStore] getImagesForCampaign:[FISDataStore sharedDataStore].campaigns[self.downloadIndex] withCompletionHandler:^{
                 NSLog(@"Image batch count: %lu", imageBatchCount);
-                
+
                 imageBatchCount++;
-                
+
                 if (imageBatchCount == 7) {
                     __block int j = 0;
                     for (NSUInteger i = self.downloadIndex - 7; i < self.downloadIndex; i++) {
@@ -181,6 +184,7 @@
         for (NSUInteger i = 0; i < 7; i++) {
             Campaign *campaign = [FISDataStore sharedDataStore].campaigns[i];
             FISEventCard *eventCard = [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard" owner:self options:nil] firstObject];
+
             eventCard.campaign = campaign;
             [_swipeableViews addObject:eventCard];
 

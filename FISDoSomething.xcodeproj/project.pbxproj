@@ -29,6 +29,7 @@
 		6F7D32041A2CBBE4001C9B54 /* FISViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7D31F91A2CBBE4001C9B54 /* FISViewController.m */; };
 		6FBE5A921A2F970D00FE5B7F /* Campaign.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBE5A911A2F970D00FE5B7F /* Campaign.m */; };
 		6FBE5A951A2F970D00FE5B7F /* CampaignPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBE5A941A2F970D00FE5B7F /* CampaignPreferences.m */; };
+		6FDCF7EF1A3611F0002472EF /* RMPhoneFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FDCF7EE1A3611F0002472EF /* RMPhoneFormat.m */; };
 		6FDDB44F1A322FF6003FC3A2 /* FISLoginRegisterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FDDB44E1A322FF6003FC3A2 /* FISLoginRegisterTableViewController.m */; };
 		6FDDB4521A3255D5003FC3A2 /* StaticDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FDDB4511A3255D5003FC3A2 /* StaticDataTableViewController.m */; };
 		94AC3FE323C0321BCC7CF5D5 /* libPods-FISDoSomething.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7322E1BD57E285C50436690 /* libPods-FISDoSomething.a */; };
@@ -92,6 +93,8 @@
 		6FBE5A911A2F970D00FE5B7F /* Campaign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Campaign.m; sourceTree = "<group>"; };
 		6FBE5A931A2F970D00FE5B7F /* CampaignPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampaignPreferences.h; sourceTree = "<group>"; };
 		6FBE5A941A2F970D00FE5B7F /* CampaignPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampaignPreferences.m; sourceTree = "<group>"; };
+		6FDCF7ED1A3611F0002472EF /* RMPhoneFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMPhoneFormat.h; sourceTree = "<group>"; };
+		6FDCF7EE1A3611F0002472EF /* RMPhoneFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMPhoneFormat.m; sourceTree = "<group>"; };
 		6FDDB44D1A322FF6003FC3A2 /* FISLoginRegisterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISLoginRegisterTableViewController.h; sourceTree = "<group>"; };
 		6FDDB44E1A322FF6003FC3A2 /* FISLoginRegisterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISLoginRegisterTableViewController.m; sourceTree = "<group>"; };
 		6FDDB4501A3255D5003FC3A2 /* StaticDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticDataTableViewController.h; sourceTree = "<group>"; };
@@ -221,6 +224,8 @@
 		6F7D32051A2CBBEA001C9B54 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6FDCF7ED1A3611F0002472EF /* RMPhoneFormat.h */,
+				6FDCF7EE1A3611F0002472EF /* RMPhoneFormat.m */,
 				0903DD1C1A2E1A110031D090 /* Campaign+HelperMethods.h */,
 				0903DD1D1A2E1A110031D090 /* Campaign+HelperMethods.m */,
 				09E916D01A30AE7100031000 /* CampaignPreferences+HelperMethods.h */,
@@ -453,6 +458,7 @@
 				BD7AF3C21A2D051800FAC422 /* FISSelectedEventViewController.m in Sources */,
 				6F7D32011A2CBBE4001C9B54 /* FISEventSwipeViewController.m in Sources */,
 				BD5A0D2E1A30DD31009DB2D4 /* FISCompressedImages.m in Sources */,
+				6FDCF7EF1A3611F0002472EF /* RMPhoneFormat.m in Sources */,
 				6F7D32041A2CBBE4001C9B54 /* FISViewController.m in Sources */,
 				6F7D31FB1A2CBBE4001C9B54 /* FISDataStore.m in Sources */,
 				BD7AF3BD1A2D050B00FAC422 /* FISChosenEventsTableViewController.m in Sources */,
