@@ -2,11 +2,12 @@
 //  Campaign.m
 //  FISDoSomething
 //
-//  Created by DANIEL BARABANDER on 12/3/14.
+//  Created by Ismail Mustafa on 12/8/14.
 //  Copyright (c) 2014 Flatiron iOS 003. All rights reserved.
 //
 
 #import "Campaign.h"
+#import "CampaignPreferences.h"
 
 
 @implementation Campaign

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14B25" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14A388b" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Campaign" representedClassName="Campaign" syncable="YES">
         <attribute name="callToAction" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="coverImageLandscapeURL" optional="YES" attributeType="String" syncable="YES"/>
@@ -10,7 +10,7 @@
         <attribute name="factSources" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="isStaffPick" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="itemsNeeded" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="landscapeImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="landscapeImage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="locationFinderInfo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="locationFinderURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -19,7 +19,7 @@
         <attribute name="preStep" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="promotingTips" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="scholarship" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="squareImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="squareImage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="statsSignups" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="timeAndPlace" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -34,7 +34,7 @@
         <relationship name="campaign" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Campaign" inverseName="campaignPreferences" inverseEntity="Campaign" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Campaign" positionX="-63" positionY="-18" width="128" height="418"/>
+        <element name="Campaign" positionX="-63" positionY="-18" width="128" height="420"/>
         <element name="CampaignPreferences" positionX="178" positionY="72" width="128" height="103"/>
     </elements>
 </model>

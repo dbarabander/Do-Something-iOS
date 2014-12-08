@@ -9,6 +9,7 @@
 #import "FISCompressedImages.h"
 #import "Campaign+HelperMethods.h"
 #import <GPUImage/GPUImage.h>
+#import "UIImage+SaveLocal.h"
 
 @implementation FISCompressedImages
 
@@ -34,11 +35,11 @@
         withCompletionHandler:(void (^)())completionHandler
 {
     [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
-        UIImage *normalImage = [UIImage imageWithData:campaign.landscapeImage];
-        normalImage = [UIImage imageWithData:campaign.landscapeImage];
-        UIImage *image = [self blurImage:normalImage];
+        NSString *landscapeImagePath = campaign.landscapeImage;
+        UIImage *normalImage = [UIImage getImageWithPath:landscapeImagePath];
+        UIImage *blurredImage = [self blurImage:normalImage];
         [self.campaignImages setObject:@{@"normal" : normalImage,
-                                             @"blurred" : image}
+                                             @"blurred" : blurredImage}
                                     forKey:campaign.nid];
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             completionHandler();

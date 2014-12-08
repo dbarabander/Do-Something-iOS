@@ -4,6 +4,7 @@
 
 #import "FISEventCard.h"
 #import "Campaign.h"
+#import "FISAppFont.h"
 
 @interface FISEventCard ()
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
@@ -27,6 +28,9 @@
 {
     _campaign = campaign;
     self.nameLabel.text = campaign.title;
+    self.nameLabel.font = appFont(23);
+    self.nameLabel.textAlignment = NSTextAlignmentCenter;
+    self.backgroundColor =[UIColor colorWithRed:0.867 green:0.867 blue:0.867 alpha:1.0];
 }
 
 - (void)setImageView:(UIImageView *)imageView

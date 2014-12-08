@@ -13,6 +13,8 @@
 #import "Campaign.h"
 #import "CampaignPreferences+HelperMethods.h"
 #import <GPUImage/GPUImage.h>
+#import "UIImage+SaveLocal.h"
+#import "FISAppFont.h"
 
 @interface FISEventSwipeViewController () <FISMultiCardViewDataSource, FISMultiCardViewDelegate, eventDetailViewDelegate>
 
@@ -52,13 +54,23 @@
     self.downloadIndex = 0;
 
     UINavigationBar *navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 64)];
-    UINavigationItem *navItem = [[UINavigationItem alloc] init];
-    UIImage *image = [UIImage imageNamed:@"Do_Something_Logo"];
-    navItem.titleView = [[UIImageView alloc] initWithImage:image];
-    navigationBar.items = @[navItem];
+    navigationBar.backgroundColor = [UIColor colorWithRed:77.0/255.0 green:43.0/255.0 blue:99.0/255.0 alpha:1.0];
+    self.view.backgroundColor = [UIColor colorWithRed:77.0/255.0 green:43.0/255.0 blue:99.0/255.0 alpha:1.0];
+    
+    navigationBar.shadowImage = [[UIImage alloc] init];
+    navigationBar.barTintColor =[UIColor colorWithRed:77.0/255.0 green:43.0/255.0 blue:99.0/255.0 alpha:1.0];
+    navigationBar.tintColor =[UIColor colorWithRed:77.0/255.0 green:43.0/255.0 blue:99.0/255.0 alpha:1.0];
+    UINavigationItem *title = [[UINavigationItem alloc] init];
+    navigationBar.items = @[title];
+    [navigationBar
+     setTitleTextAttributes:
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [UIFont fontWithName:@"ProximaNovaA-Bold" size:23],
+      NSFontAttributeName, [UIColor whiteColor],
+      NSForegroundColorAttributeName, nil]];
+    [navigationBar.topItem setTitle:@"Browse Campaigns"];
     [self.view addSubview:navigationBar];
 
-    self.view.backgroundColor = [UIColor colorWithRed:(248/255.0) green:(248/255.0) blue:(248/255.0) alpha:1];
     _multiCardView.frame = self.view.bounds;
     _multiCardView.delegate = self;
     _multiCardView.dataSource = self;
@@ -129,8 +141,8 @@
                     for (NSUInteger i = self.downloadIndex - 7; i < self.downloadIndex; i++) {
                         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                             FISEventCard * eventCardToLoadImage = _swipeableViews[j];
-                            eventCardToLoadImage.imageView.image = [UIImage imageWithData:[[FISDataStore sharedDataStore].campaigns[i] squareImage]];
-
+                            NSString *squareImagePath = [[FISDataStore sharedDataStore].campaigns[i] squareImage];
+                            eventCardToLoadImage.imageView.image = [UIImage getImageWithPath:squareImagePath];
                             [_multiCardView reloadCardViews];
                             j++;
                         }];
@@ -191,7 +203,8 @@
             [[FISDataStore sharedDataStore] getImagesForCampaign:[[FISDataStore sharedDataStore] campaigns][i] withCompletionHandler:^{
                 FISEventCard *firstCard = _swipeableViews[i];
                 Campaign *specificCampaign = [FISDataStore sharedDataStore].campaigns[i];
-                UIImage *image = [UIImage imageWithData:specificCampaign.squareImage];
+                NSString *squareImagePath = specificCampaign.squareImage;
+                UIImage *image = [UIImage getImageWithPath:squareImagePath];
                 firstCard.imageView.image = image;
                 [_multiCardView reloadCardViews];
                 self.downloadIndex++;

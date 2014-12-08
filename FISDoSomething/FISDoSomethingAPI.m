@@ -9,6 +9,7 @@
 #import "FISDoSomethingAPI.h"
 #import "Campaign+HelperMethods.h"
 #import <AFNetworking/AFNetworking.h>
+#import "UIImage+SaveLocal.h"
 
 
 
@@ -61,14 +62,14 @@
     AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:urlRequest];
     requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
     [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        campaign.landscapeImage = [Campaign shrinkLandscapeImage:responseObject];
+        campaign.landscapeImage = [responseObject saveLandscapeImageForCampaign:campaign];
         
         // Square image request
         NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:squareURL]];
         AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:urlRequest];
         requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
         [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-            campaign.squareImage = [Campaign shrinkSquareImage:responseObject];
+            campaign.squareImage = [responseObject saveSquareImageForCampaign:campaign];
             completionHandler();
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Image error: %@", error);

@@ -35,6 +35,7 @@
     
     // Initalize left most view controller
     FISEventSwipeViewController *eventSwipeViewController = [[FISEventSwipeViewController alloc] init];
+    
     CGRect eventSwipeVCFrame = eventSwipeViewController.view.frame;
     eventSwipeVCFrame.origin.x = 0;
     eventSwipeViewController.view.frame = eventSwipeVCFrame;

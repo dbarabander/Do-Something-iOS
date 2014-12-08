@@ -44,7 +44,7 @@
 
 - (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
     
-    NSString *text = @"Any campaigns you like will show up here. So fucking swipe them.";
+    NSString *text = @"Any campaigns you like will show up here.";
     
     NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
     paragraph.lineBreakMode = NSLineBreakByWordWrapping;

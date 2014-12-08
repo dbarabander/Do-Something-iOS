@@ -29,8 +29,8 @@
             Campaign *campaign = [NSEntityDescription insertNewObjectForEntityForName:@"Campaign" inManagedObjectContext:[FISDataStore sharedDataStore].context];
             campaign.nid=responseDict[@"nid"];
             campaign.isStaffPick=responseDict[@"is_staff_pick"];
-            campaign.title=responseDict[@"title"];
-        
+            campaign.title= [self removeUTFCharsFrom:responseDict[@"title"]];
+            
             [[FISDataStore sharedDataStore] getMoreInfoOnCampaign:campaign withCompletionHandler:^{
                 returnedCount++;
                 if(returnedCount == returnedTotal){
@@ -43,6 +43,14 @@
     }
     
 
+}
+
++ (NSString *)removeUTFCharsFrom:(NSString *)string
+{
+    // Remove non-ascii characters
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"&#[0-9][0-9][0-9];" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSString *cleanedUpString = [regex stringByReplacingMatchesInString:string options:0 range:NSMakeRange(0, [string length]) withTemplate:@"'"];
+    return cleanedUpString;
 }
 
 - (NSString *)description
@@ -228,7 +236,7 @@
 + (NSData *)shrinkLandscapeImage:(UIImage *)landscapeImage
 {
     CGFloat ratio = landscapeImage.size.width/landscapeImage.size.height;
-    CGFloat newHeight = landscapeImage.size.height * 0.8;
+    CGFloat newHeight = landscapeImage.size.height * 1.0;
     CGSize newSize = CGSizeMake(newHeight*ratio, newHeight);
     UIGraphicsBeginImageContext(newSize);
     [landscapeImage drawInRect:(CGRect){.origin = CGPointZero, .size = newSize}];
@@ -241,7 +249,7 @@
 
 + (NSData *)shrinkSquareImage:(UIImage *)squareImage
 {
-    CGFloat newHeight = squareImage.size.height * 0.8;
+    CGFloat newHeight = squareImage.size.height * 1.0;
     CGSize newSize = CGSizeMake(newHeight, newHeight);
     UIGraphicsBeginImageContext(newSize);
     [squareImage drawInRect:(CGRect){.origin = CGPointZero, .size = newSize}];
