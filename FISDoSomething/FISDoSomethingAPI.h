@@ -22,4 +22,8 @@
 // Download images for campaign
 + (void)retrieveImagesForCampaign:(Campaign *)campaign
             withCompletionHandler:(void (^)())completionHandler;
+
++(void)postLoginToAPI:(NSDictionary *)parameters withCompletionHandler:(void (^)(id responseObject))completionHandler;
++(void)postRegistrationToAPI:(NSDictionary *)parameters withCompletionHandler:(void (^)(id responseObject))completionHandler;
+
 @end

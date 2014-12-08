@@ -10,7 +10,7 @@
 #import <SSKeychain/SSKeychain.h>
 #import "FISViewController.h"
 #import "FISLoginRegisterTableViewController.h"
-
+#import "FISLoginRegisterClass.h"
 @interface AppDelegate ()
 
 @end

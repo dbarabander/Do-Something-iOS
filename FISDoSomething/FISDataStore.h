@@ -58,7 +58,9 @@
 
 // Download images for campaign
 - (void)getImagesForCampaign:(Campaign *)campaign
-            withCompletionHandler:(void (^)())completionHandler;
+       withCompletionHandler:(void (^)())completionHandler;
+
+
 -(NSArray *)getAllSavedCampaigns;
 
 @property (strong, nonatomic, readonly) NSManagedObjectContext *context;

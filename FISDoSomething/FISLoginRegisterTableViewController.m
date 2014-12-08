@@ -10,6 +10,7 @@
 #import "FISEventSwipeViewController.h"
 #import "FISChosenEventsTableViewController.h"
 #import "AppDelegate.h"
+#import "FISLoginRegisterClass.h"
 
 @interface FISLoginRegisterTableViewController()<UITextFieldDelegate, UITableViewDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
@@ -161,7 +162,7 @@
 
 - (BOOL) isValidPassword
 {
-    if (self.passwordTextField.text.length > 6){
+    if (self.passwordTextField.text.length >= 6){
         return YES;
     }
 //    }else{
@@ -183,7 +184,7 @@
 
 - (void)passwordTextDidChange:(id)sender
 {
-    if ([self.passwordTextField.text length] > 6) {
+    if ([self.passwordTextField.text length] >= 6) {
         self.navigationItem.rightBarButtonItem.enabled = YES;
     }
     else {
@@ -232,10 +233,6 @@
 
 - (void)loginOrSignupSuccessful
 {
-    // STORE USER NAME AND PASSWORD AND HASH IN KEYCHAIN/NSUSERDEFAULTS HERERERERERERE
-    
-    
-    
     // Transition to scroll view
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     UIViewController *initialViewController = [self.storyboard instantiateInitialViewController];
@@ -245,7 +242,45 @@
 }
 
 - (IBAction)doneButtonTapped:(id)sender {
-    [self loginOrSignupSuccessful];
-}
+    FISLoginRegisterClass *loginRegisterClass=[[FISLoginRegisterClass alloc] init];
+    if(self.isSignUp){
+        
+        [loginRegisterClass attemptRegistrationWithUsername:self.emailTextField.text password:self.passwordTextField.text birthDate:self.birthdayDatePicker.date name:self.nameTextField.text withCompletionHandler:^{
+            
+            if(loginRegisterClass.failedLoginRegister){
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:loginRegisterClass.failedLoginRegisterReason delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] ;
+                // optional - add more buttons:
+                [alert show];
+            }
+            else{
+                FISLoginRegisterClass *loginRegisterClassNew=[[FISLoginRegisterClass alloc] init];
 
+                [self performLogin:loginRegisterClassNew];
+            }
+
+            
+        }];
+        
+        
+    }
+    else{
+        [self performLogin:loginRegisterClass];
+    }
+}
+-(void)performLogin:(FISLoginRegisterClass *)loginRegisterClass{
+    
+    [loginRegisterClass attemptLoginWithUsername:self.emailTextField.text password:self.passwordTextField.text withCompletionHandler:^{
+        if(loginRegisterClass.failedLoginRegister){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops" message:loginRegisterClass.failedLoginRegisterReason delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil] ;
+            // optional - add more buttons:
+            [alert show];
+        }
+        else{
+            [self loginOrSignupSuccessful];
+        }
+        
+    }];
+
+    
+}
 @end

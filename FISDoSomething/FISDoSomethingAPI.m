@@ -81,4 +81,80 @@
     [requestOperation start];
 }
 
++(void)postLoginToAPI:(NSDictionary *)parameters withCompletionHandler:(void (^)(id responseObject))completionHandler
+{
+    
+    
+    NSString* postURL = [NSString stringWithFormat:@"https://www.dosomething.org/api/v1/auth/login"];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:postURL]
+                                                           cachePolicy:NSURLRequestReloadIgnoringCacheData  timeoutInterval:10];
+    
+    
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSData *jsonDataConverted = [jsonString dataUsingEncoding:NSASCIIStringEncoding];
+    
+    NSMutableData *body = [NSMutableData data];
+    [body appendData:jsonData];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue: @"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue: @"application/json" forHTTPHeaderField:@"Accept"];
+    [request setHTTPBody:jsonDataConverted];
+    
+    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    op.responseSerializer = [AFJSONResponseSerializer serializer];
+    [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        completionHandler(responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", [error localizedDescription]);
+        completionHandler(error);
+        
+    }];
+    [op start];
+    
+}
+
+
++(void)postRegistrationToAPI:(NSDictionary *)parameters withCompletionHandler:(void (^)(id responseObject))completionHandler
+{
+    
+    
+    NSString* postURL = [NSString stringWithFormat:@"https://www.dosomething.org/api/v1/users"];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:postURL]
+                                                           cachePolicy:NSURLRequestReloadIgnoringCacheData  timeoutInterval:10];
+    
+    
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSData *jsonDataConverted = [jsonString dataUsingEncoding:NSASCIIStringEncoding];
+    
+    NSMutableData *body = [NSMutableData data];
+    [body appendData:jsonData];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue: @"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue: @"application/json" forHTTPHeaderField:@"Accept"];
+    [request setHTTPBody:jsonDataConverted];
+    
+    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    op.responseSerializer = [AFJSONResponseSerializer serializer];
+    [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        completionHandler(responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", [error localizedDescription]);
+        completionHandler(error);
+        
+    }];
+    [op start];
+    
+}
+
+
 @end

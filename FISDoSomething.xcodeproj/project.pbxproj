@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0903DD1E1A2E1A110031D090 /* Campaign+HelperMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903DD1D1A2E1A110031D090 /* Campaign+HelperMethods.m */; };
 		0903DD2C1A2E385D0031D090 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0903DD2A1A2E385D0031D090 /* Model.xcdatamodeld */; };
+		092967061A36075400F21E04 /* FISLoginRegisterClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 092967051A36075400F21E04 /* FISLoginRegisterClass.m */; };
 		09E916D21A30AE7100031000 /* CampaignPreferences+HelperMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E916D11A30AE7100031000 /* CampaignPreferences+HelperMethods.m */; };
 		6F4133661A30C324000E58A7 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4133651A30C324000E58A7 /* UIImage+ImageEffects.m */; };
 		6F7D31C31A2CBB73001C9B54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7D31C21A2CBB73001C9B54 /* main.m */; };
@@ -54,6 +55,8 @@
 		0903DD1C1A2E1A110031D090 /* Campaign+HelperMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Campaign+HelperMethods.h"; sourceTree = "<group>"; };
 		0903DD1D1A2E1A110031D090 /* Campaign+HelperMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Campaign+HelperMethods.m"; sourceTree = "<group>"; };
 		0903DD2B1A2E385D0031D090 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		092967041A36075400F21E04 /* FISLoginRegisterClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISLoginRegisterClass.h; sourceTree = "<group>"; };
+		092967051A36075400F21E04 /* FISLoginRegisterClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISLoginRegisterClass.m; sourceTree = "<group>"; };
 		09E916D01A30AE7100031000 /* CampaignPreferences+HelperMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CampaignPreferences+HelperMethods.h"; sourceTree = "<group>"; };
 		09E916D11A30AE7100031000 /* CampaignPreferences+HelperMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CampaignPreferences+HelperMethods.m"; sourceTree = "<group>"; };
 		3FA932492A14C78E288BCAAB /* Pods-FISDoSomething.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FISDoSomething.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FISDoSomething/Pods-FISDoSomething.debug.xcconfig"; sourceTree = "<group>"; };
@@ -229,6 +232,8 @@
 				6F7D31E91A2CBBE4001C9B54 /* FISDataStore.m */,
 				6F7D31EA1A2CBBE4001C9B54 /* FISDoSomethingAPI.h */,
 				6F7D31EB1A2CBBE4001C9B54 /* FISDoSomethingAPI.m */,
+				092967041A36075400F21E04 /* FISLoginRegisterClass.h */,
+				092967051A36075400F21E04 /* FISLoginRegisterClass.m */,
 			);
 			name = Model;
 			path = FISDoSomething;
@@ -441,6 +446,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				092967061A36075400F21E04 /* FISLoginRegisterClass.m in Sources */,
 				BDEA81131A2E662000014E9D /* PopOverAnimation.m in Sources */,
 				6F7D31FF1A2CBBE4001C9B54 /* FISEventDetailView.m in Sources */,
 				6F4133661A30C324000E58A7 /* UIImage+ImageEffects.m in Sources */,
