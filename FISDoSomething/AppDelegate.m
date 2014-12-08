@@ -33,7 +33,6 @@
         self.window.rootViewController = loginVC;
     }
 
-    dumpAllFonts();
     self.dataManager = [FISDataStore sharedDataStore];
     
     //  [FISUser memberLogin:@"joeflat@mailinator.com" password:@"ironman123"];
