@@ -32,6 +32,7 @@
 		6FDCF7EF1A3611F0002472EF /* RMPhoneFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FDCF7EE1A3611F0002472EF /* RMPhoneFormat.m */; };
 		6FDDB44F1A322FF6003FC3A2 /* FISLoginRegisterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FDDB44E1A322FF6003FC3A2 /* FISLoginRegisterTableViewController.m */; };
 		6FDDB4521A3255D5003FC3A2 /* StaticDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FDDB4511A3255D5003FC3A2 /* StaticDataTableViewController.m */; };
+		8A45F5261A35FFBC00A69E17 /* FISUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45F5251A35FFBC00A69E17 /* FISUser.m */; };
 		94AC3FE323C0321BCC7CF5D5 /* libPods-FISDoSomething.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7322E1BD57E285C50436690 /* libPods-FISDoSomething.a */; };
 		BD5A0D2E1A30DD31009DB2D4 /* FISCompressedImages.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5A0D2D1A30DD31009DB2D4 /* FISCompressedImages.m */; };
 		BD7AF3BD1A2D050B00FAC422 /* FISChosenEventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD7AF3B91A2D050B00FAC422 /* FISChosenEventsTableViewController.m */; };
@@ -99,6 +100,8 @@
 		6FDDB44E1A322FF6003FC3A2 /* FISLoginRegisterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISLoginRegisterTableViewController.m; sourceTree = "<group>"; };
 		6FDDB4501A3255D5003FC3A2 /* StaticDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticDataTableViewController.h; sourceTree = "<group>"; };
 		6FDDB4511A3255D5003FC3A2 /* StaticDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticDataTableViewController.m; sourceTree = "<group>"; };
+		8A45F5241A35FF9E00A69E17 /* FISUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISUser.h; sourceTree = "<group>"; };
+		8A45F5251A35FFBC00A69E17 /* FISUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISUser.m; sourceTree = "<group>"; };
 		BD5A0D2C1A30DD31009DB2D4 /* FISCompressedImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISCompressedImages.h; sourceTree = "<group>"; };
 		BD5A0D2D1A30DD31009DB2D4 /* FISCompressedImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISCompressedImages.m; sourceTree = "<group>"; };
 		BD5A0D2F1A3105D0009DB2D4 /* FISAppFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISAppFont.h; sourceTree = "<group>"; };
@@ -226,6 +229,8 @@
 			children = (
 				6FDCF7ED1A3611F0002472EF /* RMPhoneFormat.h */,
 				6FDCF7EE1A3611F0002472EF /* RMPhoneFormat.m */,
+				8A45F5241A35FF9E00A69E17 /* FISUser.h */,
+				8A45F5251A35FFBC00A69E17 /* FISUser.m */,
 				0903DD1C1A2E1A110031D090 /* Campaign+HelperMethods.h */,
 				0903DD1D1A2E1A110031D090 /* Campaign+HelperMethods.m */,
 				09E916D01A30AE7100031000 /* CampaignPreferences+HelperMethods.h */,
@@ -359,6 +364,7 @@
 				TargetAttributes = {
 					6F7D31BC1A2CBB73001C9B54 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = VGWMY5RTZB;
 					};
 					6F7D31D51A2CBB73001C9B54 = {
 						CreatedOnToolsVersion = 6.1;
@@ -463,6 +469,7 @@
 				6F7D31FB1A2CBBE4001C9B54 /* FISDataStore.m in Sources */,
 				BD7AF3BD1A2D050B00FAC422 /* FISChosenEventsTableViewController.m in Sources */,
 				6F7D32031A2CBBE4001C9B54 /* NSString+cleanUp.m in Sources */,
+				8A45F5261A35FFBC00A69E17 /* FISUser.m in Sources */,
 				6F7D31FC1A2CBBE4001C9B54 /* FISDoSomethingAPI.m in Sources */,
 				6F7D31FD1A2CBBE4001C9B54 /* FISEventCard.m in Sources */,
 				BD7AF3BE1A2D050B00FAC422 /* FISCustomEventTableViewCell.m in Sources */,
@@ -592,9 +599,13 @@
 			baseConfigurationReference = 3FA932492A14C78E288BCAAB /* Pods-FISDoSomething.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = FISDoSomething/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -603,9 +614,13 @@
 			baseConfigurationReference = C7D1E20C2B7649FB78533423 /* Pods-FISDoSomething.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = FISDoSomething/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

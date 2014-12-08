@@ -47,6 +47,8 @@
 
 @property (strong, nonatomic) NSMutableArray *campaigns;
 @property (strong, nonatomic) NSMutableArray *allCampaigns;
+@property (strong, nonatomic) NSString *code;
+@property (strong, nonatomic) NSString* accessToken;
 
 + (instancetype)sharedDataStore;
 - (void)saveContext;

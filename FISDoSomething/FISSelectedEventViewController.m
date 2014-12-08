@@ -11,6 +11,10 @@
 #import <GPUImage/GPUImage.h>
 #import "FISCompressedImages.h"
 #import "FISAppFont.h"
+#import <AFNetworking/AFNetworking.h> 
+#import "PopOverAnimation.h"
+#import "FISDoSomethingAPI.h"
+
 
 @interface FISSelectedEventViewController () <UIScrollViewDelegate>
 
@@ -24,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backButton;
 @property (weak, nonatomic) IBOutlet UIButton *cameraButton;
+- (IBAction)cameraButtonTapped:(id)sender;
 - (IBAction)backButtonTapped:(id)sender;
 
 // Step 1
@@ -283,21 +288,7 @@
 }
 */
 
--(void) obtainImageFrom:(UIImagePickerControllerSourceType)sourceType{
-    UIImagePickerController* imagePicker = [[UIImagePickerController alloc] init];
-    imagePicker.sourceType = sourceType;
-    NSArray *mediaTypesAllowed = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-    imagePicker.mediaTypes = mediaTypesAllowed;
-    
-    
-    imagePicker.delegate = self;
-    [self presentViewController:imagePicker
-                       animated:YES
-                     completion:^{
-                         //digitize chosen picture and attach to message
-                         
-                     }];
-}
+
 
 -(void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex == 1){
@@ -314,6 +305,8 @@
     return deviceVersion < 8.0f;
 }
 
+
+
 - (IBAction)backButtonTapped:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{
         
@@ -321,9 +314,10 @@
 }
 
 - (IBAction)cameraButtonTapped:(id)sender {
+    
     if ([self systemVersionLessThan8])
     {
-        UIAlertView* mediaAlert = [[UIAlertView alloc] initWithTitle:@"Share something!" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Take a Picture or Video", @"Choose an existing Photo or Video", nil];
+        UIAlertView* mediaAlert = [[UIAlertView alloc] initWithTitle:@"Share something!" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Take a Picture", @"Choose an existing Photo", nil];
         
         [mediaAlert show];
     }
@@ -332,13 +326,13 @@
         
         UIAlertController* mediaAlert = [UIAlertController alertControllerWithTitle:@"Share a picture!" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
         
-        UIAlertAction* takePhoto = [UIAlertAction actionWithTitle:@"Take a Picture or Video"
+        UIAlertAction* takePhoto = [UIAlertAction actionWithTitle:@"Take a Picture"
                                                             style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction *action){[self obtainImageFrom:UIImagePickerControllerSourceTypeCamera];
                                                           }];
         [mediaAlert addAction:takePhoto];
         
-        UIAlertAction* chooseExistingPhoto = [UIAlertAction actionWithTitle:@"Choose an existing Photo or Video" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        UIAlertAction* chooseExistingPhoto = [UIAlertAction actionWithTitle:@"Choose an existing Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             [self obtainImageFrom:UIImagePickerControllerSourceTypePhotoLibrary];
         }];
         
@@ -353,5 +347,127 @@
             
         }];
     }
+    
 }
+
+- (UIDocumentInteractionController *) setupControllerWithURL: (NSURL*) fileURL
+                                               usingDelegate: (id <UIDocumentInteractionControllerDelegate>) interactionDelegate {
+    
+    UIDocumentInteractionController *interactionController =
+    [UIDocumentInteractionController interactionControllerWithURL: fileURL];
+    interactionController.delegate = interactionDelegate;
+    
+    return interactionController;
+}
+
+-(void) obtainImageFrom:(UIImagePickerControllerSourceType)sourceType{
+    UIImagePickerController* imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.sourceType = sourceType;
+    NSArray *mediaTypesAllowed = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    imagePicker.mediaTypes = mediaTypesAllowed;
+    
+    
+    imagePicker.delegate = self;
+    [self presentViewController:imagePicker
+                       animated:YES
+                     completion:^{
+                         
+                     }];
+}
+
+-(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:^{
+
+        NSLog(@"dictionnary = %@", info);
+        NSString* mediaType = [info valueForKey:UIImagePickerControllerMediaType];
+        NSLog(@"mediaType = %@", mediaType);
+        
+        if([mediaType isEqualToString:@"public.image"])
+        {
+            NSURL* extractedPhotoURL = [info valueForKey:UIImagePickerControllerReferenceURL];
+            NSLog(@"test: %@", [extractedPhotoURL class] );
+            
+            UIImage* extractedPhoto = [info valueForKey:UIImagePickerControllerOriginalImage];
+            
+            [self popUpPropmtoForUploadingToAPI:extractedPhoto];
+            [self sendToInstagram:extractedPhoto];
+        }
+    }];
+}
+
+-(void)popUpPropmtoForUploadingToAPI:(UIImage*)photo
+{
+    UIAlertController* shareAlert = [UIAlertController alertControllerWithTitle:@"Great! You selected a Picture!" message:@"Post to our API?" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* SendToWebSite = [UIAlertAction
+                                    actionWithTitle:@"OK!"
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction *action){[FISDoSomethingAPI postToWebsite:photo withCompletionHandler:
+    ^{
+        [self popUpPrompt:@"Success! You just pushed to the API!" ForSocialMediaSharing:photo];
+    }];
+    }];
+    [shareAlert addAction:SendToWebSite];
+    
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Not now" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [self popUpPrompt:@"Share on Social Media instead?" ForSocialMediaSharing:photo];
+    }];
+    [shareAlert addAction:cancel];
+    [self presentViewController:shareAlert animated:YES completion:^{
+    }];
+}
+
+-(void)popUpPrompt:(NSString*)phrase ForSocialMediaSharing:(UIImage*)photo
+{
+    UIAlertController* shareAlert = [UIAlertController alertControllerWithTitle:phrase message:@"Would you like to share on Social Media?" preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction* shareOnSocialMedia = [UIAlertAction actionWithTitle:@"Yes!" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self sendToInstagram:photo];
+    }];
+    
+    [shareAlert addAction:shareOnSocialMedia];
+    
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Not now" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    }];
+    
+    [shareAlert addAction:cancel];
+    
+    [self presentViewController:shareAlert animated:YES completion:^{
+        
+    }];
+    
+}
+- (void)logInToInstagram{
+    NSURL *githubAuthURL = [NSURL URLWithString:@"https://api.instagram.com/oauth/authorize/?client_id=908a50054bf8441e9a7fb87a7f338256&redirect_uri=OAuth%3A%2F%2F&response_type=code"];
+    [[UIApplication sharedApplication] openURL:githubAuthURL];
+    
+}
+
+-(NSURL*) createFileURLFor:(UIImage*)photo On:(NSString*)pathComponent
+{
+    NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/"];
+    NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:pathComponent];
+    
+    [UIImageJPEGRepresentation(photo, 1) writeToFile:savedImagePath atomically:YES];
+    NSURL *fileURL = [NSURL fileURLWithPath:savedImagePath];
+    return fileURL;
+}
+
+-(void) sendToInstagram:(UIImage*)extractedPhoto
+{
+    NSURL* fileURL = [self createFileURLFor:extractedPhoto On:@"test.ig"];
+    
+    self.interactionController= [self setupControllerWithURL:fileURL usingDelegate:self];
+    
+    self.interactionController.annotation = @{@"InstagramCaption":@"#doSthg"};
+    self.interactionController.UTI =@"com.instagram.photo";
+    
+    [self.interactionController presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];
+}
+
+- (NSString*) photoFilePath {
+    return [NSString stringWithFormat:@"%@/%@",[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"],@"tempinstgramphoto.igo"];
+}
+
 @end

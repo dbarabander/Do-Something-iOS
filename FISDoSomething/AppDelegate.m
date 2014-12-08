@@ -10,8 +10,12 @@
 #import <SSKeychain/SSKeychain.h>
 #import "FISViewController.h"
 #import "FISLoginRegisterTableViewController.h"
+#import "FISUser.h"
+#import "FISDataStore.h"
 
 @interface AppDelegate ()
+
+@property (strong, nonatomic) FISDataStore* dataManager;
 
 @end
 
@@ -29,6 +33,28 @@
         self.window.rootViewController = loginVC;
     }
 
+    dumpAllFonts();
+    self.dataManager = [FISDataStore sharedDataStore];
+    
+    //  [FISUser memberLogin:@"joeflat@mailinator.com" password:@"ironman123"];
+    return YES;
+}
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    NSString* urlString = [url absoluteString];
+    NSArray* brokenDownURL = [urlString componentsSeparatedByString:@"="];
+    
+    self.dataManager.code = [brokenDownURL lastObject];
+    NSLog(@"%%%%%%%% %@", self.dataManager.code);
+    
+    [FISUser obtainAccessToken];//:self.dataManager.code];
+    
+    
+    NSURL *instagramURL = [NSURL URLWithString:@"instagram://camera"];
+    if ([[UIApplication sharedApplication] canOpenURL:instagramURL]) {
+        [[UIApplication sharedApplication] openURL:instagramURL];
+    }
+    
     return YES;
 }
 

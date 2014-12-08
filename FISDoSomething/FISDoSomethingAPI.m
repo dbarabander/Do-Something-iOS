@@ -81,4 +81,53 @@
     [requestOperation start];
 }
 
++(void)postToWebsite:(UIImage*)picture withCompletionHandler:(void (^)())completionHandler
+{
+    //after blake sets up the login, we can replace hardcoded data with variables based on results from UserLogin result
+    
+    NSString* recipientURL = [NSString stringWithFormat:@"https://www.dosomething.org/api/v1/campaigns/%@/reportback", @22];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:recipientURL]
+                                                           cachePolicy:NSURLRequestReloadIgnoringCacheData  timeoutInterval:10];
+    
+    NSDictionary *parameters = @{@"quantity": @3,
+                                 @"uid": @2230235,
+                                 @"nid": @22,
+                                 @"file_url": @"http://voldemortwearsarmani.files.wordpress.com/2013/01/batman-chronicles.jpg",
+                                 @"why_participated": @"Test from API",
+                                 @"caption": @"API Testing!"};
+    
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:parameters options:0 error:nil];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSData *jsonDataConverted = [jsonString dataUsingEncoding:NSASCIIStringEncoding];
+    NSLog(@"jsonData:%@", jsonDataConverted);
+    
+    NSMutableData *body = [NSMutableData data];
+    [body appendData:jsonData];
+    NSLog(@"body:%@", body);
+    
+    NSString* sessionName = @"SSESSfb1cb9741b4d644cdf5904d0bbaacbe1";
+    NSString* sessID = @"tKcickanqmrPrYYF7b2wYW4ADLvYqPoI_X4sqL53zD0";
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue: @"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue: @"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue: @"Pmmku70IUh96kY8qP8gVz_RxiUNbxlpMTknpz7S89f8" forHTTPHeaderField:@"X-CSRF-Token"];
+    [request setValue: [[sessionName stringByAppendingString:@"="] stringByAppendingString:sessID] forHTTPHeaderField:@"Cookie"];
+    [request setHTTPBody:jsonDataConverted];
+    NSLog(@"request:%@, \n %d \n %@", request.HTTPMethod, [request.HTTPBody isEqual:body], request.HTTPBody);
+    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    op.responseSerializer = [AFJSONResponseSerializer serializer];
+    [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSLog(@"JSON responseObject: %@ ",responseObject);
+        completionHandler();
+
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", [error localizedDescription]);
+        
+    }];
+    [op start];
+}
 @end

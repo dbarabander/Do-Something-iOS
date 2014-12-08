@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuickLook/QuickLook.h>
 
 @class Campaign;
 
-@interface FISSelectedEventViewController : UIViewController <UIImagePickerControllerDelegate>
+@interface FISSelectedEventViewController : UIViewController <UIImagePickerControllerDelegate, UIDocumentInteractionControllerDelegate, QLPreviewControllerDataSource>
 
 @property (strong, nonatomic) Campaign *selectedEvent;
+@property (retain)UIDocumentInteractionController *interactionController;
 
 @end

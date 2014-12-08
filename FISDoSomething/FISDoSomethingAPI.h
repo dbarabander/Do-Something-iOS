@@ -22,4 +22,6 @@
 // Download images for campaign
 + (void)retrieveImagesForCampaign:(Campaign *)campaign
             withCompletionHandler:(void (^)())completionHandler;
+
++(void)postToWebsite:(UIImage*)picture withCompletionHandler:(void (^)())completionHandler;
 @end
