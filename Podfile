@@ -6,6 +6,7 @@ pod 'AFNetworking'
 pod 'SVProgressHUD'
 pod 'DZNEmptyDataSet'
 pod 'GPUImage'
+pod 'SSKeychain'
 end
 
 target 'FISDoSomethingTests' do

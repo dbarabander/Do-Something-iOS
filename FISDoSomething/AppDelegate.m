@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import <SSKeychain/SSKeychain.h>
+#import "FISViewController.h"
+#import "FISLoginRegisterTableViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,6 +19,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    if ([SSKeychain accountsForService:@"doSomething"]) {
+        FISViewController *scrollViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
+        self.window.rootViewController = scrollViewController;
+    }
+    else {
+        FISLoginRegisterTableViewController *loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"loginVC"];
+        self.window.rootViewController = loginVC;
+    }
 
     return YES;
 }

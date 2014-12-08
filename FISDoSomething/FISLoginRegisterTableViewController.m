@@ -9,6 +9,7 @@
 #import "FISLoginRegisterTableViewController.h"
 #import "FISEventSwipeViewController.h"
 #import "FISChosenEventsTableViewController.h"
+#import "AppDelegate.h"
 
 @interface FISLoginRegisterTableViewController()<UITextFieldDelegate, UITableViewDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
@@ -30,8 +31,7 @@
 @property (nonatomic) BOOL isSignUp;
 @property (strong, nonatomic) UIScrollView *scrollView;
 
-- (IBAction)presentEventSwipe:(id)sender;
-
+- (IBAction)doneButtonTapped:(id)sender;
 
 @end
 
@@ -56,6 +56,7 @@
     [self.birthdayTextField setInputView:self.birthdayDatePicker];
     [self.birthdayDatePicker addTarget:self  action:@selector(birthdayDateChanged:) forControlEvents:UIControlEventValueChanged];
 
+    [self.passwordTextField addTarget:self action:@selector(passwordTextDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.segmentedControl addTarget:self action:@selector(showForm) forControlEvents:UIControlEventValueChanged];
 
     self.navigationItem.rightBarButtonItem.enabled = NO;
@@ -180,6 +181,16 @@
     }
 }
 
+- (void)passwordTextDidChange:(id)sender
+{
+    if ([self.passwordTextField.text length] > 6) {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }
+    else {
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
+}
+
 - (BOOL) validateStringContainsAlphabetsOnly:(NSString*)strng
 {
     NSCharacterSet *strCharSet = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "];
@@ -218,50 +229,23 @@
     return YES;
 }
 
-- (IBAction)presentEventSwipe:(id)sender
+
+- (void)loginOrSignupSuccessful
 {
-    [self.navigationController popViewControllerAnimated:YES];
-    FISEventSwipeViewController *eventSwipeViewController = [[FISEventSwipeViewController alloc] init];
-    [self setUpViewController:eventSwipeViewController];
-    [self setUpScrollview: eventSwipeViewController];
-    [self.navigationController pushViewController:eventSwipeViewController animated:YES];
+    // STORE USER NAME AND PASSWORD AND HASH IN KEYCHAIN/NSUSERDEFAULTS HERERERERERERE
+    
+    
+    
+    // Transition to scroll view
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    UIViewController *initialViewController = [self.storyboard instantiateInitialViewController];
+    [UIView transitionWithView:appDelegate.window duration:0.5 options:UIViewAnimationOptionTransitionFlipFromBottom animations:^{
+        appDelegate.window.rootViewController = initialViewController;
+    } completion:^(BOOL finished) {}];
 }
 
-- (void)setUpViewController:(UIViewController *)viewController
-{
-
-    CGRect viewControllerFrame = viewController.view.frame;
-    viewControllerFrame.origin.x = 0;
-    viewController.view.frame = viewControllerFrame;
-    [self addChildViewController:viewController];
-    [self.scrollView addSubview:viewController.view];
-    [viewController didMoveToParentViewController:self];
-
-    FISChosenEventsTableViewController *chosenEventVC = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"chosenEventsTVC"];
-    CGRect randomVCFrame = chosenEventVC.view.frame;
-    randomVCFrame.origin.x = self.view.frame.size.width;
-    chosenEventVC.view.frame = randomVCFrame;
-    [self addChildViewController:chosenEventVC];
-    [self.scrollView addSubview:chosenEventVC.view];
-    [chosenEventVC didMoveToParentViewController:self];
-
-    if ([viewController isKindOfClass:[FISEventSwipeViewController class]]) {
-        ((FISEventSwipeViewController *)viewController).delegate = chosenEventVC.childViewControllers[0];
-    }
-}
-
-- (void)setUpScrollview: (FISEventSwipeViewController *)viewController
-{
-    viewController.scrollView.contentSize = CGSizeMake(self.view.frame.size.width * 2, self.view.frame.size.height);
-    viewController.scrollView.pagingEnabled = YES;
-
-    // Start at left most
-    CGPoint leftScrollView = CGPointMake(0, 0);
-    [viewController.scrollView setContentOffset:leftScrollView];
-
-    // Hide scroll view indicators
-    [viewController.scrollView setShowsHorizontalScrollIndicator:NO];
-    [viewController.scrollView setShowsVerticalScrollIndicator:NO];
+- (IBAction)doneButtonTapped:(id)sender {
+    [self loginOrSignupSuccessful];
 }
 
 @end

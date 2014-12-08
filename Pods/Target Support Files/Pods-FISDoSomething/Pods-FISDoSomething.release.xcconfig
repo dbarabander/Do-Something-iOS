@@ -1,7 +1,7 @@
 CLANG_MODULES_AUTOLINK = YES
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/DZNEmptyDataSet" "${PODS_ROOT}/Headers/Public/GPUImage" "${PODS_ROOT}/Headers/Public/SVProgressHUD"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/AFNetworking" -isystem "${PODS_ROOT}/Headers/Public/DZNEmptyDataSet" -isystem "${PODS_ROOT}/Headers/Public/GPUImage" -isystem "${PODS_ROOT}/Headers/Public/SVProgressHUD"
-OTHER_LDFLAGS = -ObjC -l"Pods-FISDoSomething-AFNetworking" -l"Pods-FISDoSomething-DZNEmptyDataSet" -l"Pods-FISDoSomething-GPUImage" -l"Pods-FISDoSomething-SVProgressHUD" -framework "AVFoundation" -framework "CoreGraphics" -framework "CoreMedia" -framework "MobileCoreServices" -framework "OpenGLES" -framework "QuartzCore" -framework "Security" -framework "SystemConfiguration" -framework "UIKit"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/DZNEmptyDataSet" "${PODS_ROOT}/Headers/Public/GPUImage" "${PODS_ROOT}/Headers/Public/SSKeychain" "${PODS_ROOT}/Headers/Public/SVProgressHUD"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/AFNetworking" -isystem "${PODS_ROOT}/Headers/Public/DZNEmptyDataSet" -isystem "${PODS_ROOT}/Headers/Public/GPUImage" -isystem "${PODS_ROOT}/Headers/Public/SSKeychain" -isystem "${PODS_ROOT}/Headers/Public/SVProgressHUD"
+OTHER_LDFLAGS = -ObjC -l"Pods-FISDoSomething-AFNetworking" -l"Pods-FISDoSomething-DZNEmptyDataSet" -l"Pods-FISDoSomething-GPUImage" -l"Pods-FISDoSomething-SSKeychain" -l"Pods-FISDoSomething-SVProgressHUD" -framework "AVFoundation" -framework "CoreGraphics" -framework "CoreMedia" -framework "Foundation" -framework "MobileCoreServices" -framework "OpenGLES" -framework "QuartzCore" -framework "Security" -framework "SystemConfiguration" -framework "UIKit"
 OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
 PODS_ROOT = ${SRCROOT}/Pods

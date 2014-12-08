@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -389,7 +389,7 @@
                     <navigationItem key="navigationItem" title="Sign in or Sign up" id="jZ7-rD-Zgr">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="wSm-eG-bes" userLabel="Next">
                             <connections>
-                                <action selector="presentEventSwipe:" destination="1Gm-S1-IFh" id="fj8-Dv-MiS"/>
+                                <action selector="doneButtonTapped:" destination="1Gm-S1-IFh" id="NU6-yZ-N6S"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -413,12 +413,12 @@
                     <cells/>
                 </tableViewSection>
             </objects>
-            <point key="canvasLocation" x="5075" y="237"/>
+            <point key="canvasLocation" x="4328" y="-430"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HnA-US-AlN">
             <objects>
-                <navigationController storyboardIdentifier="loginRegisterNavController" automaticallyAdjustsScrollViewInsets="NO" id="4Bp-gT-H9J" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="loginVC" automaticallyAdjustsScrollViewInsets="NO" id="4Bp-gT-H9J" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="BjG-SW-M6Y">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -431,7 +431,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NwH-HD-zTz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4299" y="249"/>
+            <point key="canvasLocation" x="3532" y="-430"/>
         </scene>
     </scenes>
 </document>

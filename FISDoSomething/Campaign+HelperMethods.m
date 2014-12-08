@@ -228,12 +228,12 @@
 + (NSData *)shrinkLandscapeImage:(UIImage *)landscapeImage
 {
     CGFloat ratio = landscapeImage.size.width/landscapeImage.size.height;
-    CGFloat newHeight = landscapeImage.size.height * 0.5;
+    CGFloat newHeight = landscapeImage.size.height * 0.8;
     CGSize newSize = CGSizeMake(newHeight*ratio, newHeight);
     UIGraphicsBeginImageContext(newSize);
     [landscapeImage drawInRect:(CGRect){.origin = CGPointZero, .size = newSize}];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    NSData *imageData = UIImageJPEGRepresentation(newImage, 0.8);
+    NSData *imageData = UIImageJPEGRepresentation(newImage,1);
     UIGraphicsEndImageContext();
     return imageData;
 
@@ -241,12 +241,12 @@
 
 + (NSData *)shrinkSquareImage:(UIImage *)squareImage
 {
-    CGFloat newHeight = squareImage.size.height * 0.5;
+    CGFloat newHeight = squareImage.size.height * 0.8;
     CGSize newSize = CGSizeMake(newHeight, newHeight);
     UIGraphicsBeginImageContext(newSize);
     [squareImage drawInRect:(CGRect){.origin = CGPointZero, .size = newSize}];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    NSData *imageData = UIImageJPEGRepresentation(newImage, 0.8);
+    NSData *imageData = UIImageJPEGRepresentation(newImage, 1);
     UIGraphicsEndImageContext();
     return imageData;
 }
