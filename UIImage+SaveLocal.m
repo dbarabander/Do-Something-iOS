@@ -30,9 +30,9 @@
     else {
         data = [Campaign shrinkSquareImage:self];
     }
-    NSString *imageName = [NSString stringWithFormat:@"%@_%@_%@", campaign.title,
+    NSString *imageName = [NSString stringWithFormat:@"%@_%@_%@.jpg", campaign.title,
                            [campaign.nid stringValue], imageType];
-    NSString *fullPath = [[self applicationDocumentsDirectory] stringByAppendingPathComponent:imageName];
+    NSString *fullPath = [self documentsPathForFileName:imageName];
     [data writeToFile:fullPath atomically:YES];
     return fullPath;
 }
@@ -43,11 +43,13 @@
     return image;
 }
 
-- (NSString *)applicationDocumentsDirectory
+- (NSString *)documentsPathForFileName:(NSString *)name
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
-    return basePath;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    
+    return [documentsPath stringByAppendingPathComponent:name];
 }
+
 
 @end

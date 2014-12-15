@@ -64,6 +64,13 @@
     // Hide scroll view indicators
     [self.scrollView setShowsHorizontalScrollIndicator:NO];
     [self.scrollView setShowsVerticalScrollIndicator:NO];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transitionToSelectedEventsTableViewController) name:@"moveToSelectedCampaigns" object:nil];
+}
+
+- (void)transitionToSelectedEventsTableViewController
+{
+    [self.scrollView setContentOffset:CGPointMake(self.view.frame.size.width, 0) animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

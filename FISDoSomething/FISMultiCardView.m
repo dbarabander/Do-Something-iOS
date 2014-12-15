@@ -3,6 +3,10 @@
 //
 
 #import "FISMultiCardView.h"
+#import "FISAppFont.h"
+
+#define yesColor [UIColor colorWithRed:0.6f green:0.75f blue:0.32f alpha:1.0f]
+#define noColor [UIColor colorWithRed:0.93f green:0.18f blue:0.23f alpha:1.0f]
 
 @interface FISMultiCardView () <UIGestureRecognizerDelegate>
 
@@ -13,12 +17,11 @@
 @property (nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 @property (nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
 
-@property (nonatomic) UIButton *yesButton;
-@property (nonatomic) UIButton *noButton;
+@property (strong, nonatomic) UIButton *yesButton;
+@property (strong, nonatomic) UIButton *noButton;
 
 @end
 
-#pragma mark -
 
 @implementation FISMultiCardView
 
@@ -33,16 +36,36 @@
         _panGestureRecognizer.delegate = self;
         _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_tapped:)];
         _tapGestureRecognizer.delegate = self;
-
-        _yesButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [_yesButton setBackgroundImage:[UIImage imageNamed:@"yesIcon"] forState:UIControlStateNormal];
-        [_yesButton addTarget:self action:@selector(didTapYesButton:) forControlEvents:UIControlEventTouchUpInside];
+        
+        _yesButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [_yesButton addTarget:self
+                       action:@selector(didTapYesButton:)
+             forControlEvents:UIControlEventTouchUpInside];
+        
+        [_yesButton setTitle:@"✓SURE" forState:UIControlStateNormal];
         [self addSubview:_yesButton];
-
-        _noButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [_noButton setBackgroundImage:[UIImage imageNamed:@"noIcon"] forState:UIControlStateNormal];
-        [_noButton addTarget:self action:@selector(didTapNoButton:) forControlEvents:UIControlEventTouchUpInside];
+        
+        _noButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [_noButton addTarget:self
+                      action:@selector(didTapNoButton:)
+            forControlEvents:UIControlEventTouchUpInside];
+        
+        [_noButton setTitle:@"✕ NAH!" forState:UIControlStateNormal];
         [self addSubview:_noButton];
+        
+        // Button styling
+        _yesButton.backgroundColor = [UIColor whiteColor];
+        _noButton.backgroundColor = [UIColor whiteColor];
+        [_yesButton setTitleColor:yesColor forState:UIControlStateNormal];
+        [_noButton setTitleColor:noColor forState:UIControlStateNormal];
+        _yesButton.titleLabel.font = appFont(23);
+        _noButton.titleLabel.font = appFont(23);
+        _yesButton.layer.cornerRadius = 29.0;
+        _noButton.layer.cornerRadius = 29.0;
+        _yesButton.layer.borderWidth = 3.0;
+        _noButton.layer.borderWidth = 3.0;
+        _yesButton.layer.borderColor = yesColor.CGColor;
+        _noButton.layer.borderColor = noColor.CGColor;
     }
     return self;
 }
@@ -58,11 +81,13 @@
 - (void)layoutSubviews
 {
     const CGFloat buttonGap = CGRectGetWidth(self.bounds) / 10.0f;
+    const CGFloat heightGap = CGRectGetHeight(self.bounds) / 20.0f;
+    
+    CGSize noButtonSize = CGSizeMake(115.0, 55.0);
+    CGSize yesButtonSize = CGSizeMake(115.0, 55.0);
+    
 
-    CGSize yesButtonSize = [_yesButton backgroundImageForState:UIControlStateNormal].size;
-    CGSize noButtonSize = [_noButton backgroundImageForState:UIControlStateNormal].size;
-
-    CGFloat yPosition = self.center.y + ([self.delegate preferredSizeForPrimaryCardView].height + buttonGap) / 2.0f;
+    CGFloat yPosition = self.center.y + ([self.delegate preferredSizeForPrimaryCardView].height + heightGap) / 2.0f;
     _noButton.frame = (CGRect){
         .origin.x = self.center.x - noButtonSize.width - buttonGap / 2.0f,
         .origin.y = yPosition,
@@ -73,6 +98,8 @@
         .origin.y = yPosition,
         .size = yesButtonSize
     };
+    
+    
 }
 
 #pragma mark FISMultiCardView
@@ -130,9 +157,11 @@
         CGFloat newX;
         switch (swipeDirection) {
             case FISSwipeDirectionLeft:
+                [self animateNoButton];
                 newX = -[self.delegate preferredSizeForPrimaryCardView].width * 1.5f;
                 break;
             case FISSwipeDirectionRight:
+                [self animateYesButton];
                 newX = CGRectGetWidth(self.bounds) + [self.delegate preferredSizeForPrimaryCardView].width * 1.5f;
                 break;
         }
@@ -149,6 +178,32 @@
     } completion:^(BOOL finished) {
         [self _didSwipeFrontmostCardView:frontmostCardView inDirection:swipeDirection];
         _isSwiping = NO;
+    }];
+}
+
+- (void)animateNoButton
+{
+    [UIView animateWithDuration:0.05 animations:^{
+        self.noButton.backgroundColor = noColor;
+        [self.noButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.05 animations:^{
+            self.noButton.backgroundColor = [UIColor whiteColor];
+            [self.noButton setTitleColor:noColor forState:UIControlStateNormal];
+        } completion:nil];
+    }];
+}
+
+- (void)animateYesButton
+{
+    [UIView animateWithDuration:0.05 animations:^{
+        self.yesButton.backgroundColor = yesColor;
+        [self.yesButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.05 animations:^{
+            self.yesButton.backgroundColor = [UIColor whiteColor];
+            [self.yesButton setTitleColor:yesColor forState:UIControlStateNormal];
+        } completion:nil];
     }];
 }
 
@@ -197,6 +252,24 @@
 
     CGFloat xDistance = [gestureRecognizer translationInView:self].x;
     CGFloat yDistance = [gestureRecognizer translationInView:self].y;
+    NSLog(@"%f", xDistance);
+    
+    CGFloat normalizedX = fabsf(xDistance)/(self.frame.size.width/2);
+    
+    // Button color change on motion
+    FISSwipeDirection direction = (xDistance > 0) ? FISSwipeDirectionRight : FISSwipeDirectionLeft;
+    if (direction == FISSwipeDirectionRight) {
+        self.noButton.backgroundColor = [UIColor whiteColor];
+        self.yesButton.backgroundColor = [self colorFromColor:[UIColor whiteColor] toColor:yesColor percent:normalizedX];
+        UIColor *titleColor = [self colorFromColor:yesColor toColor:[UIColor whiteColor] percent:normalizedX];
+        [self.yesButton setTitleColor:titleColor forState:UIControlStateNormal];
+    }
+    else {
+        self.yesButton.backgroundColor = [UIColor whiteColor];
+        self.noButton.backgroundColor = [self colorFromColor:[UIColor whiteColor] toColor:noColor percent:normalizedX];
+        UIColor *titleColor = [self colorFromColor:noColor toColor:[UIColor whiteColor] percent:normalizedX];
+        [self.noButton setTitleColor:titleColor forState:UIControlStateNormal];
+    }
 
     switch (gestureRecognizer.state) {
         case UIGestureRecognizerStateBegan: {
@@ -212,6 +285,10 @@
             break;
         }
         case UIGestureRecognizerStateEnded: {
+            self.yesButton.backgroundColor = [UIColor whiteColor];
+            self.noButton.backgroundColor = [UIColor whiteColor];
+            [self.yesButton setTitleColor:yesColor forState:UIControlStateNormal];
+            [self.noButton setTitleColor:noColor forState:UIControlStateNormal];
             if (fabs(xDistance) > 100.f) {
                 CGFloat centerX;
                 if (xDistance > 0.f) {
@@ -239,6 +316,38 @@
         case UIGestureRecognizerStateFailed:
             break;
     }
+}
+
+- (UIColor *)colorFromColor:(UIColor *)fromColor toColor:(UIColor *)toColor percent:(float)percent
+{
+    float dec = percent;
+    CGFloat fRed, fBlue, fGreen, fAlpha;
+    CGFloat tRed, tBlue, tGreen, tAlpha;
+    CGFloat red, green, blue, alpha;
+    
+    if(CGColorGetNumberOfComponents(fromColor.CGColor) == 2) {
+        [fromColor getWhite:&fRed alpha:&fAlpha];
+        fGreen = fRed;
+        fBlue = fRed;
+    }
+    else {
+        [fromColor getRed:&fRed green:&fGreen blue:&fBlue alpha:&fAlpha];
+    }
+    if(CGColorGetNumberOfComponents(toColor.CGColor) == 2) {
+        [toColor getWhite:&tRed alpha:&tAlpha];
+        tGreen = tRed;
+        tBlue = tRed;
+    }
+    else {
+        [toColor getRed:&tRed green:&tGreen blue:&tBlue alpha:&tAlpha];
+    }
+    
+    red = (dec * (tRed - fRed)) + fRed;
+    blue = (dec * (tBlue - fBlue)) + fBlue;
+    green = (dec * (tGreen - fGreen)) + fGreen;
+    alpha = (dec * (tAlpha - fAlpha)) + fAlpha;
+    
+    return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
 }
 
 - (void)_tapped:(UIPanGestureRecognizer *)gestureRecognizer

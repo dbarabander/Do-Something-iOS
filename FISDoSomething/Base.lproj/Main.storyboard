@@ -24,7 +24,7 @@
             </objects>
             <point key="canvasLocation" x="3532" y="249"/>
         </scene>
-        <!--Campaigns-->
+        <!--My Campaigns-->
         <scene sceneID="6YJ-HN-rKP">
             <objects>
                 <tableViewController id="Gwi-bG-E99" customClass="FISChosenEventsTableViewController" sceneMemberID="viewController">
@@ -45,7 +45,7 @@
                             <outlet property="delegate" destination="Gwi-bG-E99" id="4av-sg-8rY"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Campaigns" id="owk-sF-MlD"/>
+                    <navigationItem key="navigationItem" title="My Campaigns" id="owk-sF-MlD"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ug5-ZT-Qfw" userLabel="First Responder" sceneMemberID="firstResponder"/>

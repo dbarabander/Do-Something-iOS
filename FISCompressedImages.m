@@ -37,13 +37,15 @@
     [[[NSOperationQueue alloc] init] addOperationWithBlock:^{
         NSString *landscapeImagePath = campaign.landscapeImage;
         UIImage *normalImage = [UIImage getImageWithPath:landscapeImagePath];
-        UIImage *blurredImage = [self blurImage:normalImage];
-        [self.campaignImages setObject:@{@"normal" : normalImage,
+        if (normalImage) {
+            UIImage *blurredImage = [self blurImage:normalImage];
+            [self.campaignImages setObject:@{@"normal" : normalImage,
                                              @"blurred" : blurredImage}
                                     forKey:campaign.nid];
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            completionHandler();
-        }];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                completionHandler();
+            }];
+        }
     }];
 }
 

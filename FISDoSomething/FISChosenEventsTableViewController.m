@@ -34,8 +34,6 @@
     self.tableView.tableFooterView = [UIView new];
     self.tableView.backgroundColor = [UIColor colorWithRed:77.0/255.0 green:43.0/255.0 blue:99.0/255.0 alpha:1.0];
 
-    //[self.segmentedControl setTitle:@"All" forSegmentAtIndex:0];
-    //[self.segmentedControl setTitle:@"Completed" forSegmentAtIndex:1];
     [self adjustNavigationBar];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 
@@ -80,6 +78,11 @@
 {
     [self.eventsToDisplay addObject:campaign];
     [self.tableView reloadData];
+    static BOOL firstCampaignSelected = NO;
+    if (!firstCampaignSelected) {
+        firstCampaignSelected = YES;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"moveToSelectedCampaigns" object:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

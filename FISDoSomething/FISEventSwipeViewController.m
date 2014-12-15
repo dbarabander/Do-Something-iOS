@@ -79,6 +79,9 @@
 
     self.detailView = [[[NSBundle mainBundle] loadNibNamed:@"FISEventDetailView" owner:self options:nil] firstObject];
     self.detailView.delegate = self;
+    
+    
+
 }
 
 #pragma mark FISEventSwipeViewControllerDataSource
@@ -98,7 +101,7 @@
 - (CGSize)preferredSizeForPrimaryCardView
 {
     CGFloat width = CGRectGetWidth(self.view.bounds) * 0.9;
-    CGFloat height = 4.0 / 3.0 * width;
+    CGFloat height = 4.0 / 3.5 * width;
     return CGSizeMake(width, height - 15);
 }
 
