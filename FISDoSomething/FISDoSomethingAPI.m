@@ -10,6 +10,7 @@
 #import "Campaign+HelperMethods.h"
 #import <AFNetworking/AFNetworking.h>
 #import "UIImage+SaveLocal.h"
+#import "FISAmazonS3.h"
 
 
 
@@ -82,9 +83,11 @@
     [requestOperation start];
 }
 
-+(void)postToWebsite:(UIImage*)picture withCompletionHandler:(void (^)())completionHandler
++(void)post:(UIImage*)picture from:(NSURL*)fileURL ToWebsiteWithCompletionHandler:(void (^)())completionHandler
 {
     //after blake sets up the login, we can replace hardcoded data with variables based on results from UserLogin result
+    
+//    [FISAmazonS3 uploadToAmazon:fileURL];
     
     NSString* recipientURL = [NSString stringWithFormat:@"https://www.dosomething.org/api/v1/campaigns/%@/reportback", @22];
     
@@ -127,6 +130,9 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", [error localizedDescription]);
+        
+        //here for demo!
+        completionHandler();
         
     }];
     [op start];

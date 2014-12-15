@@ -32,6 +32,9 @@
 		6FDDB44F1A322FF6003FC3A2 /* FISLoginRegisterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FDDB44E1A322FF6003FC3A2 /* FISLoginRegisterTableViewController.m */; };
 		6FDDB4521A3255D5003FC3A2 /* StaticDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FDDB4511A3255D5003FC3A2 /* StaticDataTableViewController.m */; };
 		8A45F5261A35FFBC00A69E17 /* FISUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45F5251A35FFBC00A69E17 /* FISUser.m */; };
+		8A45F5281A36311600A69E17 /* libPods-FISDoSomething-AWSiOSSDKv2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A45F5271A36311600A69E17 /* libPods-FISDoSomething-AWSiOSSDKv2.a */; };
+		8A45F52F1A3638A000A69E17 /* FISAmazonS3.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A45F52E1A3638A000A69E17 /* FISAmazonS3.m */; };
+		8AC60B9D1A3F3EBF000D0407 /* FISPhotoDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AC60B9C1A3F3EBF000D0407 /* FISPhotoDisplayViewController.m */; };
 		94AC3FE323C0321BCC7CF5D5 /* libPods-FISDoSomething.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7322E1BD57E285C50436690 /* libPods-FISDoSomething.a */; };
 		BD5A0D2E1A30DD31009DB2D4 /* FISCompressedImages.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5A0D2D1A30DD31009DB2D4 /* FISCompressedImages.m */; };
 		BD7AF3BD1A2D050B00FAC422 /* FISChosenEventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BD7AF3B91A2D050B00FAC422 /* FISChosenEventsTableViewController.m */; };
@@ -101,6 +104,11 @@
 		6FDDB4511A3255D5003FC3A2 /* StaticDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaticDataTableViewController.m; sourceTree = "<group>"; };
 		8A45F5241A35FF9E00A69E17 /* FISUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISUser.h; sourceTree = "<group>"; };
 		8A45F5251A35FFBC00A69E17 /* FISUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISUser.m; sourceTree = "<group>"; };
+		8A45F5271A36311600A69E17 /* libPods-FISDoSomething-AWSiOSSDKv2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-FISDoSomething-AWSiOSSDKv2.a"; path = "Pods/build/Debug-iphoneos/libPods-FISDoSomething-AWSiOSSDKv2.a"; sourceTree = "<group>"; };
+		8A45F52D1A3638A000A69E17 /* FISAmazonS3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISAmazonS3.h; sourceTree = "<group>"; };
+		8A45F52E1A3638A000A69E17 /* FISAmazonS3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISAmazonS3.m; sourceTree = "<group>"; };
+		8AC60B9B1A3F3EBF000D0407 /* FISPhotoDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISPhotoDisplayViewController.h; sourceTree = "<group>"; };
+		8AC60B9C1A3F3EBF000D0407 /* FISPhotoDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISPhotoDisplayViewController.m; sourceTree = "<group>"; };
 		BD5A0D2C1A30DD31009DB2D4 /* FISCompressedImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISCompressedImages.h; sourceTree = "<group>"; };
 		BD5A0D2D1A30DD31009DB2D4 /* FISCompressedImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISCompressedImages.m; sourceTree = "<group>"; };
 		BD5A0D2F1A3105D0009DB2D4 /* FISAppFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISAppFont.h; sourceTree = "<group>"; };
@@ -126,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A45F5281A36311600A69E17 /* libPods-FISDoSomething-AWSiOSSDKv2.a in Frameworks */,
 				94AC3FE323C0321BCC7CF5D5 /* libPods-FISDoSomething.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,6 +161,7 @@
 		444481BD22A95338612751D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8A45F5271A36311600A69E17 /* libPods-FISDoSomething-AWSiOSSDKv2.a */,
 				C7322E1BD57E285C50436690 /* libPods-FISDoSomething.a */,
 			);
 			name = Frameworks;
@@ -242,6 +252,8 @@
 				6F7D31E91A2CBBE4001C9B54 /* FISDataStore.m */,
 				6F7D31EA1A2CBBE4001C9B54 /* FISDoSomethingAPI.h */,
 				6F7D31EB1A2CBBE4001C9B54 /* FISDoSomethingAPI.m */,
+				8A45F52D1A3638A000A69E17 /* FISAmazonS3.h */,
+				8A45F52E1A3638A000A69E17 /* FISAmazonS3.m */,
 			);
 			name = Model;
 			path = FISDoSomething;
@@ -252,6 +264,8 @@
 			children = (
 				BD7AF3BA1A2D050B00FAC422 /* FISCustomEventTableViewCell.h */,
 				BD7AF3BB1A2D050B00FAC422 /* FISCustomEventTableViewCell.m */,
+				8AC60B9B1A3F3EBF000D0407 /* FISPhotoDisplayViewController.h */,
+				8AC60B9C1A3F3EBF000D0407 /* FISPhotoDisplayViewController.m */,
 				6F7D31F41A2CBBE4001C9B54 /* FISMultiCardView.h */,
 				6F7D31F51A2CBBE4001C9B54 /* FISMultiCardView.m */,
 				6F7D31EC1A2CBBE4001C9B54 /* FISEventCard.h */,
@@ -458,6 +472,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A45F52F1A3638A000A69E17 /* FISAmazonS3.m in Sources */,
 				BDEA81131A2E662000014E9D /* PopOverAnimation.m in Sources */,
 				6F7D31FF1A2CBBE4001C9B54 /* FISEventDetailView.m in Sources */,
 				6F4133661A30C324000E58A7 /* UIImage+ImageEffects.m in Sources */,
@@ -474,6 +489,7 @@
 				BDF7A28C1A3607BE00D683E7 /* UIImage+SaveLocal.m in Sources */,
 				6F7D32041A2CBBE4001C9B54 /* FISViewController.m in Sources */,
 				6F7D31FB1A2CBBE4001C9B54 /* FISDataStore.m in Sources */,
+				8AC60B9D1A3F3EBF000D0407 /* FISPhotoDisplayViewController.m in Sources */,
 				BD7AF3BD1A2D050B00FAC422 /* FISChosenEventsTableViewController.m in Sources */,
 				6F7D32031A2CBBE4001C9B54 /* NSString+cleanUp.m in Sources */,
 				8A45F5261A35FFBC00A69E17 /* FISUser.m in Sources */,
@@ -606,11 +622,21 @@
 			baseConfigurationReference = 3FA932492A14C78E288BCAAB /* Pods-FISDoSomething.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/karim/Downloads/aws-ios-sdk-2.0.12/frameworks",
+					"/Users/karim/Downloads/aws-ios-sdk-2.0.12/frameworks/extras",
+				);
 				INFOPLIST_FILE = FISDoSomething/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -621,11 +647,21 @@
 			baseConfigurationReference = C7D1E20C2B7649FB78533423 /* Pods-FISDoSomething.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/karim/Downloads/aws-ios-sdk-2.0.12/frameworks",
+					"/Users/karim/Downloads/aws-ios-sdk-2.0.12/frameworks/extras",
+				);
 				INFOPLIST_FILE = FISDoSomething/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

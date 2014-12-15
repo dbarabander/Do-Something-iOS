@@ -7,6 +7,8 @@ pod 'SVProgressHUD'
 pod 'DZNEmptyDataSet'
 pod 'GPUImage'
 pod 'SSKeychain'
+pod 'AWSiOSSDKv2'
+pod 'AWSCognitoSync'
 end
 
 target 'FISDoSomethingTests' do

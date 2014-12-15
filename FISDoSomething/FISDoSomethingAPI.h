@@ -23,5 +23,6 @@
 + (void)retrieveImagesForCampaign:(Campaign *)campaign
             withCompletionHandler:(void (^)())completionHandler;
 
-+(void)postToWebsite:(UIImage*)picture withCompletionHandler:(void (^)())completionHandler;
++(void)post:(UIImage*)picture from:(NSURL*)fileURL ToWebsiteWithCompletionHandler:(void (^)())completionHandler;
+
 @end

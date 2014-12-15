@@ -12,6 +12,7 @@
 #import "FISLoginRegisterTableViewController.h"
 #import "FISUser.h"
 #import "FISDataStore.h"
+#import <AWSCore.h>
 
 @interface AppDelegate ()
 
@@ -36,7 +37,23 @@
     self.dataManager = [FISDataStore sharedDataStore];
     
     //  [FISUser memberLogin:@"joeflat@mailinator.com" password:@"ironman123"];
+    
+    [self createDefaultAmazonServiceConfiguration];
+    
     return YES;
+}
+-(void) createDefaultAmazonServiceConfiguration
+{
+    AWSCognitoCredentialsProvider *credentialsProvider = [AWSCognitoCredentialsProvider credentialsWithRegionType:AWSRegionUSEast1
+                                                          
+    //must update account id and identityPoolID- waiting for joe
+                                                                                                        accountId:@"AKIAI6FWRIPOGSU6PGYQ"
+                                                                                                   identityPoolId:@"2lN7gbaf6TvSRUaRgYOYL7fz+JOwn/kM2eu6CmUI"
+                                                                                                    unauthRoleArn:nil
+                                                                                                      authRoleArn:nil];
+    AWSServiceConfiguration *configuration = [AWSServiceConfiguration configurationWithRegion:AWSRegionUSEast1
+                                                                          credentialsProvider:credentialsProvider];
+    [AWSServiceManager defaultServiceManager].defaultServiceConfiguration = configuration;
 }
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {

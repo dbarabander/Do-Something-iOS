@@ -20,13 +20,156 @@ PODS:
   - AFNetworking/UIKit (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - AWSCognitoSync (1.0.6):
+    - AWSCognitoSync/Cognito (= 1.0.6)
+    - AWSiOSSDKv2
+  - AWSCognitoSync/Cognito (1.0.6):
+    - AWSiOSSDKv2
+  - AWSiOSSDKv2 (2.0.12):
+    - AWSiOSSDKv2/AutoScaling (= 2.0.12)
+    - AWSiOSSDKv2/AWSCore (= 2.0.12)
+    - AWSiOSSDKv2/CloudWatch (= 2.0.12)
+    - AWSiOSSDKv2/DynamoDB (= 2.0.12)
+    - AWSiOSSDKv2/EC2 (= 2.0.12)
+    - AWSiOSSDKv2/ElasticLoadBalancing (= 2.0.12)
+    - AWSiOSSDKv2/Kinesis (= 2.0.12)
+    - AWSiOSSDKv2/S3 (= 2.0.12)
+    - AWSiOSSDKv2/SES (= 2.0.12)
+    - AWSiOSSDKv2/SimpleDB (= 2.0.12)
+    - AWSiOSSDKv2/SNS (= 2.0.12)
+    - AWSiOSSDKv2/SQS (= 2.0.12)
+    - Bolts (~> 1.1.0)
+    - GZIP (~> 1.0.3)
+    - Mantle (~> 1.4.1)
+    - Reachability (~> 3.1.1)
+    - TMCache (~> 1.2.1)
+    - UICKeyChainStore (~> 1.0.5)
+    - XMLDictionary (~> 1.4.0)
+  - AWSiOSSDKv2/AutoScaling (2.0.12):
+    - AWSiOSSDKv2/AWSCore
+    - Bolts (~> 1.1.0)
+    - GZIP (~> 1.0.3)
+    - Mantle (~> 1.4.1)
+    - Reachability (~> 3.1.1)
+    - TMCache (~> 1.2.1)
+    - UICKeyChainStore (~> 1.0.5)
+    - XMLDictionary (~> 1.4.0)
+  - AWSiOSSDKv2/AWSCore (2.0.12):
+    - Bolts (~> 1.1.0)
+    - GZIP (~> 1.0.3)
+    - Mantle (~> 1.4.1)
+    - Reachability (~> 3.1.1)
+    - TMCache (~> 1.2.1)
+    - UICKeyChainStore (~> 1.0.5)
+    - XMLDictionary (~> 1.4.0)
+  - AWSiOSSDKv2/CloudWatch (2.0.12):
+    - AWSiOSSDKv2/AWSCore
+    - Bolts (~> 1.1.0)
+    - GZIP (~> 1.0.3)
+    - Mantle (~> 1.4.1)
+    - Reachability (~> 3.1.1)
+    - TMCache (~> 1.2.1)
+    - UICKeyChainStore (~> 1.0.5)
+    - XMLDictionary (~> 1.4.0)
+  - AWSiOSSDKv2/DynamoDB (2.0.12):
+    - AWSiOSSDKv2/AWSCore
+    - Bolts (~> 1.1.0)
+    - GZIP (~> 1.0.3)
+    - Mantle (~> 1.4.1)
+    - Reachability (~> 3.1.1)
+    - TMCache (~> 1.2.1)
+    - UICKeyChainStore (~> 1.0.5)
+    - XMLDictionary (~> 1.4.0)
+  - AWSiOSSDKv2/EC2 (2.0.12):
+    - AWSiOSSDKv2/AWSCore
+    - Bolts (~> 1.1.0)
+    - GZIP (~> 1.0.3)
+    - Mantle (~> 1.4.1)
+    - Reachability (~> 3.1.1)
+    - TMCache (~> 1.2.1)
+    - UICKeyChainStore (~> 1.0.5)
+    - XMLDictionary (~> 1.4.0)
+  - AWSiOSSDKv2/ElasticLoadBalancing (2.0.12):
+    - AWSiOSSDKv2/AWSCore
+    - Bolts (~> 1.1.0)
+    - GZIP (~> 1.0.3)
+    - Mantle (~> 1.4.1)
+    - Reachability (~> 3.1.1)
+    - TMCache (~> 1.2.1)
+    - UICKeyChainStore (~> 1.0.5)
+    - XMLDictionary (~> 1.4.0)
+  - AWSiOSSDKv2/Kinesis (2.0.12):
+    - AWSiOSSDKv2/AWSCore
+    - Bolts (~> 1.1.0)
+    - GZIP (~> 1.0.3)
+    - Mantle (~> 1.4.1)
+    - Reachability (~> 3.1.1)
+    - TMCache (~> 1.2.1)
+    - UICKeyChainStore (~> 1.0.5)
+    - XMLDictionary (~> 1.4.0)
+  - AWSiOSSDKv2/S3 (2.0.12):
+    - AWSiOSSDKv2/AWSCore
+    - Bolts (~> 1.1.0)
+    - GZIP (~> 1.0.3)
+    - Mantle (~> 1.4.1)
+    - Reachability (~> 3.1.1)
+    - TMCache (~> 1.2.1)
+    - UICKeyChainStore (~> 1.0.5)
+    - XMLDictionary (~> 1.4.0)
+  - AWSiOSSDKv2/SES (2.0.12):
+    - AWSiOSSDKv2/AWSCore
+    - Bolts (~> 1.1.0)
+    - GZIP (~> 1.0.3)
+    - Mantle (~> 1.4.1)
+    - Reachability (~> 3.1.1)
+    - TMCache (~> 1.2.1)
+    - UICKeyChainStore (~> 1.0.5)
+    - XMLDictionary (~> 1.4.0)
+  - AWSiOSSDKv2/SimpleDB (2.0.12):
+    - AWSiOSSDKv2/AWSCore
+    - Bolts (~> 1.1.0)
+    - GZIP (~> 1.0.3)
+    - Mantle (~> 1.4.1)
+    - Reachability (~> 3.1.1)
+    - TMCache (~> 1.2.1)
+    - UICKeyChainStore (~> 1.0.5)
+    - XMLDictionary (~> 1.4.0)
+  - AWSiOSSDKv2/SNS (2.0.12):
+    - AWSiOSSDKv2/AWSCore
+    - Bolts (~> 1.1.0)
+    - GZIP (~> 1.0.3)
+    - Mantle (~> 1.4.1)
+    - Reachability (~> 3.1.1)
+    - TMCache (~> 1.2.1)
+    - UICKeyChainStore (~> 1.0.5)
+    - XMLDictionary (~> 1.4.0)
+  - AWSiOSSDKv2/SQS (2.0.12):
+    - AWSiOSSDKv2/AWSCore
+    - Bolts (~> 1.1.0)
+    - GZIP (~> 1.0.3)
+    - Mantle (~> 1.4.1)
+    - Reachability (~> 3.1.1)
+    - TMCache (~> 1.2.1)
+    - UICKeyChainStore (~> 1.0.5)
+    - XMLDictionary (~> 1.4.0)
+  - Bolts (1.1.3)
   - DZNEmptyDataSet (1.4.1)
   - GPUImage (0.1.6)
+  - GZIP (1.0.3)
+  - Mantle (1.4.1):
+    - Mantle/extobjc (= 1.4.1)
+  - Mantle/extobjc (1.4.1)
+  - Reachability (3.1.1)
   - SSKeychain (1.2.2)
   - SVProgressHUD (1.0)
+  - TMCache (1.2.2)
+  - UICKeyChainStore (1.0.5)
+  - XMLDictionary (1.4)
 
 DEPENDENCIES:
   - AFNetworking
+  - AWSCognitoSync
+  - AWSiOSSDKv2
   - DZNEmptyDataSet
   - GPUImage
   - SSKeychain
@@ -34,9 +177,18 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
+  AWSCognitoSync: 7858e865cbe124ac634add2ebfd3b349e7ae6259
+  AWSiOSSDKv2: 57798629e08dcb547c29a093e7d1a7e2bc5ac0ae
+  Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
   DZNEmptyDataSet: 381e880cb3bb2d33885cb0325218443df265bc98
   GPUImage: cecb0830bb9428f50192042e3c7b53810f51388e
+  GZIP: f27c434ffee5e9a9b34f4e9c19e91350fa8bbde1
+  Mantle: 1ca9c0fa84d3d3fc98524e7229f30489b6dd44e5
+  Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
   SSKeychain: cc48bd3ad24fcd9125adb9e0d23dd50b8bbd08b9
   SVProgressHUD: 5034c6e22b8c2ca3e09402e48d41ed0340aa1c50
+  TMCache: e2c9225de7a107b529d1d04baa58eb5eab3051f3
+  UICKeyChainStore: 4f9719600cc70025064e26f28f1210bcfc3b0c35
+  XMLDictionary: 735e81b9a043e220b0d24e9d4f16719606f2e0fc
 
 COCOAPODS: 0.35.0.rc2

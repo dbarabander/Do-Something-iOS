@@ -1,0 +1,1 @@
+PODS_FISDOSOMETHING_MANTLE_OTHER_LDFLAGS = -framework "Foundation"
